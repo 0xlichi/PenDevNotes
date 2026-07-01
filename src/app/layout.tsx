@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import { SiteHeader } from "@/components/docs/site-header";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { SiteHeader } from '@/components/docs/site-header';
+import './globals.css';
 
 // Note: we intentionally use system font stacks (defined in globals.css)
 // instead of next/font/google. This avoids a build-time network fetch to
@@ -9,10 +9,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Notebook — Pentest & Dev Notes",
-    template: "%s — Notebook",
+    default: 'Notebook — Pentest & Dev Notes',
+    template: '%s — Notebook',
   },
-  description: "A searchable notebook of pentesting and development notes.",
+  description: 'A searchable notebook of pentesting and development notes.',
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">{children}</main>
         <footer className="border-t border-border py-8 text-center text-xs text-[#a7967d]">
-          Built with Next.js, Tailwind CSS, and shadcn/ui — Markdown notes live in{" "}
+          A notebook for PenTesters & Developers
           <code className="rounded bg-[#f1e6d3] px-1.5 py-0.5 font-mono">/content</code>
         </footer>
       </body>
