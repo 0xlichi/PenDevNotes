@@ -25,9 +25,8 @@ export default function RootLayout({
       <body className="antialiased">
         <SiteHeader />
         <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">{children}</main>
-        <footer className="border-t border-border py-8 text-center text-xs text-[#a7967d]">
+        <footer className="border-t border-border py-8 font-bold text-center text-xs text-[#014B43]">
           A notebook for PenTesters & Developers
-          <code className="rounded bg-[#f1e6d3] px-1.5 py-0.5 font-mono">/content</code>
         </footer>
       </body>
     </html>

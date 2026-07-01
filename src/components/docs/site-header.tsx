@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { TerminalSquare } from "lucide-react";
-import { SearchTrigger } from "@/components/docs/search-dialog";
+import Link from 'next/link';
+import { TerminalSquare } from 'lucide-react';
+import { SearchTrigger } from '@/components/docs/search-dialog';
 
 /**
  * Sticky top header shown on every page.
@@ -17,7 +17,7 @@ export function SiteHeader() {
           />
           <span className="tracking-tight">Notebook</span>
           <span className="hidden font-mono text-xs font-normal text-[#a7967d] sm:inline">
-            /pentest
+            /Pen&Dev
           </span>
         </Link>
 
