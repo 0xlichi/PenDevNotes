@@ -8,7 +8,7 @@ import { SearchTrigger } from '@/components/docs/search-dialog';
  */
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/70">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="group flex items-center gap-2 font-semibold text-foreground">
           <TerminalSquare
@@ -17,7 +17,7 @@ export function SiteHeader() {
           />
           <span className="tracking-tight">Notebook</span>
           <span className="hidden font-mono text-xs font-normal text-[#a7967d] sm:inline">
-            /PenTest&Development
+            /PenTest & Development
           </span>
         </Link>
 
