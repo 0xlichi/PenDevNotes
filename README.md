@@ -201,7 +201,6 @@ docs-site/
    site is statically generated at build time — fast, and deployable anywhere
    that serves static + minimal server functions (e.g. Vercel).
 
-## Notes on customization
 
 - **Colors / theme**: all design tokens live at the top of `src/app/globals.css`.
 - **Code block theme**: change `theme: "github-light"` in `src/lib/markdown.ts` to any [Shiki theme name](https://shiki.style/themes).
