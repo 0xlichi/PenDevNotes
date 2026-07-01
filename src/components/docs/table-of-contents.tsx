@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import type { TocHeading } from "@/types/note";
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import type { TocHeading } from '@/types/note';
 
 /**
  * Sticky "On this page" navigation. Highlights the heading currently in view
@@ -10,7 +10,7 @@ import type { TocHeading } from "@/types/note";
  * listeners needed).
  */
 export function TableOfContents({ headings }: { headings: TocHeading[] }) {
-  const [activeId, setActiveId] = useState<string>("");
+  const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
     if (headings.length === 0) return;
@@ -23,7 +23,7 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
           setActiveId(visible[0].target.id);
         }
       },
-      { rootMargin: "-96px 0px -70% 0px" } // trigger a bit below the sticky header
+      { rootMargin: '-96px 0px -70% 0px' } // trigger a bit below the sticky header
     );
 
     headings.forEach((heading) => {
@@ -37,7 +37,7 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="animate-fade-in text-sm">
+    <nav className="animate-fade-in text-sm pl-8">
       <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-[#a7967d]">
         On this page
       </p>
@@ -47,10 +47,10 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
             <a
               href={`#${heading.id}`}
               className={cn(
-                "-ml-px block border-l-2 pl-3 py-0.5 transition-all duration-200 ease-out hover:translate-x-0.5 hover:text-foreground",
+                '-ml-px block border-l-2 pl-3 py-0.5 transition-all duration-200 ease-out hover:translate-x-0.5 hover:text-foreground',
                 activeId === heading.id
-                  ? "border-terracotta font-medium text-terracotta-ink"
-                  : "border-transparent text-[#a7967d]"
+                  ? 'border-terracotta font-medium text-terracotta-ink'
+                  : 'border-transparent text-[#a7967d]'
               )}
             >
               {heading.text}
