@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { SiteHeader } from '@/components/docs/site-header';
 import './globals.css';
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <footer className="border-t border-border py-8 font-bold text-center text-xs text-[#014B43]">
           A notebook for PenTesters & Developers
         </footer>
+        <Analytics />
       </body>
     </html>
   );
