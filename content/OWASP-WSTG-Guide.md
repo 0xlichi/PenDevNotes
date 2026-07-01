@@ -1,6 +1,6 @@
 ---
 title: "OWASP WSTG v4.2"
-description: "WSTG Cheet Sheet"
+description: "WSTG Cheetsheet."
 category: "Web PenTesting"
 tags: ["web-security", "owasp", "bug-bounty", "cheetsheet", "pentesting"]
 date: "2026-06-01"
