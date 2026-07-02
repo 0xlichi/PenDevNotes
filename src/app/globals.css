@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /*
   Design tokens
@@ -49,10 +49,9 @@
 
   /* System font stacks - no external network fetch required, and every
      device already has a fast, legible version of these installed. */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas",
-    "Liberation Mono", monospace;
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
 
   /* Animation timing tokens, reused across components for consistency */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
@@ -376,4 +375,24 @@ body {
 .prose-doc hr {
   border: none;
   border-top: 1px solid var(--color-border);
+}
+
+/* Thin scrollbar for the Table of Contents list */
+.toc-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #a7a9d6 transparent;
+}
+
+.toc-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.toc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.toc-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+.toc-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
 }

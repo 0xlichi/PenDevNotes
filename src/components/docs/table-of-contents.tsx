@@ -5,49 +5,60 @@ import { cn } from '@/lib/utils';
 import type { TocHeading } from '@/types/note';
 
 /**
- * Sticky "On this page" navigation. Highlights the heading currently in view
- * using IntersectionObserver (a lightweight scroll-spy - no scroll event
- * listeners needed).
+ * Sticky "On this page" navigation.
+ * Highlights the heading currently in view using IntersectionObserver.
  */
 export function TableOfContents({ headings }: { headings: TocHeading[] }) {
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeId, setActiveId] = useState('');
 
   useEffect(() => {
     if (headings.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Pick the topmost heading that's currently intersecting the viewport.
         const visible = entries.filter((entry) => entry.isIntersecting);
+
         if (visible.length > 0) {
           setActiveId(visible[0].target.id);
         }
       },
-      { rootMargin: '-96px 0px -70% 0px' } // trigger a bit below the sticky header
+      {
+        rootMargin: '-96px 0px -70% 0px',
+      }
     );
 
     headings.forEach((heading) => {
       const el = document.getElementById(heading.id);
-      if (el) observer.observe(el);
+      if (el) {
+        observer.observe(el);
+      }
     });
 
     return () => observer.disconnect();
   }, [headings]);
 
-  if (headings.length === 0) return null;
+  if (headings.length === 0) {
+    return null;
+  }
 
   return (
-    <nav className="animate-fade-in text-sm pl-8">
-      <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-[#a7967d]">
-        On this page
+    <nav className="animate-fade-in text-sm">
+      <p className="mb-3 font-mono text-xs font-bold  uppercase text-center tracking-wider text-[#3A7A82]">
+        On this page \udb80\udcba
       </p>
-      <ul className="space-y-2 border-l border-border">
+
+      <ul className="toc-scroll max-h-[70vh] space-y-2 overflow-y-auto border-l border-border pr-2">
         {headings.map((heading) => (
-          <li key={heading.id} style={{ paddingLeft: (heading.level - 2) * 12 + 12 }}>
+          <li
+            key={heading.id}
+            style={{
+              paddingLeft: (heading.level - 2) * 12 + 12,
+            }}
+          >
             <a
               href={`#${heading.id}`}
               className={cn(
-                '-ml-px block border-l-2 pl-3 py-0.5 transition-all duration-200 ease-out hover:translate-x-0.5 hover:text-foreground',
+                '-ml-px block border-l-2 py-0.5 pl-3 transition-all duration-200 ease-out hover:translate-x-0.5 hover:text-foreground',
                 activeId === heading.id
                   ? 'border-terracotta font-medium text-terracotta-ink'
                   : 'border-transparent text-[#a7967d]'
