@@ -30,12 +30,23 @@ const CONTENT_DIR = path.join(process.cwd(), 'content');
  * Returns the list of every `.md` filename (without extension) in /content.
  * The filename becomes the note's URL slug, e.g. `sql-injection.md` -> `/notes/sql-injection`.
  */
+/**
+ * Recursively walks a directory and returns every `.md` file found, as
+ * slugs relative to /content using forward slashes (works the same on
+ * Windows and Unix). This is what lets notes live in subfolders, e.g.
+ *
+ *   content/Web-Pentesting/cheetsheet/OWASP-WSTG-Guide.md
+ *     -> slug "Web-Pentesting/cheetsheet/OWASP-WSTG-Guide"
+ */
 function walkMarkdownFiles(dir: string, baseDir = dir): string[] {
   if (!fs.existsSync(dir)) return [];
+
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   const slugs: string[] = [];
+
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
+
     if (entry.isDirectory()) {
       slugs.push(...walkMarkdownFiles(fullPath, baseDir));
     } else if (entry.isFile() && entry.name.endsWith('.md')) {
@@ -43,13 +54,18 @@ function walkMarkdownFiles(dir: string, baseDir = dir): string[] {
       slugs.push(relative.replace(/\\/g, '/').replace(/\.md$/, ''));
     }
   }
+
   return slugs;
 }
 
+/**
+ * Returns the list of every `.md` file in /content (including subfolders)
+ * as a slug. The slug becomes the note's URL, e.g.
+ * `web-pentesting/cheetsheet/OWASP-WSTG-Guide.md` -> `/notes/web-pentesting/cheetsheet/OWASP-WSTG-Guide`.
+ */
 export function getAllSlugs(): string[] {
   return walkMarkdownFiles(CONTENT_DIR);
 }
-
 /** Reads the raw Markdown + front matter for a single slug, without rendering HTML. */
 function readNoteFile(slug: string): { data: Partial<Note>; content: string } {
   const filePath = path.join(CONTENT_DIR, `${slug}.md`);
