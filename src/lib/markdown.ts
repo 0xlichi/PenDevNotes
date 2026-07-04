@@ -122,7 +122,7 @@ export function getAllNoteSummaries(): NoteSummary[] {
 function collectHeadings(headings: TocHeading[]) {
   return () => (tree: Root) => {
     visit(tree, 'element', (node: Element) => {
-      if (['h2', 'h3', 'h4'].includes(node.tagName)) {
+      if (['h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
         const id = (node.properties?.id as string) ?? '';
         const text = extractText(node);
         if (id && text) {
