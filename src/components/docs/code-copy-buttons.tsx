@@ -24,14 +24,14 @@ export function CodeCopyButtons({ html }: { html: string }) {
       const button = document.createElement('button');
       button.className =
         'copy-btn absolute top-2 right-2 rounded-md border border-border bg-surface px-2 py-1 text-xs text-[#1f372d] shadow-sm transition-colors hover:border-terracotta hover:text-terracotta-ink';
-      button.textContent = '';
+      button.textContent = 'Copy';
       button.type = 'button';
 
       button.addEventListener('click', () => {
         const code = pre.querySelector('code')?.innerText ?? '';
         navigator.clipboard.writeText(code).then(() => {
           button.textContent = 'Copied!';
-          setTimeout(() => (button.textContent = ''), 1500);
+          setTimeout(() => (button.textContent = 'Copy'), 2000);
         });
       });
 
