@@ -5,6 +5,7 @@ import { getAllSlugs, getNoteBySlug, getAdjacentNotes, slugify } from '@/lib/mar
 import { Badge } from '@/components/ui/badge';
 import { TableOfContents } from '@/components/docs/table-of-contents';
 import { NotePagination } from '@/components/docs/note-pagination';
+import { CodeCopyButtons } from '@/components/docs/code-copy-buttons';
 
 interface PageProps {
   // Catch-all route: /notes/pentest/sql-injection -> ["pentest", "sql-injection"]
@@ -72,8 +73,9 @@ export default async function NotePage({ params }: PageProps) {
             </div>
           </div>
         </div>
-        {/* Rendered Markdown content (already syntax-highlighted server-side) */}
-        <div className="prose-doc" dangerouslySetInnerHTML={{ __html: note.contentHtml }} />
+        {/* Rendered Markdown content (already syntax-highlighted server-side),
+            with a permanent copy button injected into every code block */}
+        <CodeCopyButtons html={note.contentHtml} />
         <NotePagination previous={previous} next={next} />
       </article>
       {/* Table of contents - sticky on large screens, hidden on mobile */}
