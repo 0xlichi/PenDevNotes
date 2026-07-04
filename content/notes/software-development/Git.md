@@ -7,8 +7,6 @@ date: "2026-06-01"
 source: "Internet"
 ---
 
-# Git — Professional Reference Guide
-
 > `Info` About this guide
 > A complete reference covering Git fundamentals through advanced usage. 
 
