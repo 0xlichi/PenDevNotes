@@ -5,8 +5,8 @@ import { cn } from '@/lib/utils';
 import { SectionPreview } from '@/components/docs/section-preview';
 import type { TocHeading } from '@/types/note';
 
-const HOVER_DELAY_MS = 1000;
-const CLOSE_DELAY_MS = 200;
+const HOVER_DELAY_MS = 2000;
+const CLOSE_DELAY_MS = 250;
 
 /**
  * Sticky "On this page" navigation.
