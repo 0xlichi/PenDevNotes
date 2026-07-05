@@ -224,7 +224,23 @@ body {
   color: #4a3d2f;
   line-height: 1.75;
 }
-
+.preview-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+.preview-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.preview-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.preview-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+.preview-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
+}
 .prose-doc > * + * {
   margin-top: 1.25em;
 }
@@ -358,6 +374,7 @@ body {
 
 /* Fenced code blocks: rehype-pretty-code renders these as <pre><code>. */
 .prose-doc pre {
+  max-width: none;
   border-radius: 0.75rem;
   padding: 1rem 1.1rem;
   overflow-x: auto;
@@ -365,6 +382,12 @@ body {
   line-height: 1.6;
   border: 1px solid var(--color-border);
   box-shadow: 0 1px 2px rgba(51, 41, 31, 0.04);
+}
+
+/* Section preview modal: let content use the full modal width,
+   unlike the narrow 68ch reading column on the actual note page */
+.prose-doc.preview-content {
+  max-width: 60vw;
 }
 
 .prose-doc pre code {
@@ -425,5 +448,43 @@ body {
   border-radius: 999px;
 }
 .toc-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
+}
+
+/* Thin scrollbar for the Table of Contents list */
+.toc-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.toc-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.toc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.toc-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+.toc-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
+}
+
+.preview-scroll {
+  scrollbar-width: thick;
+  scrollbar-color: #1d5a66 transparent;
+}
+.preview-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.preview-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.preview-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+.preview-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--color-terracotta);
 }
