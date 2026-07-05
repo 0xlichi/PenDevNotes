@@ -42,7 +42,7 @@ export default async function NotePage({ params }: PageProps) {
   const { previous, next } = getAdjacentNotes(slug);
   const formattedDate = formatDate(note.date);
   return (
-    <div className="grid gap-10 lg:grid-cols-[1fr_220px]">
+    <div className="grid gap-10 lg:grid-cols-[1fr_260px]">
       <article className="animate-fade-in-up">
         {/* Breadcrumb-ish header */}
         <div className="mb-6">

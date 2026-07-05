@@ -43,8 +43,8 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
 
   return (
     <nav className="animate-fade-in text-sm">
-      <p className="mb-3 font-mono text-xs font-bold  uppercase text-center tracking-wider text-[#3A7A82]">
-        On this page \udb80\udcba
+      <p className="mb-3 font-mono  text-sm font-bold  uppercase text-center tracking-wider text-[#3A7A82]">
+        On this page!
       </p>
 
       <ul className="toc-scroll max-h-[70vh] space-y-2 overflow-y-auto border-l border-border pr-2">
