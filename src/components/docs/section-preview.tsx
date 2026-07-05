@@ -1,49 +1,33 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 interface SectionPreviewProps {
-  /** The id of the heading whose section should be shown, or null to stay closed. */
   headingId: string | null;
   onClose: () => void;
   onMouseEnter?: () => void;
 }
 
-/**
- * Finds the heading element by id in the live article DOM, then walks
- * forward collecting every sibling until the next heading of equal or
- * higher rank. Returns the combined innerHTML - i.e. exactly what's
- * already rendered on the page for that section, formatting included.
- */
 function extractSectionHtml(headingId: string): string | null {
   const heading = document.getElementById(headingId);
   if (!heading) return null;
-  const headingLevel = Number(heading.tagName[1]); // h2 -> 2, h3 -> 3, etc.
+  const headingLevel = Number(heading.tagName[1]);
   const parts: string[] = [heading.outerHTML];
   let node = heading.nextElementSibling;
   while (node) {
     const tagMatch = node.tagName.match(/^H([1-6])$/);
-    if (tagMatch && Number(tagMatch[1]) <= headingLevel) break; // stop at the next same/higher-level heading
+    if (tagMatch && Number(tagMatch[1]) <= headingLevel) break;
     parts.push(node.outerHTML);
     node = node.nextElementSibling;
   }
   return parts.join('\n');
 }
 
-/**
- * A large centered overlay that previews a single section's real,
- * already-rendered content - so formatting, code blocks, and links
- * all look exactly like they do on the page itself.
- *
- * Rendered via a portal so it sits above everything else regardless of
- * where <TableOfContents> lives in the layout. Hovering the modal itself
- * (onMouseEnter) cancels the pending close timer started by the ToC link,
- * so moving toward the modal doesn't close it prematurely.
- */
 export function SectionPreview({ headingId, onClose, onMouseEnter }: SectionPreviewProps) {
   const [html, setHtml] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
 
@@ -62,6 +46,30 @@ export function SectionPreview({ headingId, onClose, onMouseEnter }: SectionPrev
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
+
+  // Wire up copy buttons for code blocks inside this preview - the cloned
+  // HTML brings the button markup along, but not its click listener, so
+  // we need to re-attach it here, same as CodeCopyButtons does on the
+  // real note page.
+  useEffect(() => {
+    const container = contentRef.current;
+    if (!container || !html) return;
+
+    const blocks = container.querySelectorAll('pre');
+    blocks.forEach((pre) => {
+      const button = pre.querySelector('.copy-btn') as HTMLButtonElement | null;
+      if (!button || button.dataset.wired) return;
+
+      button.dataset.wired = 'true';
+      button.addEventListener('click', () => {
+        const code = pre.querySelector('code')?.innerText ?? '';
+        navigator.clipboard.writeText(code).then(() => {
+          button.textContent = 'Copied!';
+          setTimeout(() => (button.textContent = 'Copy'), 1500);
+        });
+      });
+    });
+  }, [html]);
 
   if (!mounted || !headingId || !html) return null;
 
@@ -88,6 +96,7 @@ export function SectionPreview({ headingId, onClose, onMouseEnter }: SectionPrev
         </div>
         <div className="preview-scroll flex-1 overflow-y-auto">
           <div
+            ref={contentRef}
             className="prose-doc preview-content px-8 py-6"
             dangerouslySetInnerHTML={{ __html: html }}
           />
