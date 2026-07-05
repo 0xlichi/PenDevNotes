@@ -9,7 +9,7 @@ import { SearchTrigger } from '@/components/docs/search-dialog';
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/70">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="group flex items-center gap-2 font-semibold text-foreground">
           <TerminalSquare
             className="h-5 w-5 text-terracotta-ink transition-transform duration-300 ease-out group-hover:rotate-6 group-hover:scale-110"
