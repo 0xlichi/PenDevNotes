@@ -17,7 +17,7 @@ export function SiteHeader() {
           />
           <span className="tracking-tight">Notebook</span>
           <span className="hidden font-mono text-xs font-normal text-[#a7967d] sm:inline">
-            /PenTest & Development
+            /Knowledge Vault
           </span>
         </Link>
 
