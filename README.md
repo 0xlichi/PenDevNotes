@@ -51,14 +51,6 @@ date: ""
 ```
 ---
 
-| Field         | Required | Notes                                                    |
-| ------------- | -------- | --------------------------------------------------------- |
-| `title`       | No       | Falls back to the filename if omitted                     |
-| `description` | No       | Used for card previews, page metadata, and search         |
-| `category`    | No       | Defaults to "Uncategorized"; powers the category pages    |
-| `tags`        | No       | Array of strings; powers the tags page and filtering      |
-| `date`        | No       | ISO format (`YYYY-MM-DD`); undated notes sort last         |
-
 ### Folder structure
 
 Notes live under `content/`, organized into nested topic folders. The folder
