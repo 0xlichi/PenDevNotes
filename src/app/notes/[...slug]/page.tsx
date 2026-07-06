@@ -5,7 +5,8 @@ import { getAllSlugs, getNoteBySlug, getAdjacentNotes, slugify } from '@/lib/mar
 import { Badge } from '@/components/ui/badge';
 import { TableOfContents } from '@/components/docs/table-of-contents';
 import { NotePagination } from '@/components/docs/note-pagination';
-import { CodeCopyButtons } from '@/components/docs/code-copy-buttons';
+import { NoteArticle } from '@/components/docs/note-article';
+import { NoteSearchById } from '@/components/docs/note-search-by-id';
 
 interface PageProps {
   // Catch-all route: /notes/pentest/sql-injection -> ["pentest", "sql-injection"]
@@ -74,13 +75,18 @@ export default async function NotePage({ params }: PageProps) {
           </div>
         </div>
         {/* Rendered Markdown content (already syntax-highlighted server-side),
-            with a permanent copy button injected into every code block */}
-        <CodeCopyButtons html={note.contentHtml} />
+            with a permanent copy button injected into every code block.
+            Wrapped in a div with a stable id so the search bar in the
+            sidebar (rendered separately below) can locate and search it. */}
+        <div id="note-article-content">
+          <NoteArticle contentHtml={note.contentHtml} />
+        </div>
         <NotePagination previous={previous} next={next} />
       </article>
-      {/* Table of contents - sticky on large screens, hidden on mobile */}
+      {/* Table of contents + in-note search - sticky on large screens, hidden on mobile */}
       <div className="hidden lg:block">
         <div className="sticky top-24">
+          <NoteSearchById targetId="note-article-content" />
           <TableOfContents headings={note.toc} />
         </div>
       </div>
