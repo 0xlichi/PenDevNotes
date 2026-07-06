@@ -498,3 +498,13 @@ body {
 .preview-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--color-terracotta);
 }
+
+mark.note-search-mark {
+  background: var(--color-sand);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+mark.note-search-mark.note-search-active {
+  background: var(--color-terracotta);
+}
