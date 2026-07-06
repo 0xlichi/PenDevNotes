@@ -19,6 +19,7 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
+import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
 import type { Root, Element } from 'hast';
 import type { Note, NoteSummary, TocHeading } from '@/types/note';
@@ -159,6 +160,7 @@ export async function getNoteBySlug(slug: string): Promise<Note | null> {
   const file = await unified()
     .use(remarkParse) // Markdown text -> mdast (Markdown AST)
     .use(remarkRehype) // mdast -> hast (HTML AST)
+    .use(remarkGfm) // mdast -> hast (HTML AST)
     .use(rehypeSlug) // add id="..." to every heading
     .use(rehypePrettyCode, {
       // Shiki-powered syntax highlighting, rendered at build time (no client JS needed)
