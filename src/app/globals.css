@@ -302,6 +302,16 @@ body {
   color: #6b5940;
   scroll-margin-top: 6rem;
 }
+.prose-doc input[type='checkbox'] {
+  margin-right: 0.5em;
+  accent-color: var(--color-terracotta);
+  cursor: not-allowed;
+}
+
+.prose-doc li:has(> input[type='checkbox']) {
+  list-style: none;
+  margin-left: -1.5em;
+}
 
 .prose-doc a.heading-anchor {
   text-decoration: none;
