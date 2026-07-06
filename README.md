@@ -39,6 +39,18 @@ date: "2026-01-15"
 ## Your content starts here
 ```
 
+### Template
+```markdown
+---
+title: ""
+description: ""
+category: ""
+tags: []
+date: ""
+---
+```
+---
+
 | Field         | Required | Notes                                                    |
 | ------------- | -------- | --------------------------------------------------------- |
 | `title`       | No       | Falls back to the filename if omitted                     |
