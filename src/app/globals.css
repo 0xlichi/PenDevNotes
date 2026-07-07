@@ -70,19 +70,26 @@ body {
 
 /* Thin, warm-toned scrollbar so it doesn't clash with the palette */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 30px;
+  height: 18px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-border);
+  opacity: 0.6;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--color-terracotta);
   border-radius: 999px;
-  border: 2px solid var(--background);
+  border: 3px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-terracotta);
+  background: var(--color-terracotta-deep);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-terracotta) var(--color-border);
 }
 
 /* ---------------------------------------------------------------------- */
