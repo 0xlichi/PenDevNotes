@@ -19,11 +19,11 @@ export function CodeCopyButtons({ html }: { html: string }) {
     blocks.forEach((pre) => {
       if (pre.querySelector('.copy-btn')) return; // avoid duplicates on re-render
 
-      pre.style.position = 'relative';
+      pre.classList.add('group', 'relative');
 
       const button = document.createElement('button');
       button.className =
-        'copy-btn absolute top-2 right-2 rounded-md border border-border bg-surface px-2 py-1 text-xs text-[#1f372d] shadow-sm transition-colors hover:border-terracotta hover:text-terracotta-ink';
+        'copy-btn absolute top-2 right-2 z-10 rounded-md border border-border bg-surface px-2 py-1 text-xs text-[#7a6b56] shadow-sm opacity-0 transition-opacity duration-150 group-hover:opacity-100 hover:border-terracotta hover:text-terracotta-ink';
       button.textContent = 'Copy';
       button.type = 'button';
 

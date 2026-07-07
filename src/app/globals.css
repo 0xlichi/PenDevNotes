@@ -391,6 +391,7 @@ html {
 
 /* Fenced code blocks: rehype-pretty-code renders these as <pre><code>. */
 .prose-doc pre {
+  position: relative;
   max-width: none;
   border-radius: 0.75rem;
   padding: 1rem 1.1rem;
