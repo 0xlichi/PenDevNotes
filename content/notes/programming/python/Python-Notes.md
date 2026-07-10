@@ -27,12 +27,7 @@ which python3
 ruff
 ```
 ```bash
-        require("none-ls.formatting.ruff_format").with({
-          extra_args = { "--line-length", "100" },
-        }),
-        require("none-ls.diagnostics.ruff").with({
-          extra_args = { "--select", "E,F,W,I,N,UP,B,C4,SIM,RUF" },
-        }),
+require("none-ls.formatting.ruff_format"),
 
 ```
 **`lsp`:** auto complete, go to definition, find all references etc
@@ -40,7 +35,13 @@ ruff
       basedpyright = {
         settings = {
           python = {
-            pythonPath = vim.fn.exepath("python3"),
+            pythonPath = (function()
+              local venv = vim.fn.getcwd() .. "/.venv/bin/python"
+              if vim.fn.executable(venv) == 1 then
+                return venv
+              end
+              return vim.fn.exepath("python3")
+            end)(),
             analysis = {
               typeCheckingMode = "standard",
               diagnosticMode = "workspace",
@@ -59,9 +60,9 @@ ruff
 
       ruff = {
         on_attach = function(client)
-          client.server_capabilities.hoverProvider = true
-          client.server_capabilities.documentFormattingProvider = true
-          client.server_capabilities.documentRangeFormattingProvider = true
+          client.server_capabilities.hoverProvider = false
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
         end,
       },
 
