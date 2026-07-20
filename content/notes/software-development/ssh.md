@@ -1,9 +1,9 @@
 ---
-title: 'test'
-description: 'test'
-category: 'test'
-tags: [test]
-date: '11'
+title: 'SSH Guide'
+description: 'A complete reference guide covering everything from first connection to advanced network tunneling.'
+category: 'Software Development'
+tags: ['software-development', 'ssh', 'networking']
+date: '2026-07-21'
 ---
 
 # SSH (Secure Shell)

@@ -1,14 +1,13 @@
 ---
-title: "Git"
-description: "A comprehensive guide/cheetsheet on Git."
-category: "Software Development"
-tags: ["git", "development", "DVCS", "cheetsheet"]
-date: "2026-06-01"
-source: "Internet"
+title: 'Git'
+description: 'A comprehensive guide/cheetsheet on Git.'
+category: 'Software Development'
+tags: ['git', 'development', 'DVCS', 'cheetsheet']
+date: '2026-06-01'
 ---
 
 > `Info` About this guide
-> A complete reference covering Git fundamentals through advanced usage. 
+> A complete reference covering Git fundamentals through advanced usage.
 
 ---
 
@@ -29,6 +28,7 @@ my-project/
 ```
 
 There are two kinds:
+
 - **Local repo** — lives on your machine
 - **Remote repo** — lives on a server (GitHub, GitLab, etc.)
 
@@ -37,6 +37,7 @@ There are two kinds:
 A **commit** is a permanent snapshot of your project at a point in time. Think of it like a save point in a video game — you can always return to it.
 
 Each commit stores:
+
 - A unique hash (ID) like `a3f92bc`
 - The author name and email
 - A timestamp
@@ -222,6 +223,7 @@ Git is a 4-step pipeline. Every operation maps to moving changes between these z
 ```
 
 Moving backwards:
+
 - `git restore <file>` — discard working dir changes
 - `git restore --staged <file>` — move from staging back to working dir
 - `git reset` — move commits back to staging or working dir
@@ -276,6 +278,7 @@ git rm --cached <file>        # stop tracking a file entirely, keep it on disk
 See [[#Core Concepts Explained]] for the conceptual explanation. Here's the practical detail:
 
 Every commit has:
+
 - **Hash**: `a3f92bc1d4e5...` (SHA-1, globally unique)
 - **Tree**: snapshot of all tracked files at that moment
 - **Parent**: pointer to the previous commit
@@ -295,7 +298,7 @@ git commit -am "Fix typo in README"       # stage all tracked files + commit in 
 ```
 
 > `Tip` Write commit messages in the imperative mood
-> *"Add login page"* not *"Added login page"*. Think of it as completing: *"If applied, this commit will… add login page."*
+> _"Add login page"_ not _"Added login page"_. Think of it as completing: _"If applied, this commit will… add login page."_
 
 ### Good Commit Message Format
 
@@ -402,6 +405,7 @@ git diff main..feature -- src/auth.js  # one file's difference between branches
 See [[#Core Concepts Explained]] for the conceptual explanation.
 
 Key facts:
+
 - Creating a branch is **free** (O(1) operation — just writes a tiny file)
 - Branches don't copy files — they're pointers
 - You can have hundreds of branches with zero performance impact
@@ -474,6 +478,7 @@ git merge origin/feature/login     # merge a remote-tracking branch
 > `Danger` Syntax error found in many tutorials
 > `git merge origin feature` (with a space) is **wrong**. Git interprets "origin" and "feature" as two separate branch names to merge simultaneously.
 > Correct forms:
+>
 > - `git merge feature` — merge a local branch
 > - `git merge origin/feature` — merge a remote-tracking branch (**slash**, not space)
 
@@ -1157,4 +1162,5 @@ git push --force-with-lease
 - **Find a bug's origin** — `git bisect start`
 - **View all history** — `git log --oneline --graph --all`
 - **Recover anything** — `git reflog`
+
 ---
