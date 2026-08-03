@@ -47,11 +47,11 @@ pacman -S jujutsu                   # Arch Linux
 
 Set your identity (note: `--user`, not Git's `--global`):
 
-### Configuration Scope
+### List configuration
 
 ```bash
-jj config list --user      # only user-level settings
-jj config list --repo      # only repo-level settings
+jj config list --user      # only user-level settings (global)
+jj config list --repo      # only repo-level settings (local)
 ```
 
 ### Configuration
