@@ -76,9 +76,13 @@ l = ["log", "-r", "@ | ancestors(immutable_heads().., 2)"]  # shorthand: `jj l`
 s = ["status"]                                                # shorthand: `jj s`
 ```
 
-**Add jj to an existing Git repo (recommended starting point):**
+**Initialize JJ**
 
 ```bash
+# Initialize a fresh project (new repo, no existing Git history)
+jj git init
+
+# Add jj to an existing Git repo (recommended starting point)
 cd my-existing-git-repo
 jj git init --colocate
 ```
