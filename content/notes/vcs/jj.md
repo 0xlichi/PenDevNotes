@@ -1,7 +1,7 @@
 ---
 title: 'Jujutsu (jj) VCS Guide'
 description: 'A practical reference for the Jujutsu version control system: setup, core concepts, daily commands, and common pitfalls.'
-category: 'Software Development'
+category: 'VCS'
 tags: ['jj', 'jujutsu', 'git', 'vcs', 'cli']
 date: '2026-08-03'
 ---
