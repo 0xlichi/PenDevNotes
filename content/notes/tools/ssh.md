@@ -1,7 +1,7 @@
 ---
 title: 'SSH Guide'
 description: 'A complete reference guide covering everything from first connection to advanced network tunneling.'
-category: 'Software Development'
+category: 'tools'
 tags: ['software-development', 'ssh', 'networking']
 date: '2026-07-21'
 ---

@@ -1,7 +1,7 @@
 ---
 title: 'Git'
 description: 'A comprehensive guide/cheetsheet on Git.'
-category: 'Software Development'
+category: 'VCS'
 tags: ['git', 'development', 'DVCS', 'cheetsheet']
 date: '2026-06-01'
 ---
