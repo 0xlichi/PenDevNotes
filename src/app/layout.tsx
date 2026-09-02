@@ -22,9 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <SiteHeader />
-        <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6">{children}</main>
-        <footer className="border-t border-border py-8 text-center text-xs text-[#007282]">
-          A notebook for PenTesters &amp; Developers
+        <main className="mx-auto max-w-[90rem] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">{children}</main>
+        <footer className="mt-8 border-t border-border/80 py-10 text-center text-xs tracking-wide text-[#7a6b56]">
+          A notebook for pentesters &amp; developers
         </footer>
         <Analytics />
       </body>

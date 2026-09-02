@@ -78,7 +78,7 @@ export function NoteSearch({
         onClick={() => setOpen(true)}
         className={
           size === 'lg'
-            ? 'mb-4 flex w-full items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm text-[#7a6b56] transition-colors hover:border-terracotta hover:text-terracotta-ink'
+            ? 'mb-5 flex w-full items-center gap-2 rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm text-[#7a6b56] shadow-sm transition-all hover:border-terracotta hover:text-terracotta-ink hover:shadow-md'
             : 'flex items-center gap-1.5 rounded-md border border-border bg-surface px-2 py-1 text-xs text-[#7a6b56] transition-colors hover:border-terracotta hover:text-terracotta-ink'
         }
       >
@@ -92,7 +92,7 @@ export function NoteSearch({
     <div
       className={cn(
         size === 'lg'
-          ? 'mb-4 flex items-center gap-1 rounded-lg border bg-surface px-2 py-2'
+          ? 'mb-5 flex items-center gap-1 rounded-xl border bg-surface px-2.5 py-2.5 shadow-sm'
           : 'flex items-center gap-1 rounded-md border bg-surface px-2 py-1.5',
         query && matchCount === 0 ? 'border-terracotta' : 'border-border'
       )}

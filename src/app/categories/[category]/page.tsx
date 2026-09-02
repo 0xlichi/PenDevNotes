@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getAllCategories, getNotesByCategory, slugify } from "@/lib/markdown";
-import { NoteCard } from "@/components/docs/note-card";
+import { LoadMoreNotes } from "@/components/docs/load-more-notes";
 import { Sidebar } from "@/components/docs/sidebar";
 
 interface PageProps {
@@ -28,7 +28,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const label = notes[0]?.category ?? category;
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[220px_1fr]">
+    <div className="grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] xl:gap-16">
       <div className="hidden lg:block">
         <div className="sticky top-24 animate-fade-in">
           <Sidebar activeCategory={label} />
@@ -37,16 +37,17 @@ export default async function CategoryPage({ params }: PageProps) {
 
       <div>
         <div className="animate-fade-in-up">
-          <h1 className="text-3xl font-semibold tracking-tight text-foreground">{label}</h1>
-          <p className="mt-2 text-[#7a6b56]">
+          <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-terracotta-ink">
+            Category
+          </p>
+          <h1 className="text-4xl font-semibold tracking-tight text-foreground">{label}</h1>
+          <p className="mt-3 text-base text-[#7a6b56]">
             {notes.length} note{notes.length !== 1 ? "s" : ""} in this category.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
-          {notes.map((note, i) => (
-            <NoteCard key={note.slug} note={note} staggerIndex={i} />
-          ))}
+        <div className="mt-10">
+          <LoadMoreNotes notes={notes} />
         </div>
       </div>
     </div>

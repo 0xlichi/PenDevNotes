@@ -27,21 +27,21 @@ export function NoteCard({ note, staggerIndex }: { note: NoteSummary; staggerInd
       style={staggerIndex !== undefined ? ({ "--stagger-index": staggerIndex } as React.CSSProperties) : undefined}
     >
       <Card interactive className="flex h-full flex-col">
-        <CardHeader>
+        <CardHeader className="gap-3 p-6">
           <div className="flex items-center justify-between gap-2">
             <Badge variant="category">{note.category}</Badge>
             {formattedDate && (
               <span className="font-mono text-xs text-[#a7967d]">{formattedDate}</span>
             )}
           </div>
-          <CardTitle className="flex items-start justify-between gap-2 text-lg group-hover:text-terracotta-ink">
+          <CardTitle className="flex items-start justify-between gap-2 text-lg leading-snug group-hover:text-terracotta-ink">
             <span>{note.title}</span>
             <ArrowUpRight className="h-4 w-4 shrink-0 translate-x-0 translate-y-0 text-terracotta-ink opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
           </CardTitle>
           {note.excerpt && <CardDescription>{note.excerpt}</CardDescription>}
         </CardHeader>
         {note.tags && note.tags.length > 0 && (
-          <CardContent className="mt-auto flex flex-wrap gap-1.5 pt-0">
+          <CardContent className="mt-auto flex flex-wrap gap-1.5 px-6 pb-6 pt-0">
             {note.tags.map((tag) => (
               <Badge key={tag} variant="outline">
                 #{tag}

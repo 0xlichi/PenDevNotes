@@ -14,7 +14,7 @@ export function Sidebar({ activeCategory }: { activeCategory?: string }) {
 
   return (
     <aside className="text-sm">
-      <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-[#a7967d]">
+      <p className="mb-4 border-b border-border pb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#a7967d]">
         Categories
       </p>
       <ul className="space-y-1">

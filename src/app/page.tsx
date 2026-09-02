@@ -1,7 +1,7 @@
 import { getAllNoteSummaries, getAllCategories } from '@/lib/markdown';
-import { NoteCard } from '@/components/docs/note-card';
 import { Sidebar } from '@/components/docs/sidebar';
 import { Hero } from '@/components/docs/hero';
+import { LoadMoreNotes } from '@/components/docs/load-more-notes';
 
 /**
  * Homepage: automatically lists every Markdown file found in /content,
@@ -15,7 +15,7 @@ export default function HomePage() {
     <div>
       <Hero />
 
-      <div className="grid gap-10 lg:grid-cols-[220px_1fr]">
+      <div className="grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)] xl:gap-16">
         <div className="hidden lg:block">
           <div className="sticky top-24 animate-fade-in">
             <Sidebar />
@@ -24,7 +24,10 @@ export default function HomePage() {
 
         <div>
           <div className="mb-8 animate-fade-in-up">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+            <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-terracotta-ink">
+              Latest notes
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               Pentest &amp; Dev Notebook
             </h2>
             <p className="mt-2 max-w-2xl text-[#7a6b56]">
@@ -40,11 +43,7 @@ export default function HomePage() {
           {notes.length === 0 ? (
             <EmptyState />
           ) : (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {notes.map((note, i) => (
-                <NoteCard key={note.slug} note={note} staggerIndex={i} />
-              ))}
-            </div>
+            <LoadMoreNotes notes={notes} />
           )}
         </div>
       </div>

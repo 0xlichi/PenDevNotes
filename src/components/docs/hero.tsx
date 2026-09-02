@@ -10,7 +10,7 @@ const REPO_URL = 'https://github.com/0xlichi/PenDevNotes';
  */
 export function Hero() {
   return (
-    <section className="relative mb-14 animate-fade-in-up overflow-hidden rounded-2xl border border-border bg-surface px-6 py-12 sm:px-12 sm:py-16">
+    <section className="relative mb-16 animate-fade-in-up overflow-hidden rounded-3xl border border-border/90 bg-surface px-6 py-10 shadow-[0_18px_50px_-35px_rgba(51,41,31,0.45)] sm:px-12 sm:py-14 lg:px-16">
       {/* Soft decorative glow in the palette, purely visual */}
       <div
         aria-hidden
@@ -22,15 +22,18 @@ export function Hero() {
       />
 
       <div className="relative">
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl">
+        <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-ink">
+          Open knowledge base
+        </p>
+        <h1 className="max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-5xl lg:text-6xl">
           This notebook is for{' '}
           <span className="relative inline-block min-w-[8ch] text-left align-bottom">
             <RotatingWord />
           </span>
         </h1>
 
-        <p className="mt-5 max-w-4xl text-base leading-loose text-[#6b5940]">
-          <strong className="text-2xl text-red-400">PenDevNotes</strong> is a{' '}
+        <p className="mt-6 max-w-4xl text-base leading-8 text-[#6b5940] sm:text-lg">
+          <strong className="text-terracotta-ink">PenDevNotes</strong> is a{' '}
           <strong className="text-foreground">community-driven</strong> knowledge base, not a
           personal notebook. Every note should be written for someone else to read clear, accurate,
           and complete. Avoid using it as a scratchpad, an unfinished draft, or a collection of
@@ -40,7 +43,7 @@ export function Hero() {
           problem.{' '}
         </p>
 
-        <p className="mt-4 max-w-4xl text-base leading-loose text-[#6b5940]">
+        <p className="mt-4 max-w-4xl text-base leading-8 text-[#6b5940] sm:text-lg">
           The goal is simple: create a growing collection of high-quality notes that anyone, from
           beginners taking their first steps to experienced professionals, can search, learn from,
           and trust. Reading is open to everyone, contributing is open to everyone, and the only
@@ -48,7 +51,7 @@ export function Hero() {
         </p>
 
         {/* How to contribute */}
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           <Step
             icon={<FileText className="h-4 w-4" />}
             step="1"
@@ -82,7 +85,7 @@ export function Hero() {
 
 function Step({ icon, step, text }: { icon: React.ReactNode; step: string; text: string }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-border bg-background/60 p-4">
+    <div className="flex items-start gap-3 rounded-2xl border border-border/80 bg-background/65 p-4 shadow-sm">
       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sand/50 font-mono text-xs font-semibold text-sand-ink">
         {step}
       </span>

@@ -13,12 +13,12 @@ export function NotePagination({
   if (!previous && !next) return null;
 
   return (
-    <div className="mt-12 grid gap-3 border-t border-border pt-6 sm:grid-cols-2">
+    <div className="mt-16 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
       {previous ? (
         <Link
           href={`/notes/${previous.slug}`}
           className={[
-            "group flex flex-col gap-1 rounded-xl border border-border bg-surface p-4 shadow-sm",
+            "group flex flex-col gap-1 rounded-2xl border border-border bg-surface p-5 shadow-sm",
             "transition-all duration-200 ease-out",
             "hover:-translate-y-0.5 hover:border-terracotta hover:shadow-[0_8px_24px_-8px_rgba(230,184,162,0.5)]",
           ].join(" ")}
@@ -39,7 +39,7 @@ export function NotePagination({
         <Link
           href={`/notes/${next.slug}`}
           className={[
-            "group flex flex-col items-end gap-1 rounded-xl border border-border bg-surface p-4 text-right shadow-sm",
+            "group flex flex-col items-end gap-1 rounded-2xl border border-border bg-surface p-5 text-right shadow-sm",
             "transition-all duration-200 ease-out",
             "hover:-translate-y-0.5 hover:border-terracotta hover:shadow-[0_8px_24px_-8px_rgba(230,184,162,0.5)]",
           ].join(" ")}

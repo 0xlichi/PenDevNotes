@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { createPortal } from "react-dom";
 import Fuse from "fuse.js";
 import { Search, FileText, CornerDownLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +32,7 @@ export function SearchTrigger() {
     <>
       <button
         onClick={() => setOpen(true)}
+        aria-label="Search notes"
         className={cn(
           "flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-1.5 text-sm text-[#7a6b56] shadow-sm",
           "transition-all duration-150 ease-out active:scale-[0.97]",
@@ -50,6 +52,7 @@ export function SearchTrigger() {
 
 /** The actual modal: fetches the search index once, then filters client-side via Fuse.js. */
 function SearchDialog({ onClose }: { onClose: () => void }) {
+  const [mounted, setMounted] = useState(false);
   const [query, setQuery] = useState("");
   const [indexLoading, setIndexLoading] = useState(true);
   const [results, setResults] = useState<SearchIndexItem[]>([]);
@@ -57,6 +60,12 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
   const fuseRef = useRef<Fuse<SearchIndexItem> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (mounted) inputRef.current?.focus();
+  }, [mounted]);
 
   // Fetch the pre-built search index once when the dialog opens.
   // `indexLoading` drives the skeleton rows below while this is in flight.
@@ -79,7 +88,6 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
         });
       })
       .finally(() => setIndexLoading(false));
-    inputRef.current?.focus();
   }, []);
 
   // Close on Escape - scoped to this component instance so it doesn't
@@ -118,13 +126,16 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
     router.push(`/notes/${slug}`);
   }
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#33291f]/40 px-4 pt-24 backdrop-blur-sm animate-fade-in">
+  if (!mounted) return null;
+
+  return createPortal(
+    (
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#33291f]/45 px-3 pt-16 backdrop-blur-sm animate-fade-in sm:px-4 sm:pt-24">
       {/* Click the backdrop to close */}
       <div className="absolute inset-0" onClick={onClose} />
 
-      <div className="animate-scale-in relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-surface shadow-xl">
-        <div className="flex items-center gap-2 border-b border-border/70 px-4 py-3">
+      <div className="animate-scale-in relative w-full max-w-2xl overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
+        <div className="flex items-center gap-2 border-b border-border/70 px-4 py-4 sm:px-5">
           <Search className="h-4 w-4 shrink-0 text-[#a7967d]" />
           <input
             ref={inputRef}
@@ -193,5 +204,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
         </div>
       </div>
     </div>
+    ),
+    document.body
   );
 }

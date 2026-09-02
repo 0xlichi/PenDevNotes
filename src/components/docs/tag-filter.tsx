@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
+import { ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { NoteCard } from "@/components/docs/note-card";
 import { cn } from "@/lib/utils";
@@ -24,12 +25,17 @@ export function TagFilter({
   notes: NoteSummary[];
 }) {
   const [selected, setSelected] = useState<string | null>(null);
+  const [visibleCount, setVisibleCount] = useState(9);
   const [isPending, startTransition] = useTransition();
 
   const filtered = useMemo(() => {
     if (!selected) return notes;
     return notes.filter((note) => (note.tags ?? []).includes(selected));
   }, [selected, notes]);
+
+  useEffect(() => {
+    setVisibleCount(9);
+  }, [selected]);
 
   function select(tag: string | null) {
     startTransition(() => setSelected(tag));
@@ -63,11 +69,22 @@ export function TagFilter({
         {filtered.length === 0 ? (
           <p className="text-sm text-[#7a6b56]">No notes tagged &ldquo;{selected}&rdquo; yet.</p>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((note, i) => (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.slice(0, visibleCount).map((note, i) => (
               <NoteCard key={note.slug} note={note} staggerIndex={i} />
             ))}
           </div>
+        )}
+
+        {visibleCount < filtered.length && (
+          <button
+            type="button"
+            onClick={() => setVisibleCount((count) => count + 9)}
+            className="mx-auto mt-8 flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:border-terracotta hover:bg-[#f1e6d3] hover:shadow-md active:scale-[0.98]"
+          >
+            Load more notes
+            <ChevronDown className="h-4 w-4 text-terracotta-ink" />
+          </button>
         )}
       </div>
     </div>

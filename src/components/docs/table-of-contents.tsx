@@ -80,11 +80,11 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
   return (
     <>
       <nav className="animate-fade-in text-sm">
-        <p className="mb-3 text-center font-mono text-sm font-bold uppercase tracking-wider text-[#3A7A82]">
-          On this page!
+        <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#3A7A82]">
+          On this page
         </p>
 
-        <ul className="toc-scroll max-h-[70vh] space-y-2 overflow-y-auto border-l border-border pr-2">
+        <ul className="toc-scroll max-h-[70vh] space-y-1 overflow-y-auto border-l border-border pr-2">
           {headings.map((heading) => (
             <li
               key={heading.id}

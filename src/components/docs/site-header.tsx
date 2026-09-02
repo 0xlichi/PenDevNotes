@@ -9,7 +9,7 @@ import { SearchTrigger } from '@/components/docs/search-dialog';
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur supports-backdrop-filter:bg-background/70">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-[90rem] items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-2 font-semibold text-foreground">
           <TerminalSquare
             className="h-5 w-5 text-terracotta-ink transition-transform duration-300 ease-out group-hover:rotate-6 group-hover:scale-110"
@@ -21,7 +21,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 lg:translate-x-3">
           <nav className="hidden items-center gap-6 text-sm font-medium text-[#6b5940] sm:flex">
             <NavLink href="/categories">Categories</NavLink>
             <NavLink href="/tags">Tags</NavLink>

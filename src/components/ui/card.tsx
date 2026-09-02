@@ -14,10 +14,10 @@ function Card({
   return (
     <div
       className={cn(
-        "rounded-xl border border-border bg-surface text-foreground shadow-sm",
+        "rounded-2xl border border-border/90 bg-surface text-foreground shadow-[0_2px_12px_rgba(51,41,31,0.035)]",
         "transition-all duration-200 ease-out",
         interactive &&
-          "hover:-translate-y-1 hover:border-terracotta hover:shadow-[0_8px_24px_-8px_rgba(230,184,162,0.55)]",
+          "hover:-translate-y-1 hover:border-terracotta-deep hover:shadow-[0_14px_30px_-14px_rgba(51,41,31,0.3)]",
         className
       )}
       {...props}
