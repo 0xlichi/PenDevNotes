@@ -43,20 +43,20 @@ export default async function NotePage({ params }: PageProps) {
   const { previous, next } = getAdjacentNotes(slug);
   const formattedDate = formatDate(note.date);
   return (
-    <div className="grid gap-10 lg:grid-cols-[1fr_260px]">
+    <div className="note-page-layout grid gap-16 lg:grid-cols-[minmax(0,1fr)_280px]">
       <article className="animate-fade-in-up">
         {/* Breadcrumb-ish header */}
-        <div className="mb-6">
+        <div className="mb-10 border-b border-border/80 pb-8">
           <Link
             href={`/categories/${slugify(note.category ?? 'Uncategorized')}`}
             className="inline-flex transition-transform duration-150 hover:-translate-y-0.5"
           >
             <Badge variant="category">{note.category}</Badge>
           </Link>
-          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
+          <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.025em] text-foreground sm:text-5xl">
             {note.title}
           </h1>
-          {note.description && <p className="mt-2 text-lg text-[#7a6b56]">{note.description}</p>}
+          {note.description && <p className="mt-4 max-w-3xl text-lg leading-8 text-[#7a6b56]">{note.description}</p>}
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {formattedDate && (
               <span className="font-mono text-xs text-[#a7967d]">{formattedDate}</span>
@@ -84,7 +84,7 @@ export default async function NotePage({ params }: PageProps) {
         <NotePagination previous={previous} next={next} />
       </article>
       {/* Table of contents + in-note search - sticky on large screens, hidden on mobile */}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block lg:translate-x-2 lg:pl-3">
         <div className="sticky top-24">
           <NoteSearchById targetId="note-article-content" />
           <TableOfContents headings={note.toc} />
