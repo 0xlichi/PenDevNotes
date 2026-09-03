@@ -27,6 +27,14 @@ import type { Note, NoteSummary, TocHeading } from '@/types/note';
 /** Absolute path to the /content directory at the project root. */
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
+/** Resolves a note path while preventing a slug from escaping /content. */
+function resolveNotePath(slug: string): string | null {
+  const contentRoot = path.resolve(CONTENT_DIR);
+  const filePath = path.resolve(contentRoot, `${slug}.md`);
+  if (!filePath.startsWith(`${contentRoot}${path.sep}`)) return null;
+  return filePath;
+}
+
 /**
  * Returns the list of every `.md` filename (without extension) in /content.
  * The filename becomes the note's URL slug, e.g. `sql-injection.md` -> `/notes/sql-injection`.
@@ -69,7 +77,8 @@ export function getAllSlugs(): string[] {
 }
 /** Reads the raw Markdown + front matter for a single slug, without rendering HTML. */
 function readNoteFile(slug: string): { data: Partial<Note>; content: string } {
-  const filePath = path.join(CONTENT_DIR, `${slug}.md`);
+  const filePath = resolveNotePath(slug);
+  if (!filePath) throw new Error('Invalid note path');
   const raw = fs.readFileSync(filePath, 'utf-8');
   const { data, content } = matter(raw);
   return { data, content };
@@ -134,6 +143,25 @@ function collectHeadings(headings: TocHeading[]) {
   };
 }
 
+/** Removes unsafe URL and event-handler attributes from rendered Markdown. */
+function sanitizeRenderedHtml() {
+  return () => (tree: Root) => {
+    visit(tree, 'element', (node: Element) => {
+      const properties = node.properties ?? {};
+      for (const key of Object.keys(properties)) {
+        if (/^on/i.test(key)) delete properties[key];
+      }
+
+      for (const key of ['href', 'src']) {
+        const value = properties[key];
+        if (typeof value === 'string' && /^(?:javascript|vbscript|data):/i.test(value.trim())) {
+          delete properties[key];
+        }
+      }
+    });
+  };
+}
+
 /** Recursively pulls plain text out of a hast node (headings can contain nested nodes). */
 function extractText(
   node: Element | { type: string; value?: string; children?: unknown[] }
@@ -151,7 +179,8 @@ function extractText(
  * everything a doc page needs to render. Returns null if the file doesn't exist.
  */
 export async function getNoteBySlug(slug: string): Promise<Note | null> {
-  const filePath = path.join(CONTENT_DIR, `${slug}.md`);
+  const filePath = resolveNotePath(slug);
+  if (!filePath) return null;
   if (!fs.existsSync(filePath)) return null;
 
   const { data, content } = readNoteFile(slug);
@@ -173,6 +202,7 @@ export async function getNoteBySlug(slug: string): Promise<Note | null> {
       properties: { className: ['heading-anchor'] },
     })
     .use(collectHeadings(toc)) // side-effect: fill the `toc` array as we walk the tree
+    .use(sanitizeRenderedHtml())
     .use(rehypeStringify) // hast -> final HTML string
     .process(content);
 
