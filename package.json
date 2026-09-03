@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
@@ -16,7 +16,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.22.0",
     "mermaid": "^11.16.0",
-    "next": "15.5.19",
+    "next": "^16.3.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "rehype-autolink-headings": "^7.1.0",
@@ -43,5 +43,8 @@
     "eslint-config-next": "15.5.19",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "^8.5.27"
   }
 }
