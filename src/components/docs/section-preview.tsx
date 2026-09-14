@@ -80,7 +80,7 @@ export function SectionPreview({ headingId, onClose, onMouseEnter }: SectionPrev
       <div
         onMouseEnter={onMouseEnter}
         onMouseLeave={onClose}
-        className="animate-scale-in relative flex h-[84vh] w-[74vw] flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-2xl"
+        className="animate-scale-in relative flex h-[84vh] w-[92vw] flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-2xl"
       >
         <div className="flex shrink-0 items-center justify-between border-b border-border px-5 py-3">
           <span className="font-mono text-xs uppercase tracking-wider text-[#a7967d]">
