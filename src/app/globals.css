@@ -296,7 +296,9 @@ html {
 .prose-doc h1 {
   margin-top: 2.5em;
   margin-bottom: 0.75em;
-  font-size: clamp(1.75rem, 2vw, 2.25rem);
+  width: 100%;
+  max-width: none;
+  font-size: clamp(2.2rem, 3vw, 2.6rem);
   font-weight: 700;
   letter-spacing: -0.01em;
   color: #33291f;
@@ -308,7 +310,9 @@ html {
 .prose-doc h2 {
   margin-top: 2.25em;
   margin-bottom: 0.75em;
-  font-size: clamp(1.35rem, 1.5vw, 1.65rem);
+  width: 100%;
+  max-width: none;
+  font-size: clamp(1.75rem, 2.2vw, 2rem);
   font-weight: 600;
   letter-spacing: -0.01em;
   color: #33291f;
@@ -320,7 +324,9 @@ html {
 .prose-doc h3 {
   margin-top: 1.75em;
   margin-bottom: 0.5em;
-  font-size: 1.125rem;
+  width: 100%;
+  max-width: none;
+  font-size: 1.6rem;
   font-weight: 600;
   color: #33291f;
   font-family: var(--font-sans);
@@ -331,7 +337,9 @@ html {
 .prose-doc h4 {
   margin-top: 1.5em;
   margin-bottom: 0.4em;
-  font-size: 0.90rem;
+  width: 100%;
+  max-width: none;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #33291f;
   scroll-margin-top: 6rem;
@@ -340,7 +348,9 @@ html {
 .prose-doc h5 {
   margin-top: 1.25em;
   margin-bottom: 0.35em;
-  font-size: 0.9375rem;
+  width: 100%;
+  max-width: none;
+  font-size: 1.2rem;
   font-weight: 600;
   color: #33291f;
   scroll-margin-top: 6rem;
@@ -349,7 +359,9 @@ html {
 .prose-doc h6 {
   margin-top: 1.25em;
   margin-bottom: 0.35em;
-  font-size: 0.875rem;
+  width: 100%;
+  max-width: none;
+  font-size: 1.05rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -443,7 +455,7 @@ html {
   border-radius: 0.875rem;
   padding: 1.15rem 1.25rem;
   overflow-x: auto;
-  font-size: 1rem;
+  font-size: 0.96rem;
   line-height: 1.6;
   border: 1px solid var(--color-border);
   box-shadow: 0 1px 2px rgba(51, 41, 31, 0.04);
