@@ -258,7 +258,7 @@ html {
   width: 100%;
   max-width: 72rem;
   color: #4a3d2f;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   letter-spacing: -0.006em;
 }
@@ -331,7 +331,7 @@ html {
 .prose-doc h4 {
   margin-top: 1.5em;
   margin-bottom: 0.4em;
-  font-size: 1rem;
+  font-size: 0.90rem;
   font-weight: 600;
   color: #33291f;
   scroll-margin-top: 6rem;
@@ -443,7 +443,7 @@ html {
   border-radius: 0.875rem;
   padding: 1.15rem 1.25rem;
   overflow-x: auto;
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.6;
   border: 1px solid var(--color-border);
   box-shadow: 0 1px 2px rgba(51, 41, 31, 0.04);
@@ -508,7 +508,7 @@ html {
 
 @media (max-width: 639px) {
   .prose-doc {
-    font-size: 0.96rem;
+    font-size: 1.2rem;
   }
 
   .prose-doc pre {
