@@ -123,7 +123,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
 
   function goToNote(slug: string) {
     onClose();
-    router.push(`/notes/${slug}`);
+    router.push(`/${slug}`);
   }
 
   if (!mounted) return null;

@@ -70,20 +70,20 @@ SSH was created in 1995 by Tatu Ylönen after a password-sniffing attack at his 
 
 At a high level, an SSH connection goes through these stages:
 
-1. **TCP Connection** — the client connects to the server, typically on port 22.
-2. **Protocol Negotiation** — both sides agree on the SSH protocol version and algorithms.
-3. **Key Exchange** — client and server generate a shared session key using an algorithm such as Diffie-Hellman, without ever transmitting the key itself.
-4. **Server Authentication** — the client verifies the server's identity using its host key.
-5. **User Authentication** — the server verifies the client's identity (password, public key, etc.).
-6. **Secure Channel Established** — encrypted communication begins; commands, file transfers, or forwarded traffic can flow.
+1. **TCP Connection** - the client connects to the server, typically on port 22.
+2. **Protocol Negotiation** - both sides agree on the SSH protocol version and algorithms.
+3. **Key Exchange** - client and server generate a shared session key using an algorithm such as Diffie-Hellman, without ever transmitting the key itself.
+4. **Server Authentication** - the client verifies the server's identity using its host key.
+5. **User Authentication** - the server verifies the client's identity (password, public key, etc.).
+6. **Secure Channel Established** - encrypted communication begins; commands, file transfers, or forwarded traffic can flow.
 
 ### Encryption Overview
 
 SSH uses a combination of cryptographic techniques:
 
-- **Symmetric encryption** — encrypts the actual session data (e.g., AES). Fast, and both sides share the same key.
-- **Asymmetric encryption** — used during key exchange and public key authentication (e.g., RSA, ED25519, ECDSA). Uses a public/private key pair.
-- **Hashing** — ensures data integrity during transmission (e.g., SHA-2 family) and is used for key fingerprints.
+- **Symmetric encryption** - encrypts the actual session data (e.g., AES). Fast, and both sides share the same key.
+- **Asymmetric encryption** - used during key exchange and public key authentication (e.g., RSA, ED25519, ECDSA). Uses a public/private key pair.
+- **Hashing** - ensures data integrity during transmission (e.g., SHA-2 family) and is used for key fingerprints.
 
 > **Note**
 > SSH does not use asymmetric encryption to encrypt the whole session that would be too slow. Asymmetric cryptography is used to safely establish a symmetric session key, which then handles bulk encryption.
@@ -222,10 +222,10 @@ Prints the installed OpenSSH client version. Useful for confirming installation 
 sshd -V
 ```
 
-Prints the installed OpenSSH server (daemon) version. Note this often prints to `stderr` along with a usage message — this is normal.
+Prints the installed OpenSSH server (daemon) version. Note this often prints to `stderr` along with a usage message - this is normal.
 
 > **Tip**
-> If `sshd -V` produces "command not found," the server package is not installed — only the client is present.
+> If `sshd -V` produces "command not found," the server package is not installed - only the client is present.
 
 ---
 
@@ -274,7 +274,7 @@ Displays whether the service is active, its process ID, recent log lines, and en
 sudo journalctl -u ssh -f
 ```
 
-Streams live logs for the SSH service — useful for watching connection attempts in real time.
+Streams live logs for the SSH service - useful for watching connection attempts in real time.
 
 ```bash
 sudo ss -tlnp | grep ssh
@@ -292,8 +292,8 @@ The most basic SSH command:
 ssh username@host
 ```
 
-- `username` — the account you want to log in as on the remote machine.
-- `host` — the IP address, hostname, or fully qualified domain name (FQDN) of the target machine.
+- `username` - the account you want to log in as on the remote machine.
+- `host` - the IP address, hostname, or fully qualified domain name (FQDN) of the target machine.
 
 ### Example: Connecting by IP Address
 
@@ -335,9 +335,9 @@ ssh [options] [user@]hostname [command]
 | Component  | Description                                                                          |
 | ---------- | ------------------------------------------------------------------------------------ |
 | `options`  | Flags that modify behavior (port, identity file, forwarding, verbosity, etc.)        |
-| `user@`    | Optional — the remote username. If omitted, SSH uses your local username.            |
-| `hostname` | Required — IP address, hostname, or domain of the target.                            |
-| `command`  | Optional — a single command to run remotely instead of opening an interactive shell. |
+| `user@`    | Optional - the remote username. If omitted, SSH uses your local username.            |
+| `hostname` | Required - IP address, hostname, or domain of the target.                            |
+| `command`  | Optional - a single command to run remotely instead of opening an interactive shell. |
 
 ### Example: Running a Remote Command
 
@@ -353,7 +353,7 @@ Connects, executes `df -h` (disk usage) on the remote machine, prints the output
 
 Once connected, you are in a normal remote shell. Here are frequently used commands, each explained before use.
 
-### `ssh` — Establish a Connection
+### `ssh` - Establish a Connection
 
 ```bash
 ssh user@host
@@ -361,7 +361,7 @@ ssh user@host
 
 Opens a remote interactive shell session.
 
-### `exit` — Close the Session
+### `exit` - Close the Session
 
 ```bash
 exit
@@ -369,7 +369,7 @@ exit
 
 Terminates the current shell and closes the SSH connection, returning you to your local terminal. `Ctrl+D` does the same thing.
 
-### `whoami` — Show Current User
+### `whoami` - Show Current User
 
 ```bash
 whoami
@@ -377,7 +377,7 @@ whoami
 
 Prints the username you are currently logged in as on the remote machine useful for confirming which account you authenticated as.
 
-### `hostname` — Show Machine Name
+### `hostname` - Show Machine Name
 
 ```bash
 hostname
@@ -385,7 +385,7 @@ hostname
 
 Prints the remote machine's hostname useful for confirming you connected to the intended server, especially when managing many machines.
 
-### `pwd` — Print Working Directory
+### `pwd` - Print Working Directory
 
 ```bash
 pwd
@@ -393,7 +393,7 @@ pwd
 
 Shows your current directory on the remote filesystem. Your starting directory is normally the remote user's home directory.
 
-### `ls` — List Directory Contents
+### `ls` - List Directory Contents
 
 ```bash
 ls -la
@@ -401,7 +401,7 @@ ls -la
 
 Lists all files (including hidden ones, `-a`) in long format (`-l`, showing permissions, owner, size, and modification date) in the current remote directory.
 
-### `uptime` — Show System Uptime and Load
+### `uptime` - Show System Uptime and Load
 
 ```bash
 uptime
@@ -432,7 +432,7 @@ Public key authentication uses a cryptographic key pair instead of a password:
 1. You generate a **private key** (kept secret, stays on your machine) and a **public key** (shared with servers).
 2. The public key is placed in the server's `~/.ssh/authorized_keys` file.
 3. When connecting, the server sends a challenge that only the holder of the matching private key can answer correctly.
-4. No password — and no private key material — ever crosses the network.
+4. No password - and no private key material - ever crosses the network.
 
 #### Generating Keys with `ssh-keygen`
 
@@ -446,11 +446,11 @@ Launches an interactive wizard that generates a new SSH key pair (defaults to RS
 
 | Option | Description                                                                    |
 | ------ | ------------------------------------------------------------------------------ |
-| `-t`   | Key type (`rsa`, `ed25519`, `ecdsa`, `dsa` — `dsa` is deprecated and insecure) |
+| `-t`   | Key type (`rsa`, `ed25519`, `ecdsa`, `dsa` - `dsa` is deprecated and insecure) |
 | `-b`   | Key size in bits (relevant for RSA; e.g., `-b 4096`)                           |
 | `-f`   | Output file path for the private key                                           |
 | `-C`   | Comment, typically an email or label, embedded in the public key               |
-| `-N`   | Passphrase (use `-N ""` for no passphrase — not recommended for most cases)    |
+| `-N`   | Passphrase (use `-N ""` for no passphrase - not recommended for most cases)    |
 | `-p`   | Change the passphrase on an existing key                                       |
 | `-R`   | Remove a host's entry from `known_hosts`                                       |
 | `-l`   | Show the fingerprint of a key                                                  |
@@ -462,9 +462,9 @@ Launches an interactive wizard that generates a new SSH key pair (defaults to RS
 ssh-keygen -t rsa -b 4096 -C "lichi@laptop"
 ```
 
-- `-t rsa` — generates an RSA key pair.
-- `-b 4096` — uses a 4096-bit key length for stronger security (RSA below 2048 bits is considered weak).
-- `-C "lichi@laptop"` — adds a comment to help identify the key later.
+- `-t rsa` - generates an RSA key pair.
+- `-b 4096` - uses a 4096-bit key length for stronger security (RSA below 2048 bits is considered weak).
+- `-C "lichi@laptop"` - adds a comment to help identify the key later.
 
 #### Generating an ED25519 Key
 
@@ -472,8 +472,8 @@ ssh-keygen -t rsa -b 4096 -C "lichi@laptop"
 ssh-keygen -t ed25519 -C "lichi@laptop"
 ```
 
-- `-t ed25519` — generates an ED25519 key, based on elliptic-curve cryptography.
-- No `-b` flag is needed — ED25519 has a fixed, secure key size.
+- `-t ed25519` - generates an ED25519 key, based on elliptic-curve cryptography.
+- No `-b` flag is needed - ED25519 has a fixed, secure key size.
 
 #### RSA vs. ED25519
 
@@ -509,8 +509,8 @@ A fingerprint is a short, fixed-length hash representation of a key, used to ver
 ssh-keygen -l -f ~/.ssh/id_ed25519.pub
 ```
 
-- `-l` — display the fingerprint.
-- `-f` — path to the key file to inspect.
+- `-l` - display the fingerprint.
+- `-f` - path to the key file to inspect.
 
 > **Tip**
 > You can add `-v` to `ssh-keygen -l` to render the fingerprint as ASCII art, which some administrators use for quick visual comparison.
@@ -531,7 +531,7 @@ Automatically copies your default public key (`~/.ssh/id_rsa.pub` or similar) to
 ssh-copy-id -i ~/.ssh/id_ed25519.pub user@host
 ```
 
-- `-i` — specify which public key file to copy, instead of relying on the default.
+- `-i` - specify which public key file to copy, instead of relying on the default.
 
 ### Manual Method
 
@@ -602,7 +602,7 @@ Host bastion
     IdentityFile ~/.ssh/id_ed25519_bastion
 ```
 
-`ProxyJump` tells SSH to first connect to `bastion`, then tunnel the connection to `internal-server` through it — useful when the internal server has no direct public IP.
+`ProxyJump` tells SSH to first connect to `bastion`, then tunnel the connection to `internal-server` through it - useful when the internal server has no direct public IP.
 
 > **Tip**
 > `ProxyJump` (the `-J` flag) replaces the older, more cumbersome `ProxyCommand` with `nc` for most modern use cases.
@@ -615,9 +615,9 @@ Host bastion
 | ------ | ---------------------------------------------------------------------------- |
 | `-p`   | Specify a non-default remote port (e.g., `-p 2222`)                          |
 | `-i`   | Specify an identity (private key) file to use                                |
-| `-v`   | Verbose mode — basic debug output                                            |
-| `-vv`  | More verbose — detailed debug output                                         |
-| `-vvv` | Maximum verbosity — full protocol-level debug output                         |
+| `-v`   | Verbose mode - basic debug output                                            |
+| `-vv`  | More verbose - detailed debug output                                         |
+| `-vvv` | Maximum verbosity - full protocol-level debug output                         |
 | `-X`   | Enable X11 forwarding (untrusted mode)                                       |
 | `-Y`   | Enable trusted X11 forwarding                                                |
 | `-L`   | Local port forwarding                                                        |
@@ -654,10 +654,10 @@ Local forwarding makes a **remote** service available on your **local** machine.
 ssh -L 8080:localhost:80 user@remote-host
 ```
 
-- `-L` — local forward.
-- `8080` — local port you will connect to.
-- `localhost:80` — target address **as seen from the remote host** (here, the remote host's own port 80).
-- `user@remote-host` — the SSH server you're tunneling through.
+- `-L` - local forward.
+- `8080` - local port you will connect to.
+- `localhost:80` - target address **as seen from the remote host** (here, the remote host's own port 80).
+- `user@remote-host` - the SSH server you're tunneling through.
 
 After running this, visiting `http://localhost:8080` on your machine sends traffic through the encrypted SSH tunnel to port 80 on `remote-host`.
 
@@ -680,9 +680,9 @@ Remote forwarding does the opposite it makes a service on **your local machine**
 ssh -R 9000:localhost:3000 user@remote-host
 ```
 
-- `-R` — remote forward.
-- `9000` — port opened on the **remote host**.
-- `localhost:3000` — target address on **your local machine**.
+- `-R` - remote forward.
+- `9000` - port opened on the **remote host**.
+- `localhost:3000` - target address on **your local machine**.
 
 Anyone connecting to `remote-host:9000` is transparently forwarded to port `3000` on your local machine.
 
@@ -708,8 +708,8 @@ Dynamic forwarding turns SSH into a general-purpose SOCKS proxy.
 ssh -D 1080 user@remote-host
 ```
 
-- `-D` — dynamic forward.
-- `1080` — local port that becomes a SOCKS4/SOCKS5 proxy.
+- `-D` - dynamic forward.
+- `1080` - local port that becomes a SOCKS4/SOCKS5 proxy.
 
 Configuring a browser or application to use `localhost:1080` as a SOCKS proxy routes **all** of its traffic through the SSH tunnel useful for securely browsing through an untrusted network.
 
@@ -750,24 +750,24 @@ graph LR
 1. **Machine 2** (the one you want to reach, e.g., behind a home router with no port forwarding configured) initiates an **outbound** SSH connection to the VPS and opens a remote forward. Outbound connections are almost never blocked by NAT/firewalls, which is why this works even without any router configuration on Machine 2's side.
 2. **Machine 1** (where you're sitting) connects to the VPS on the forwarded port. The VPS relays that connection back through the tunnel to Machine 2.
 
-### Step 1 — On Machine 2 (the target you want to reach later)
+### Step 1 - On Machine 2 (the target you want to reach later)
 
 ```bash
 ssh -N -R 2222:localhost:22 relayuser@relay.example.com
 ```
 
-- `-N` — don't run a remote command, just hold the tunnel open.
-- `-R 2222:localhost:22` — on the VPS, open port `2222`; forward any connection to it back to `localhost:22` **as seen from Machine 2** (i.e., Machine 2's own SSH server).
-- `relayuser@relay.example.com` — the SSH account on your VPS.
+- `-N` - don't run a remote command, just hold the tunnel open.
+- `-R 2222:localhost:22` - on the VPS, open port `2222`; forward any connection to it back to `localhost:22` **as seen from Machine 2** (i.e., Machine 2's own SSH server).
+- `relayuser@relay.example.com` - the SSH account on your VPS.
 
 This command must keep running for the tunnel to stay alive. In practice, you'd run it as a background service (see the `autossh` tip below) rather than in a manual foreground terminal.
 
 > **Note**
 > By default this binds `2222` only to the VPS's loopback interface. If you need Machine 1 to reach it from anywhere (not just from the VPS itself), you either need `GatewayPorts yes` in the VPS's `sshd_config`, or you SSH into the VPS first and then `ssh` to `localhost:2222` from there (see Step 2, option B).
 
-### Step 2 — On Machine 1 (where you're connecting from)
+### Step 2 - On Machine 1 (where you're connecting from)
 
-**Option A — if `GatewayPorts` is enabled on the VPS:**
+**Option A - if `GatewayPorts` is enabled on the VPS:**
 
 ```bash
 ssh -p 2222 pi@relay.example.com
@@ -775,14 +775,14 @@ ssh -p 2222 pi@relay.example.com
 
 Connects directly to the VPS on port `2222`, which the VPS relays through the tunnel to Machine 2's SSH server.
 
-**Option B — safer default, no `GatewayPorts` needed:**
+**Option B - safer default, no `GatewayPorts` needed:**
 
 ```bash
 ssh -J relayuser@relay.example.com pi@localhost:2222
 ```
 
-- `-J` — use the VPS as a jump host.
-- `pi@localhost:2222` — from the VPS's own perspective, connect to `localhost:2222` (the forwarded tunnel endpoint), logging in as `pi`.
+- `-J` - use the VPS as a jump host.
+- `pi@localhost:2222` - from the VPS's own perspective, connect to `localhost:2222` (the forwarded tunnel endpoint), logging in as `pi`.
 
 This keeps the forwarded port private to the VPS itself, and uses the jump-host mechanism to reach it no need to widen the VPS's exposure with `GatewayPorts`.
 
@@ -795,8 +795,8 @@ autossh -M 0 -N -R 2222:localhost:22 relayuser@relay.example.com \
     -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3"
 ```
 
-- `-M 0` — disables autossh's own legacy monitoring port and relies on SSH's built-in keepalive instead (recommended with modern OpenSSH).
-- `ServerAliveInterval 30` / `ServerAliveCountMax 3` — the client pings the server every 30 seconds and disconnects (triggering an autossh restart) after 3 missed replies.
+- `-M 0` - disables autossh's own legacy monitoring port and relies on SSH's built-in keepalive instead (recommended with modern OpenSSH).
+- `ServerAliveInterval 30` / `ServerAliveCountMax 3` - the client pings the server every 30 seconds and disconnects (triggering an autossh restart) after 3 missed replies.
 
 > **Tip**
 > Run the `autossh` command as a `systemd` service on Machine 2 so the tunnel re-establishes automatically after reboots or network drops, without manual intervention.
@@ -806,7 +806,7 @@ autossh -M 0 -N -R 2222:localhost:22 relayuser@relay.example.com \
 If Machine 2 already has a permanent, always-on SSH connection (rather than an on-demand one), you can skip the manual tunnel entirely and use `ProxyJump` (`-J`) or a matching `~/.ssh/config` entry with `ProxyJump` to route Machine 1 → VPS → Machine 2 directly, as shown earlier in [SSH Config File](#ssh-config-file). This is the cleanest long-term setup if Machine 2 is reachable through the VPS by its own address (e.g., a VPN like WireGuard/Tailscale connecting both machines, with SSH layered on top).
 
 > **Security Best Practice**
-> Restrict the relay account on the VPS to forwarding only — no shell access, no other login purposes. Use a dedicated key pair for the tunnel, and consider `PermitOpen` / `no-pty` restrictions in `authorized_keys` (see below) to limit exactly what that key can do.
+> Restrict the relay account on the VPS to forwarding only - no shell access, no other login purposes. Use a dedicated key pair for the tunnel, and consider `PermitOpen` / `no-pty` restrictions in `authorized_keys` (see below) to limit exactly what that key can do.
 
 #### Restricting a Tunnel-Only Key
 
@@ -816,7 +816,7 @@ In the VPS's `~/.ssh/authorized_keys`, you can prefix the tunnel account's key w
 no-pty,no-agent-forwarding,no-X11-forwarding,permitopen="localhost:2222" ssh-ed25519 AAAA...restricted-tunnel-key
 ```
 
-This ensures that even if the tunnel key is somehow misused, it can only be used to forward traffic to `localhost:2222` — nothing else.
+This ensures that even if the tunnel key is somehow misused, it can only be used to forward traffic to `localhost:2222` - nothing else.
 
 ---
 
@@ -846,7 +846,7 @@ Copies `remotefile.txt` from the remote host to your current local directory.
 scp -r ./project user@remote-host:/home/user/project
 ```
 
-- `-r` — recursively copies an entire directory tree.
+- `-r` - recursively copies an entire directory tree.
 
 ### Copying Between Two Remote Hosts
 
@@ -960,7 +960,7 @@ Removes **all** keys from the agent.
 ssh-keygen -R 203.0.113.10
 ```
 
-- `-R` — removes all entries for the specified host from `known_hosts`. Use this when a server has been legitimately rebuilt or its host key regenerated, and you're getting a "host key verification failed" warning.
+- `-R` - removes all entries for the specified host from `known_hosts`. Use this when a server has been legitimately rebuilt or its host key regenerated, and you're getting a "host key verification failed" warning.
 
 ### Fingerprint Verification
 
@@ -975,19 +975,19 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 You should compare this fingerprint against one obtained through a separate, trusted channel (e.g., your cloud provider's control panel, which often displays the host key fingerprint for new instances) before typing `yes`.
 
 > **Warning**
-> Never blindly accept unknown fingerprints on sensitive systems, and never use `-o StrictHostKeyChecking=no` as a permanent habit — it silently disables this protection.
+> Never blindly accept unknown fingerprints on sensitive systems, and never use `-o StrictHostKeyChecking=no` as a permanent habit - it silently disables this protection.
 
 ---
 
 ## File Permissions
 
-SSH is strict about file and directory permissions related to keys — overly permissive settings cause SSH to refuse to use them.
+SSH is strict about file and directory permissions related to keys - overly permissive settings cause SSH to refuse to use them.
 
 | Path                                                | Required Permissions | Explanation                                                          |
 | --------------------------------------------------- | -------------------- | -------------------------------------------------------------------- |
 | `~/.ssh`                                            | `700` (`drwx------`) | Only the owner can access the directory at all                       |
 | `~/.ssh/id_rsa` / `id_ed25519` (private key)        | `600` (`-rw-------`) | Only the owner can read/write; no one else can view the private key  |
-| `~/.ssh/id_rsa.pub` / `id_ed25519.pub` (public key) | `644` (`-rw-r--r--`) | Safe to be world-readable — it's public by design                    |
+| `~/.ssh/id_rsa.pub` / `id_ed25519.pub` (public key) | `644` (`-rw-r--r--`) | Safe to be world-readable - it's public by design                    |
 | `~/.ssh/authorized_keys`                            | `600` (`-rw-------`) | Prevents other local users from adding their own keys to gain access |
 | `~/.ssh/known_hosts`                                | `644` (`-rw-r--r--`) | Read access is fine; only the owner should modify it                 |
 
@@ -1001,7 +1001,7 @@ chmod 600 ~/.ssh/authorized_keys
 ```
 
 > **Tip**
-> If you see `"Permissions 0644 for '~/.ssh/id_rsa' are too open"`, this permissions table is the fix — SSH is refusing to use an improperly protected private key.
+> If you see `"Permissions 0644 for '~/.ssh/id_rsa' are too open"`, this permissions table is the fix - SSH is refusing to use an improperly protected private key.
 
 ---
 
@@ -1052,20 +1052,20 @@ X11Forwarding no
 ## Security Best Practices
 
 > **Security Best Practice**
-> Layer multiple protections — no single setting makes a server "secure." Defense in depth is the goal.
+> Layer multiple protections - no single setting makes a server "secure." Defense in depth is the goal.
 
-- **Disable root login** (`PermitRootLogin no`) — force administrators to log in as an unprivileged user and use `sudo`, creating an audit trail.
-- **Disable password authentication** (`PasswordAuthentication no`) — eliminates brute-force and credential-stuffing risk entirely; only key holders can authenticate.
-- **Use ED25519 keys** — smaller, faster, and modern; avoid deprecated `DSA` keys entirely.
-- **Change the default port** — reduces automated, opportunistic scanning noise in logs, but is **security through obscurity only**; it does not stop a targeted attacker who port-scans. Always combine it with real controls, not as a substitute for them.
-- **Fail2Ban** — monitors auth logs and temporarily bans IPs after repeated failed login attempts.
-- **Firewall rules** — restrict which IP ranges can even reach port 22/your custom SSH port (e.g., via `ufw`, `firewalld`, or cloud security groups).
-- **Keep software updated** — apply OpenSSH and OS security patches promptly.
-- **Strong passphrases on private keys** — protects the key itself if the key file is ever stolen.
-- **Key rotation** — periodically regenerate and redistribute keys, especially after staff turnover.
-- **Least privilege** — restrict `authorized_keys` entries with `command=`, `no-pty`, `permitopen=` where a key only needs to perform one narrow task.
-- **Restrict users/groups** — use `AllowUsers`/`AllowGroups` to explicitly whitelist who may connect at all.
-- **Audit logs** — regularly review `/var/log/auth.log` (Debian/Ubuntu) or `journalctl -u sshd` (systemd-based) for suspicious activity.
+- **Disable root login** (`PermitRootLogin no`) - force administrators to log in as an unprivileged user and use `sudo`, creating an audit trail.
+- **Disable password authentication** (`PasswordAuthentication no`) - eliminates brute-force and credential-stuffing risk entirely; only key holders can authenticate.
+- **Use ED25519 keys** - smaller, faster, and modern; avoid deprecated `DSA` keys entirely.
+- **Change the default port** - reduces automated, opportunistic scanning noise in logs, but is **security through obscurity only**; it does not stop a targeted attacker who port-scans. Always combine it with real controls, not as a substitute for them.
+- **Fail2Ban** - monitors auth logs and temporarily bans IPs after repeated failed login attempts.
+- **Firewall rules** - restrict which IP ranges can even reach port 22/your custom SSH port (e.g., via `ufw`, `firewalld`, or cloud security groups).
+- **Keep software updated** - apply OpenSSH and OS security patches promptly.
+- **Strong passphrases on private keys** - protects the key itself if the key file is ever stolen.
+- **Key rotation** - periodically regenerate and redistribute keys, especially after staff turnover.
+- **Least privilege** - restrict `authorized_keys` entries with `command=`, `no-pty`, `permitopen=` where a key only needs to perform one narrow task.
+- **Restrict users/groups** - use `AllowUsers`/`AllowGroups` to explicitly whitelist who may connect at all.
+- **Audit logs** - regularly review `/var/log/auth.log` (Debian/Ubuntu) or `journalctl -u sshd` (systemd-based) for suspicious activity.
 
 ### Example: Installing Fail2Ban for SSH
 
@@ -1096,45 +1096,45 @@ Installs Fail2Ban and enables it to start on boot; its default `sshd` jail begin
 ssh -vvv user@host
 ```
 
-Running with maximum verbosity shows exactly which authentication methods were tried, which keys were offered, and where the handshake failed — the single most useful troubleshooting command.
+Running with maximum verbosity shows exactly which authentication methods were tried, which keys were offered, and where the handshake failed - the single most useful troubleshooting command.
 
 ---
 
 ## Useful SSH One-Liners
 
-1. `ssh user@host` — basic connection.
-2. `ssh -p 2222 user@host` — connect on a custom port.
-3. `ssh -i ~/.ssh/mykey user@host` — connect with a specific key.
-4. `ssh -o IdentitiesOnly=yes -i ~/.ssh/mykey user@host` — force only one key to be offered.
-5. `ssh user@host "uname -a"` — run one remote command and exit.
-6. `ssh user@host "sudo systemctl restart nginx"` — restart a remote service.
-7. `ssh -L 8080:localhost:80 user@host` — local port forward.
-8. `ssh -R 9000:localhost:3000 user@host` — remote port forward.
-9. `ssh -D 1080 user@host` — dynamic SOCKS proxy.
-10. `ssh -f -N -L 3306:localhost:3306 user@host` — background tunnel to a remote database.
-11. `ssh -J bastion user@internal-host` — connect through a jump host.
-12. `ssh -A user@host` — connect with agent forwarding enabled.
-13. `ssh -X user@host` — connect with X11 forwarding.
-14. `ssh -C user@host` — connect with compression enabled (helps on slow links).
-15. `scp file.txt user@host:/tmp/` — upload a file.
-16. `scp user@host:/tmp/file.txt .` — download a file.
-17. `scp -r ./folder user@host:/tmp/` — upload a directory recursively.
-18. `rsync -avz -e ssh ./folder user@host:/tmp/` — sync a directory efficiently over SSH.
-19. `sftp user@host` — start an interactive file transfer session.
-20. `ssh-keygen -t ed25519 -C "label"` — generate a new ED25519 key pair.
-21. `ssh-copy-id user@host` — copy your public key to a server.
-22. `ssh-add ~/.ssh/id_ed25519` — load a key into the agent.
-23. `ssh-add -l` — list keys currently loaded in the agent.
-24. `ssh-keygen -R host` — remove a stale host key entry.
-25. `ssh-keygen -lf ~/.ssh/id_ed25519.pub` — show a key's fingerprint.
-26. `ssh -vvv user@host` — maximum verbosity for debugging.
-27. `ssh user@host -o ConnectTimeout=5` — fail fast if the host is unreachable.
-28. `ssh user@host -o ServerAliveInterval=60` — keep idle connections alive.
-29. `ssh user@host 'tail -f /var/log/syslog'` — stream a remote log file live.
-30. `ssh user@host 'ps aux | grep nginx'` — check a remote process remotely.
-31. `ssh user@host 'df -h'` — check remote disk usage.
-32. `for h in host1 host2 host3; do ssh "$h" uptime; done` — check uptime across multiple servers in a loop.
-33. `ssh user@host mkdir -p /tmp/newfolder` — create a remote directory without logging in interactively.
+1. `ssh user@host` - basic connection.
+2. `ssh -p 2222 user@host` - connect on a custom port.
+3. `ssh -i ~/.ssh/mykey user@host` - connect with a specific key.
+4. `ssh -o IdentitiesOnly=yes -i ~/.ssh/mykey user@host` - force only one key to be offered.
+5. `ssh user@host "uname -a"` - run one remote command and exit.
+6. `ssh user@host "sudo systemctl restart nginx"` - restart a remote service.
+7. `ssh -L 8080:localhost:80 user@host` - local port forward.
+8. `ssh -R 9000:localhost:3000 user@host` - remote port forward.
+9. `ssh -D 1080 user@host` - dynamic SOCKS proxy.
+10. `ssh -f -N -L 3306:localhost:3306 user@host` - background tunnel to a remote database.
+11. `ssh -J bastion user@internal-host` - connect through a jump host.
+12. `ssh -A user@host` - connect with agent forwarding enabled.
+13. `ssh -X user@host` - connect with X11 forwarding.
+14. `ssh -C user@host` - connect with compression enabled (helps on slow links).
+15. `scp file.txt user@host:/tmp/` - upload a file.
+16. `scp user@host:/tmp/file.txt .` - download a file.
+17. `scp -r ./folder user@host:/tmp/` - upload a directory recursively.
+18. `rsync -avz -e ssh ./folder user@host:/tmp/` - sync a directory efficiently over SSH.
+19. `sftp user@host` - start an interactive file transfer session.
+20. `ssh-keygen -t ed25519 -C "label"` - generate a new ED25519 key pair.
+21. `ssh-copy-id user@host` - copy your public key to a server.
+22. `ssh-add ~/.ssh/id_ed25519` - load a key into the agent.
+23. `ssh-add -l` - list keys currently loaded in the agent.
+24. `ssh-keygen -R host` - remove a stale host key entry.
+25. `ssh-keygen -lf ~/.ssh/id_ed25519.pub` - show a key's fingerprint.
+26. `ssh -vvv user@host` - maximum verbosity for debugging.
+27. `ssh user@host -o ConnectTimeout=5` - fail fast if the host is unreachable.
+28. `ssh user@host -o ServerAliveInterval=60` - keep idle connections alive.
+29. `ssh user@host 'tail -f /var/log/syslog'` - stream a remote log file live.
+30. `ssh user@host 'ps aux | grep nginx'` - check a remote process remotely.
+31. `ssh user@host 'df -h'` - check remote disk usage.
+32. `for h in host1 host2 host3; do ssh "$h" uptime; done` - check uptime across multiple servers in a loop.
+33. `ssh user@host mkdir -p /tmp/newfolder` - create a remote directory without logging in interactively.
 
 ---
 
@@ -1175,7 +1175,7 @@ Port 22 (TCP).
 No. Both provide encryption, but SSH is a distinct protocol designed for remote shell access and tunneling, while SSL/TLS is primarily used to secure web (HTTPS) and other application traffic.
 
 **3. Can I use SSH without a password?**
-Yes — that's the purpose of public key authentication.
+Yes - that's the purpose of public key authentication.
 
 **4. Is it safe to disable password authentication entirely?**
 Generally yes, and recommended, as long as you have reliable key-based access already configured and tested before disabling it.
@@ -1190,13 +1190,13 @@ It's more secure to use separate keys per purpose or per trust boundary, so a co
 `~/.ssh/config` configures client-side behavior (per-user, per-host shortcuts). `/etc/ssh/sshd_config` configures the server daemon's behavior system-wide.
 
 **8. Why does changing the SSH port improve security?**
-It mainly reduces log noise from automated bots scanning port 22 — it does not stop a determined, targeted attacker who scans all ports.
+It mainly reduces log noise from automated bots scanning port 22 - it does not stop a determined, targeted attacker who scans all ports.
 
 **9. What is a host key, and why does SSH warn me about it?**
 A host key uniquely identifies a server. SSH warns you when it changes because that could indicate the server was rebuilt legitimately or that you're being intercepted by an attacker (MITM).
 
 **10. Can SSH keys have passphrases?**
-Yes, and it's strongly recommended — a passphrase protects the private key file even if it's stolen.
+Yes, and it's strongly recommended - a passphrase protects the private key file even if it's stolen.
 
 **11. What is `known_hosts`?**
 A local file recording the host keys of servers you've previously connected to, used to detect unexpected changes.
@@ -1217,7 +1217,7 @@ SCP is a simple, one-shot file copy tool; SFTP is a full interactive file transf
 Rarely for anything security-sensitive; it survives mainly for legacy equipment management on isolated/trusted networks, since it transmits everything in plain text.
 
 **17. What is `ProxyJump`, and when should I use it?**
-It lets you tunnel an SSH connection through one or more intermediate ("jump") hosts — commonly used to reach internal servers that have no direct public IP.
+It lets you tunnel an SSH connection through one or more intermediate ("jump") hosts - commonly used to reach internal servers that have no direct public IP.
 
 **18. How do I connect to two machines on different networks without port forwarding on my router?**
 Use a public relay (e.g., a small VPS) and SSH remote forwarding, as detailed in [Connecting Two Machines on Different Networks](#connecting-two-machines-on-different-networks).
@@ -1269,11 +1269,11 @@ Typical daily-driver connection to a cloud server using a dedicated key, often s
 
 ```bash
 ssh-keygen -t ed25519 -C "github-lichi"
-ssh-copy-id # not used for GitHub — instead paste the .pub key into GitHub's SSH key settings
+ssh-copy-id # not used for GitHub - instead paste the .pub key into GitHub's SSH key settings
 ssh -T git@github.com
 ```
 
-GitHub doesn't accept `ssh-copy-id` since you don't have shell access to their servers — instead, the public key is pasted into your GitHub account settings. `ssh -T git@github.com` tests the connection.
+GitHub doesn't accept `ssh-copy-id` since you don't have shell access to their servers - instead, the public key is pasted into your GitHub account settings. `ssh -T git@github.com` tests the connection.
 
 ### Connecting to a Raspberry Pi
 
@@ -1303,7 +1303,7 @@ rsync -avz -e "ssh -i ~/.ssh/id_ed25519_backup" /home/user/data/ backupuser@back
 
 Combines `rsync` with SSH as the secure transport for efficient, incremental backups.
 
-### SSH Tunneling — Reaching Two Machines Across Different Networks
+### SSH Tunneling - Reaching Two Machines Across Different Networks
 
 As covered in detail earlier, using a VPS as a relay with `ssh -R` lets you reach a home server, Raspberry Pi, or lab machine that sits behind NAT on a completely different network than the one you're connecting from without any router configuration required on the target's side. This pattern underlies many remote-access tools (e.g., commercial "connect to my home PC" services) that are, under the hood, automated SSH reverse tunnels.
 
@@ -1314,9 +1314,9 @@ As covered in detail earlier, using a VPS as a relay with `ssh -R` lets you reac
 SSH is the foundation of secure remote administration, file transfer, and encrypted tunneling on modern systems. A solid working knowledge of SSH means understanding:
 
 - How the protocol establishes trust and encrypts traffic (transport, authentication, and connection layers).
-- How to generate, manage, and protect key pairs — preferring ED25519 for new keys.
+- How to generate, manage, and protect key pairs - preferring ED25519 for new keys.
 - How to configure both the client (`~/.ssh/config`) and server (`/etc/ssh/sshd_config`) for convenience and security.
-- How to use port forwarding — local, remote, and dynamic — to securely reach services across network boundaries, including linking two machines on entirely separate networks through a public relay.
+- How to use port forwarding - local, remote, and dynamic - to securely reach services across network boundaries, including linking two machines on entirely separate networks through a public relay.
 - How to harden a server against common attacks: disabling weak authentication, restricting users, monitoring logs, and applying least privilege to keys.
 
 Mastering these fundamentals is essential groundwork for further work in system administration, DevOps, and offensive/defensive security.
@@ -1325,10 +1325,10 @@ Mastering these fundamentals is essential groundwork for further work in system 
 
 ## Further Reading
 
-- OpenSSH Documentation — https://www.openssh.com/manual.html
-- Linux man pages — `man ssh`, `man sshd_config`, `man ssh-keygen`, `man ssh_config`
-- Mozilla SSH Guidelines — https://infosec.mozilla.org/guidelines/openssh
-- GitHub SSH Documentation — https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+- OpenSSH Documentation - https://www.openssh.com/manual.html
+- Linux man pages - `man ssh`, `man sshd_config`, `man ssh-keygen`, `man ssh_config`
+- Mozilla SSH Guidelines - https://infosec.mozilla.org/guidelines/openssh
+- GitHub SSH Documentation - https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 ---
 
@@ -1370,7 +1370,7 @@ Typical daily-driver connection to a cloud server for deployments and maintenanc
 ssh -T git@github.com
 ```
 
-Tests SSH authentication against GitHub using your registered public key — GitHub replies with a greeting rather than a shell, confirming the key works for Git operations like `git clone git@github.com:user/repo.git`.
+Tests SSH authentication against GitHub using your registered public key - GitHub replies with a greeting rather than a shell, confirming the key works for Git operations like `git clone git@github.com:user/repo.git`.
 
 ### Connecting to a Raspberry Pi
 
@@ -1390,7 +1390,7 @@ Typical pattern for AWS EC2: a provider-issued `.pem` key file and a default use
 
 ### Remote Development with VS Code
 
-VS Code's "Remote - SSH" extension uses your existing `~/.ssh/config` entries to open a full development environment on a remote machine, running the editor UI locally while all processes, terminals, and file access happen remotely — no manual `scp` round-tripping required.
+VS Code's "Remote - SSH" extension uses your existing `~/.ssh/config` entries to open a full development environment on a remote machine, running the editor UI locally while all processes, terminals, and file access happen remotely - no manual `scp` round-tripping required.
 
 ### Remote Backups
 
@@ -1406,23 +1406,23 @@ Efficiently syncs only changed files to a remote backup server over an encrypted
 ssh -f -N -L 5432:localhost:5432 user@db-host
 ```
 
-Opens a background tunnel so a local database client (e.g., `psql`) can connect to `localhost:5432` while traffic is actually encrypted and routed to the remote PostgreSQL server — avoiding exposing the database port directly to the internet.
+Opens a background tunnel so a local database client (e.g., `psql`) can connect to `localhost:5432` while traffic is actually encrypted and routed to the remote PostgreSQL server - avoiding exposing the database port directly to the internet.
 
 ---
 
 ## Summary
 
-SSH is the foundation of secure remote administration: it authenticates users, encrypts every byte exchanged, and provides a flexible transport for shells, file transfers, and arbitrary port forwarding. A solid grasp of key-based authentication, the client config file, port forwarding, and `sshd_config` hardening covers the overwhelming majority of real-world usage — from managing a single VPS to relaying connections between machines on entirely separate networks. Treat private keys as sensitive credentials, keep the daemon patched and tightly configured, and verify host identities rather than clicking past warnings.
+SSH is the foundation of secure remote administration: it authenticates users, encrypts every byte exchanged, and provides a flexible transport for shells, file transfers, and arbitrary port forwarding. A solid grasp of key-based authentication, the client config file, port forwarding, and `sshd_config` hardening covers the overwhelming majority of real-world usage - from managing a single VPS to relaying connections between machines on entirely separate networks. Treat private keys as sensitive credentials, keep the daemon patched and tightly configured, and verify host identities rather than clicking past warnings.
 
 ---
 
 ## Further Reading
 
 - [OpenSSH Official Documentation](https://www.openssh.com/manual.html)
-- [Linux man pages — `ssh(1)`](https://man.openbsd.org/ssh)
-- [Linux man pages — `sshd(8)`](https://man.openbsd.org/sshd)
-- [Linux man pages — `ssh-keygen(1)`](https://man.openbsd.org/ssh-keygen)
-- [Linux man pages — `ssh_config(5)`](https://man.openbsd.org/ssh_config)
-- [Linux man pages — `sshd_config(5)`](https://man.openbsd.org/sshd_config)
+- [Linux man pages - `ssh(1)`](https://man.openbsd.org/ssh)
+- [Linux man pages - `sshd(8)`](https://man.openbsd.org/sshd)
+- [Linux man pages - `ssh-keygen(1)`](https://man.openbsd.org/ssh-keygen)
+- [Linux man pages - `ssh_config(5)`](https://man.openbsd.org/ssh_config)
+- [Linux man pages - `sshd_config(5)`](https://man.openbsd.org/sshd_config)
 - [Mozilla OpenSSH Security Guidelines](https://infosec.mozilla.org/guidelines/openssh)
-- [GitHub Docs — Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- [GitHub Docs - Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)

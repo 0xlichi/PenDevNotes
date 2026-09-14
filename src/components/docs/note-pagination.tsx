@@ -16,7 +16,7 @@ export function NotePagination({
     <div className="mt-16 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
       {previous ? (
         <Link
-          href={`/notes/${previous.slug}`}
+          href={`/${previous.slug}`}
           className={[
             "group flex flex-col gap-1 rounded-2xl border border-border bg-surface p-5 shadow-sm",
             "transition-all duration-200 ease-out",
@@ -37,7 +37,7 @@ export function NotePagination({
 
       {next ? (
         <Link
-          href={`/notes/${next.slug}`}
+          href={`/${next.slug}`}
           className={[
             "group flex flex-col items-end gap-1 rounded-2xl border border-border bg-surface p-5 text-right shadow-sm",
             "transition-all duration-200 ease-out",

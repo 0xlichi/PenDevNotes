@@ -89,7 +89,7 @@ export function TableOfContents({ headings }: { headings: TocHeading[] }) {
             <li
               key={heading.id}
               style={{
-                paddingLeft: (heading.level - 2) * 12 + 12,
+                paddingLeft: Math.max(10, (heading.level - 1) * 12),
               }}
             >
               <a

@@ -17,7 +17,7 @@ Before diving into commands, understanding these building blocks will make every
 
 ### What is a Repository?
 
-A **repository (repo)** is a folder that Git is tracking. It contains your project files plus a hidden `.git/` folder — Git's brain. Everything Git knows about your project lives in `.git/`.
+A **repository (repo)** is a folder that Git is tracking. It contains your project files plus a hidden `.git/` folder - Git's brain. Everything Git knows about your project lives in `.git/`.
 
 ```bash
 my-project/
@@ -29,12 +29,12 @@ my-project/
 
 There are two kinds:
 
-- **Local repo** — lives on your machine
-- **Remote repo** — lives on a server (GitHub, GitLab, etc.)
+- **Local repo** - lives on your machine
+- **Remote repo** - lives on a server (GitHub, GitLab, etc.)
 
 ### What is a Commit?
 
-A **commit** is a permanent snapshot of your project at a point in time. Think of it like a save point in a video game — you can always return to it.
+A **commit** is a permanent snapshot of your project at a point in time. Think of it like a save point in a video game - you can always return to it.
 
 Each commit stores:
 
@@ -50,7 +50,7 @@ Each commit stores:
 ```
 
 > `Tip` Think of history as a linked list
-> Each commit points back to its parent. This chain is your entire project history — and it's permanent and tamper-evident.
+> Each commit points back to its parent. This chain is your entire project history - and it's permanent and tamper-evident.
 
 ### What is the Staging Area?
 
@@ -82,7 +82,7 @@ feature:            E → F → G
 - `main` is at commit D
 - `feature` branched off at C and has 3 new commits
 
-Creating a branch is instant — it's just a file containing a 40-character hash. This is why Git branching is so fast compared to older VCS tools.
+Creating a branch is instant - it's just a file containing a 40-character hash. This is why Git branching is so fast compared to older VCS tools.
 
 ### What is HEAD?
 
@@ -105,7 +105,7 @@ origin  https://github.com/you/repo.git   # fetch
 origin  https://github.com/you/repo.git   # push
 ```
 
-Remote-tracking branches like `origin/main` are local snapshots of what the remote looked like last time you fetched. They don't update automatically — you have to run `git fetch`.
+Remote-tracking branches like `origin/main` are local snapshots of what the remote looked like last time you fetched. They don't update automatically - you have to run `git fetch`.
 
 ---
 
@@ -161,7 +161,7 @@ git config --add --local user.email "work@company.com"   # per-repo override
 
 ```bash
 mkdir my-project && cd my-project
-git init              # creates a hidden .git/ folder — your repo's brain
+git init              # creates a hidden .git/ folder - your repo's brain
 ```
 
 ### Clone an Existing Repository
@@ -181,7 +181,7 @@ git clone -b develop https://github.com/user/repo.git # clone a specific branch
 ## Status & Inspection
 
 ```bash
-git status            # most-used command — shows modified, staged, untracked files
+git status            # most-used command - shows modified, staged, untracked files
 git status -s         # short format: M = modified, A = added, ?? = untracked
 ```
 
@@ -189,13 +189,13 @@ git status -s         # short format: M = modified, A = added, ?? = untracked
 
 **Git Status Symbols**
 
-- **`??`** — Untracked file (Git doesn't know about it yet)
-- **`A `** — Newly staged file (added to index)
-- **`M `** — Modified and staged
-- **` M`** — Modified but NOT staged
-- **`MM`** — Modified, partially staged
-- **`D `** — Deleted and staged
-- **`R `** — Renamed
+- **`??`** - Untracked file (Git doesn't know about it yet)
+- **`A `** - Newly staged file (added to index)
+- **`M `** - Modified and staged
+- **` M`** - Modified but NOT staged
+- **`MM`** - Modified, partially staged
+- **`D `** - Deleted and staged
+- **`R `** - Renamed
 
 ```bash
 git show <hash>          # full commit details: author, date, message, diff
@@ -203,7 +203,7 @@ git show HEAD            # details of the most recent commit
 git show HEAD~2          # details of the commit 2 steps back
 git blame <file>         # who wrote each line and in which commit
 git shortlog -sn         # contributor summary: commit count per author
-git cat-file -p <hash>   # inspect raw Git objects (advanced — Git internals)
+git cat-file -p <hash>   # inspect raw Git objects (advanced - Git internals)
 ```
 
 ---
@@ -224,12 +224,12 @@ Git is a 4-step pipeline. Every operation maps to moving changes between these z
 
 Moving backwards:
 
-- `git restore <file>` — discard working dir changes
-- `git restore --staged <file>` — move from staging back to working dir
-- `git reset` — move commits back to staging or working dir
+- `git restore <file>` - discard working dir changes
+- `git restore --staged <file>` - move from staging back to working dir
+- `git reset` - move commits back to staging or working dir
 
 > `Tip` The staging area is Git's superpower
-> It lets you craft clean, focused commits even when you've changed many files at once — only stage the changes that logically belong together.
+> It lets you craft clean, focused commits even when you've changed many files at once - only stage the changes that logically belong together.
 
 ---
 
@@ -306,7 +306,7 @@ git commit -am "Fix typo in README"       # stage all tracked files + commit in 
 Short summary (50 chars or less)
 
 Longer explanation if needed. Wrap at 72 chars.
-Explain the WHY, not just the WHAT — the diff already
+Explain the WHY, not just the WHAT - the diff already
 shows what changed.
 
 Refs: #123
@@ -338,7 +338,7 @@ git restore .                            # discard ALL unstaged changes in worki
 ```
 
 > `Danger` Common mistake
-> Using `git checkout -- file` to discard changes. This still works, but is confusing because `git checkout` also switches branches — the same command does two completely different things.
+> Using `git checkout -- file` to discard changes. This still works, but is confusing because `git checkout` also switches branches - the same command does two completely different things.
 > Use `git restore <file>` instead. It's unambiguous and safe.
 
 ---
@@ -378,7 +378,7 @@ git shortlog -sn                      # contributor summary: commit count per au
 
 ```bash
 git diff                          # unstaged changes (working dir vs staging)
-git diff --staged                 # staged changes — what will actually be committed
+git diff --staged                 # staged changes - what will actually be committed
 git diff HEAD                     # all changes since last commit (staged + unstaged)
 git diff <hash1> <hash2>          # diff between any two commits
 git diff main..feature            # diff between two branches
@@ -406,10 +406,10 @@ See [[#Core Concepts Explained]] for the conceptual explanation.
 
 Key facts:
 
-- Creating a branch is **free** (O(1) operation — just writes a tiny file)
-- Branches don't copy files — they're pointers
+- Creating a branch is **free** (O(1) operation - just writes a tiny file)
+- Branches don't copy files - they're pointers
 - You can have hundreds of branches with zero performance impact
-- `main` (or `master`) is just a branch like any other — it has no special Git powers
+- `main` (or `master`) is just a branch like any other - it has no special Git powers
 
 ---
 
@@ -418,7 +418,7 @@ Key facts:
 ### List Branches
 
 ```bash
-git branch            # local branches — * marks current
+git branch            # local branches - * marks current
 git branch -a         # local + remote-tracking branches
 git branch -r         # remote-tracking branches only
 git branch -v         # local branches with last commit message
@@ -433,7 +433,7 @@ git switch -c feature/login        # create AND switch (modern, preferred)
 git switch main                    # switch to an existing branch
 git switch -                       # switch back to the previous branch
 
-# Older syntax — still works, but switch is less ambiguous
+# Older syntax - still works, but switch is less ambiguous
 git checkout -b feature/login
 git checkout main
 ```
@@ -479,8 +479,8 @@ git merge origin/feature/login     # merge a remote-tracking branch
 > `git merge origin feature` (with a space) is **wrong**. Git interprets "origin" and "feature" as two separate branch names to merge simultaneously.
 > Correct forms:
 >
-> - `git merge feature` — merge a local branch
-> - `git merge origin/feature` — merge a remote-tracking branch (**slash**, not space)
+> - `git merge feature` - merge a local branch
+> - `git merge origin/feature` - merge a remote-tracking branch (**slash**, not space)
 
 ### Merge Strategies
 
@@ -492,9 +492,9 @@ git merge --squash feature         # squash all feature commits into one staged 
 
 **Git Merge Strategies**
 
-- **Default (fast-forward)** — No merge commit if linear; Use for simple updates
-- **`--no-ff`** — Always creates merge commit; Use when you want branch history preserved
-- **`--squash`** — No merge commit (staged only); Use for cleaning up feature branch before merging
+- **Default (fast-forward)** - No merge commit if linear; Use for simple updates
+- **`--no-ff`** - Always creates merge commit; Use when you want branch history preserved
+- **`--squash`** - No merge commit (staged only); Use for cleaning up feature branch before merging
 
 ### Pull (fetch + merge)
 
@@ -527,7 +527,7 @@ console.log("Hello Git");        ← incoming branch
 # 1. See which files have conflicts
 git status
 
-# 2. Open each conflicted file, edit it — remove the <<<,===,>>> markers
+# 2. Open each conflicted file, edit it - remove the <<<,===,>>> markers
 #    and keep the code you want (your version, theirs, or a blend of both)
 
 # 3. Stage each resolved file
@@ -559,7 +559,7 @@ git fetch origin
 git rebase origin/main         # integrate changes before conflicts accumulate
 
 # Check for potential conflicts before merging
-git merge --no-commit --no-ff feature   # dry run — see what would conflict
+git merge --no-commit --no-ff feature   # dry run - see what would conflict
 git merge --abort                        # then abort if you want to handle it differently
 ```
 
@@ -627,7 +627,7 @@ a3f92bc1 (Alice Chen  2024-01-15 10:23:45 +0000  42) const login = async (req, r
 - Columns: `hash (author date line#) content`
 
 > `Tip` Use blame in VS Code
-> The **GitLens** extension adds inline blame directly in the editor — hover any line to see full commit details without leaving your file.
+> The **GitLens** extension adds inline blame directly in the editor - hover any line to see full commit details without leaving your file.
 
 ### Ignoring Reformatting Commits in Blame
 
@@ -655,7 +655,7 @@ git remote set-url origin git@github.com:user/repo.git  # change URL (HTTPS → 
 git remote show origin                   # detailed info: branches, tracking, etc.
 ```
 
-### Fork Workflow — Adding Upstream
+### Fork Workflow - Adding Upstream
 
 ```bash
 git remote add upstream https://github.com/original/repo.git
@@ -680,15 +680,15 @@ git fetch --prune              # also delete local refs to deleted remote branch
 git fetch origin main          # fetch just the main branch
 ```
 
-### Fetch vs Pull — What's the Difference?
+### Fetch vs Pull - What's the Difference?
 
 **Git Fetch vs Pull**
 
-- **`git fetch`** — Downloads changes, updates remote-tracking refs (`origin/main`); Never modifies working branch
-- **`git pull`** — `git fetch` + `git merge` (or `--rebase`); Yes, modifies working branch
+- **`git fetch`** - Downloads changes, updates remote-tracking refs (`origin/main`); Never modifies working branch
+- **`git pull`** - `git fetch` + `git merge` (or `--rebase`); Yes, modifies working branch
 
 ```bash
-# Inspect before merging — see what's on remote that you don't have yet
+# Inspect before merging - see what's on remote that you don't have yet
 git log HEAD..origin/main --oneline
 
 # See local commits not yet pushed
@@ -715,7 +715,7 @@ git push --dry-run                    # preview what would be pushed without doi
 
 > `Danger` Never `--force` on shared branches
 > It overwrites the remote history without checking and will corrupt everyone else's local copy.
-> Always use `--force-with-lease` instead — it fails if someone else has pushed since your last fetch, protecting you from overwriting their work.
+> Always use `--force-with-lease` instead - it fails if someone else has pushed since your last fetch, protecting you from overwriting their work.
 
 ---
 
@@ -752,10 +752,10 @@ Three ways to undo. Choose based on whether the commits are shared and whether y
 
 **Git Undo Commands**
 
-- **`git reset --soft HEAD~1`** — Undoes commits, keeps changes staged; Not safe after push
-- **`git reset HEAD~1`** — Undoes commits, keeps changes unstaged; Not safe after push
-- **`git reset --hard HEAD~1`** — Undoes commits, discards changes; Not safe after push
-- **`git revert <hash>`** — Preserves commits + creates new undo commit, inverts changes; Safe after push
+- **`git reset --soft HEAD~1`** - Undoes commits, keeps changes staged; Not safe after push
+- **`git reset HEAD~1`** - Undoes commits, keeps changes unstaged; Not safe after push
+- **`git reset --hard HEAD~1`** - Undoes commits, discards changes; Not safe after push
+- **`git revert <hash>`** - Preserves commits + creates new undo commit, inverts changes; Safe after push
 
 ```bash
 # Undo last commit, keep changes staged
@@ -764,13 +764,13 @@ git reset --soft HEAD~1
 # Undo last commit, keep changes unstaged (default: --mixed)
 git reset HEAD~1
 
-# Undo last commit AND discard all changes — use with caution
+# Undo last commit AND discard all changes - use with caution
 git reset --hard HEAD~1
 
 # Jump back to any commit, wiping everything after it
 git reset --hard <commit-hash>
 
-# Safe undo on public branches — creates a new reverting commit
+# Safe undo on public branches - creates a new reverting commit
 git revert <commit-hash>
 
 # Revert a merge commit
@@ -778,14 +778,14 @@ git revert -m 1 <merge-commit-hash>
 ```
 
 > `Danger` Common mistake
-> Using `git reset --hard` to discard changes in a single file — this resets your **entire** working directory.
+> Using `git reset --hard` to discard changes in a single file - this resets your **entire** working directory.
 > To discard changes in just one file, use `git restore <file>` instead.
 
 ---
 
-## Reflog — Your Safety Net
+## Reflog - Your Safety Net
 
-Reflog records every position HEAD has ever pointed to — including commits you "deleted" with `reset --hard`. Git keeps this log for ~90 days. Almost nothing is truly lost.
+Reflog records every position HEAD has ever pointed to - including commits you "deleted" with `reset --hard`. Git keeps this log for ~90 days. Almost nothing is truly lost.
 
 ```bash
 git reflog                   # complete history of every HEAD movement
@@ -821,10 +821,10 @@ git checkout v1.0.0         # checking out a tag (tags point to commits, not bra
 
 **Detached HEAD State**
 
-- **Browse code at that point in history** — Safe
-- **Run / test the code** — Safe
-- **Make commits** — They won't belong to any branch
-- **Switch away without saving** — Those commits become unreachable
+- **Browse code at that point in history** - Safe
+- **Run / test the code** - Safe
+- **Make commits** - They won't belong to any branch
+- **Switch away without saving** - Those commits become unreachable
 
 ### How to Recover
 
@@ -837,7 +837,7 @@ git switch -c new-branch         # save work by creating a branch from current p
 
 ## Interactive Rebase
 
-Interactive rebase rewrites commit history. Use it to clean up a messy feature branch before merging — squash WIP commits, fix typos in messages, or reorder changes.
+Interactive rebase rewrites commit history. Use it to clean up a messy feature branch before merging - squash WIP commits, fix typos in messages, or reorder changes.
 
 ```bash
 git rebase -i HEAD~4           # edit the last 4 commits interactively
@@ -849,13 +849,13 @@ git rebase -i origin/main      # rebase against the remote main
 
 **Git Rebase Interactive Commands**
 
-- **`pick` / `p`** — Keep the commit as-is
-- **`reword` / `r`** — Keep the commit, edit its message
-- **`edit` / `e`** — Pause to amend the commit's content
-- **`squash` / `s`** — Merge into the previous commit, combining both messages
-- **`fixup` / `f`** — Merge into the previous commit, discard this message
-- **`drop` / `d`** — Delete the commit entirely
-- **`exec` / `x`** — Run a shell command after this commit
+- **`pick` / `p`** - Keep the commit as-is
+- **`reword` / `r`** - Keep the commit, edit its message
+- **`edit` / `e`** - Pause to amend the commit's content
+- **`squash` / `s`** - Merge into the previous commit, combining both messages
+- **`fixup` / `f`** - Merge into the previous commit, discard this message
+- **`drop` / `d`** - Delete the commit entirely
+- **`exec` / `x`** - Run a shell command after this commit
 
 ```bash
 git rebase --continue          # after resolving a conflict or finishing an edit
@@ -867,7 +867,7 @@ git push --force-with-lease
 ```
 
 > `Warning` Golden rule of rebase
-> Never rebase commits that have already been pushed to a shared branch. Rebase rewrites every commit's hash — anyone who pulled the original commits will see diverged history and face painful conflicts.
+> Never rebase commits that have already been pushed to a shared branch. Rebase rewrites every commit's hash - anyone who pulled the original commits will see diverged history and face painful conflicts.
 
 ---
 
@@ -893,7 +893,7 @@ git cherry-pick --abort              # cancel and restore to before cherry-pick
 
 ## Git Bisect
 
-Binary search through commit history to find the exact commit that introduced a bug. Git halves the search space each step — finding the culprit among 1,000 commits takes only ~10 steps.
+Binary search through commit history to find the exact commit that introduced a bug. Git halves the search space each step - finding the culprit among 1,000 commits takes only ~10 steps.
 
 ```bash
 git bisect start            # begin a bisect session
@@ -913,7 +913,7 @@ git bisect reset            # end session, return to original branch
 ### Automated Bisect
 
 ```bash
-git bisect run npm test     # fully automated — exit 0 = good, non-zero = bad
+git bisect run npm test     # fully automated - exit 0 = good, non-zero = bad
 git bisect run ./test.sh    # any script works
 ```
 
@@ -952,7 +952,7 @@ git show v1.0.0                              # show what this tag points to
 
 ## .gitignore & .gitkeep
 
-### .gitignore — Files to Never Track
+### .gitignore - Files to Never Track
 
 Create a `.gitignore` file at the root of your repo and commit it. Git won't track any files matching these patterns.
 
@@ -964,7 +964,7 @@ node_modules/
 *.log
 logs/
 
-# Environment and secrets — CRITICAL: never commit secrets
+# Environment and secrets - CRITICAL: never commit secrets
 .env
 .env.local
 .env.*.local
@@ -999,7 +999,7 @@ coverage/
 ```
 
 > `Danger` Never commit `.env` files
-> Secrets pushed to GitHub are public and are scraped by bots within seconds. Even deleting the file in a later commit doesn't help — they remain in the history forever. If you accidentally commit a secret, consider it compromised and **rotate it immediately**.
+> Secrets pushed to GitHub are public and are scraped by bots within seconds. Even deleting the file in a later commit doesn't help - they remain in the history forever. If you accidentally commit a secret, consider it compromised and **rotate it immediately**.
 
 ```bash
 # Fix: you accidentally committed a file and want to stop tracking it
@@ -1021,9 +1021,9 @@ echo ".DS_Store" >> ~/.gitignore_global
 echo ".idea/" >> ~/.gitignore_global
 ```
 
-### .gitkeep — Track Empty Directories
+### .gitkeep - Track Empty Directories
 
-Git only tracks files, not empty directories. `.gitkeep` is a community convention (not a Git feature) — an empty placeholder file added so Git includes the directory in the repo.
+Git only tracks files, not empty directories. `.gitkeep` is a community convention (not a Git feature) - an empty placeholder file added so Git includes the directory in the repo.
 
 ```bash
 touch logs/.gitkeep       # forces an otherwise empty directory into the repo
@@ -1145,22 +1145,22 @@ git push --force-with-lease
 
 ## Git Quick Reference
 
-- **See what's changed** — `git status`
-- **Stage all changes** — `git add .`
-- **Stage interactively** — `git add -p`
-- **Commit** — `git commit -m "message"`
-- **Undo last commit (keep changes)** — `git reset --soft HEAD~1`
-- **Discard file changes** — `git restore <file>`
-- **Create & switch branch** — `git switch -c branch-name`
-- **Merge branch into current** — `git merge branch-name`
-- **Stash work in progress** — `git stash push -m "description"`
-- **Restore stash** — `git stash pop`
-- **Download remote changes** — `git fetch`
-- **Download + integrate** — `git pull --rebase`
-- **Upload changes** — `git push`
-- **See who changed a line** — `git blame <file>`
-- **Find a bug's origin** — `git bisect start`
-- **View all history** — `git log --oneline --graph --all`
-- **Recover anything** — `git reflog`
+- **See what's changed** - `git status`
+- **Stage all changes** - `git add .`
+- **Stage interactively** - `git add -p`
+- **Commit** - `git commit -m "message"`
+- **Undo last commit (keep changes)** - `git reset --soft HEAD~1`
+- **Discard file changes** - `git restore <file>`
+- **Create & switch branch** - `git switch -c branch-name`
+- **Merge branch into current** - `git merge branch-name`
+- **Stash work in progress** - `git stash push -m "description"`
+- **Restore stash** - `git stash pop`
+- **Download remote changes** - `git fetch`
+- **Download + integrate** - `git pull --rebase`
+- **Upload changes** - `git push`
+- **See who changed a line** - `git blame <file>`
+- **Find a bug's origin** - `git bisect start`
+- **View all history** - `git log --oneline --graph --all`
+- **Recover anything** - `git reflog`
 
 ---

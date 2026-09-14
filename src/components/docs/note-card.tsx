@@ -22,7 +22,7 @@ export function NoteCard({ note, staggerIndex }: { note: NoteSummary; staggerInd
 
   return (
     <Link
-      href={`/notes/${note.slug}`}
+      href={`/${note.slug}`}
       className="group block h-full stagger-item"
       style={staggerIndex !== undefined ? ({ "--stagger-index": staggerIndex } as React.CSSProperties) : undefined}
     >

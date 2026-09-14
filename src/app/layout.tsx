@@ -8,8 +8,8 @@ import './globals.css';
 // restrictive firewalls, while still looking clean and modern.
 export const metadata: Metadata = {
   title: {
-    default: 'Notebook — Pentest & Dev Notes',
-    template: '%s — Notebook',
+    default: 'Notebook - Pentest & Dev Notes',
+    template: '%s - Notebook',
   },
   description: 'A searchable notebook of pentesting and development notes.',
 };

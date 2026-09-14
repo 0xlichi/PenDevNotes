@@ -88,10 +88,10 @@ If every chapter has the same shape, your brain stops spending energy on "what a
 
 Exercises are tagged so you know what you're walking into:
 
-- 🟢 Easy: you should get this on the first try
-- 🟡 Medium: needs a bit of thinking
-- 🟠 Hard: combines multiple ideas
-- 🔴 Very Hard: treat it like a mini-project
+-  Easy: you should get this on the first try
+-  Medium: needs a bit of thinking
+-  Hard: combines multiple ideas
+-  Very Hard: treat it like a mini-project
 
 ### How to actually learn from this
 
@@ -126,7 +126,7 @@ Before touching syntax, you need to know _how Python code actually gets run_, be
 
 ## 1. Installation & Setup
 
-- Download Python from [python.org](https://python.org/) — installs the Python **virtual machine (interpreter)** that converts `.py` code → bytecode → runs on the PVM.
+- Download Python from [python.org](https://python.org/) - installs the Python **virtual machine (interpreter)** that converts `.py` code �� bytecode �� runs on the PVM.
 - IDE = Integrated Development Environment. Popular ones: **VS Code**, PyCharm, Jupyter, Zed, Neovim.
 
 ### VS Code setup:
@@ -196,7 +196,7 @@ require("none-ls.formatting.ruff_format"),
 
 ---
 
-- **Modern addition — use `uv` or `venv` instead of installing packages globally:**
+- **Modern addition - use `uv` or `venv` instead of installing packages globally:**
 
 ```bash
 python -m venv .venv
@@ -234,10 +234,10 @@ print("This line runs")  # comments can also go at the end of a line
 Comments exist for humans, not the computer. Use them to explain _why_ you did something, not to restate _what_ the code obviously does.
 
 ```python
-# ❌ Bad: restates the obvious
+#  Bad: restates the obvious
 x = x + 1  # add 1 to x
 
-# ✅ Better: explains the reason
+#  Better: explains the reason
 x = x + 1  # compensate for the off-by-one in the API's page index
 ```
 
@@ -253,8 +253,8 @@ age: int = 20
 The `: str` and `: int` are **type hints**. Python doesn't check them while the program runs; they exist to document your intent and let tools like `mypy` and your editor catch mistakes before you ever run the code. This book writes variables with type hints from here on, even in simple examples, so the habit is built in early. (Function type hints are covered properly in Chapter 05, and a full deep dive on the typing system is in Chapter 13.)
 
 ```text
-name  ────►  "Lichi"   (a string object in memory)
-age   ────►  20        (an integer object in memory)
+name  ������  "Lichi"   (a string object in memory)
+age   ������  20        (an integer object in memory)
 ```
 
 Python doesn't "copy" the value into a box labeled `name`. Instead, `name` is a label pointing at an object that already exists somewhere in memory. This matters a lot later (Chapter 06, when we talk about mutability and copying): for now, just know: **a variable is a name, not a container.**
@@ -262,12 +262,12 @@ Python doesn't "copy" the value into a box labeled `name`. Instead, `name` is a 
 ### Naming Conventions
 
 ```python
-# ✅ good names
+#  good names
 user_age: int = 25
 total_price: float = 19.99
 is_active: bool = True
 
-# ❌ bad names
+#  bad names
 a: int = 25
 x1: float = 19.99
 flag: bool = True
@@ -339,13 +339,13 @@ print("Hello,", name)
 ```python
 age: str = input("Enter your age: ")
 next_year = age + 1
-# ❌ TypeError: can only concatenate str (not "int") to str
+#  TypeError: can only concatenate str (not "int") to str
 ```
 
 Writing `age: str = input(...)` explicitly is a small habit with a real payoff here: a type checker sees `age` is a `str` and flags `age + 1` as an error before you even run the program, not after.
 
 ```python
-# ✅ Fixed
+#  Fixed
 age: int = int(input("Enter your age: "))
 next_year: int = age + 1
 ```
@@ -373,15 +373,15 @@ print("Your name has", len(name), "letters")
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting input() returns a string
+#  Forgetting input() returns a string
 age: str = input("Age: ")
 print(age + 1)   # TypeError
 
-# ❌ Using = instead of == (covered fully in Operators)
+#  Using = instead of == (covered fully in Operators)
 if age = 20:      # SyntaxError: = is assignment, == is comparison
     ...
 
-# ❌ Inconsistent naming
+#  Inconsistent naming
 userAge: int = 20
 user_name: str = "Lichi"   # mixing camelCase and snake_case in the same file
 ```
@@ -394,13 +394,13 @@ user_name: str = "Lichi"   # mixing camelCase and snake_case in the same file
 
 ### Practice
 
-- 🟢 Write a program that asks for your name and prints `"Hi, <name>! Welcome."`
-- 🟢 Write a program that asks for two numbers and prints their sum. (Remember to convert them!)
-- 🟡 Write a program that asks for a temperature in Celsius and prints it converted to Fahrenheit (`F = C * 9/5 + 32`).
+-  Write a program that asks for your name and prints `"Hi, <name>! Welcome."`
+-  Write a program that asks for two numbers and prints their sum. (Remember to convert them!)
+-  Write a program that asks for a temperature in Celsius and prints it converted to Fahrenheit (`F = C * 9/5 + 32`).
 
 ### Mini Challenge
 
-🟡 Write a program that asks for your birth year, calculates your age this year (2026), and prints a sentence like `"You are 20 years old (or will turn 20 this year)."`
+ Write a program that asks for your birth year, calculates your age this year (2026), and prints a sentence like `"You are 20 years old (or will turn 20 this year)."`
 
 ### Exam Question
 
@@ -492,7 +492,7 @@ def find_user(user_id: int) -> str | None:
 
 ```python
 int("42")           # 42
-int("42.5")         # ❌ ValueError: int() can't parse a decimal string directly
+int("42.5")         #  ValueError: int() can't parse a decimal string directly
 int(42.9)           # 42: truncates, doesn't round!
 float("3.14")       # 3.14
 str(42)             # "42"
@@ -526,16 +526,16 @@ print(type(final_price))
 ### Common Mistakes
 
 ```python
-# ❌ Trying to int() a decimal-looking string directly
+#  Trying to int() a decimal-looking string directly
 int("19.99")     # ValueError
 
-# ✅ Fix: go through float first if you truly need to
+#  Fix: go through float first if you truly need to
 int(float("19.99"))   # 19 (truncated)
 
-# ❌ Assuming int() rounds
+#  Assuming int() rounds
 int(4.9)    # 4, not 5: it truncates toward zero
 
-# ✅ If you want rounding, use round()
+#  If you want rounding, use round()
 round(4.9)   # 5
 ```
 
@@ -547,13 +547,13 @@ round(4.9)   # 5
 
 ### Practice
 
-- 🟢 Predict the output of `bool("0")` before running it. Were you right?
-- 🟢 Convert the string `"3.9"` to an integer using two different valid approaches.
-- 🟡 Explain, in your own words, why `0.1 + 0.2 != 0.3` in Python.
+-  Predict the output of `bool("0")` before running it. Were you right?
+-  Convert the string `"3.9"` to an integer using two different valid approaches.
+-  Explain, in your own words, why `0.1 + 0.2 != 0.3` in Python.
 
 ### Mini Challenge
 
-🟡 Write a program that takes a price as a string input (e.g., `"499.50"`), applies an 18% tax, and prints the final price rounded to 2 decimal places using `round()`.
+ Write a program that takes a price as a string input (e.g., `"499.50"`), applies an 18% tax, and prints the final price rounded to 2 decimal places using `round()`.
 
 ### Exam Question
 
@@ -626,11 +626,11 @@ print(a is c)   # True: c points to the exact same list object as a
 The one place `is` is _correct and idiomatic_ to use instead of `==`: comparing to `None`.
 
 ```python
-# ✅ Best practice
+#  Best practice
 if value is None:
     ...
 
-# ❌ Works, but not idiomatic (and can misbehave with custom __eq__)
+#  Works, but not idiomatic (and can misbehave with custom __eq__)
 if value == None:
     ...
 ```
@@ -748,26 +748,26 @@ print(can_enter)   # True
 
 ### Explanation
 
-1. `age >= 18` → `True`
-2. `has_ticket` → `True`
-3. `True and True` → `True`
-4. `True or is_vip (False)` → `True` (short-circuits: never even needs to check `is_vip`)
+1. `age >= 18` �� `True`
+2. `has_ticket` �� `True`
+3. `True and True` �� `True`
+4. `True or is_vip (False)` �� `True` (short-circuits: never even needs to check `is_vip`)
 5. The parentheses aren't strictly required here since `and` binds tighter than `or` automatically, but they make the _intent_ obvious to a human reader.
 
 ### Common Mistakes
 
 ```python
-# ❌ Using = when you mean ==
+#  Using = when you mean ==
 if age = 20:     # SyntaxError
 
-# ❌ Using == to compare with None
+#  Using == to compare with None
 if value == None:   # works, but not idiomatic
 
-# ❌ Assuming 'and'/'or' return True/False
+#  Assuming 'and'/'or' return True/False
 result = "" or "backup"
 print(result)   # "backup", not True
 
-# ❌ Misjudging // with negative numbers
+#  Misjudging // with negative numbers
 print(-7 // 2)   # -4, a common source of off-by-one bugs
 ```
 
@@ -779,13 +779,13 @@ print(-7 // 2)   # -4, a common source of off-by-one bugs
 
 ### Practice
 
-- 🟢 Predict: `10 % 3`, `10 // 3`, `-10 // 3`. Check your answers.
-- 🟢 Write an `if` statement that checks whether a number is between 1 and 100 (inclusive) using `and`.
-- 🟡 Predict the output of `[] == []` and `[] is []`. Explain the difference.
+-  Predict: `10 % 3`, `10 // 3`, `-10 // 3`. Check your answers.
+-  Write an `if` statement that checks whether a number is between 1 and 100 (inclusive) using `and`.
+-  Predict the output of `[] == []` and `[] is []`. Explain the difference.
 
 ### Mini Challenge
 
-🟠 Without running it, predict the output of this, then verify:
+ Without running it, predict the output of this, then verify:
 
 ```python
 a = "hello"
@@ -851,7 +851,7 @@ while count < 5:
 Runs as long as the condition is `True`. **You must change something inside the loop that eventually makes the condition `False`, or you get an infinite loop.**
 
 ```python
-# ❌ Infinite loop: count never changes
+#  Infinite loop: count never changes
 count: int = 0
 while count < 5:
     print(count)
@@ -904,11 +904,11 @@ When you need both the index _and_ the value while looping:
 ```python
 fruits: list[str] = ["apple", "banana", "cherry"]
 
-# ❌ clunky, un-pythonic
+#  clunky, un-pythonic
 for i in range(len(fruits)):
     print(i, fruits[i])
 
-# ✅ pythonic
+#  pythonic
 for i, fruit in enumerate(fruits):
     print(i, fruit)
 ```
@@ -930,17 +930,17 @@ for name, score in zip(names, scores):
 ### Pythonic Looping Patterns
 
 ```python
-# ❌ Un-pythonic: manual indexing
+#  Un-pythonic: manual indexing
 i: int = 0
 while i < len(fruits):
     print(fruits[i])
     i += 1
 
-# ✅ Pythonic: loop directly over items
+#  Pythonic: loop directly over items
 for fruit in fruits:
     print(fruit)
 
-# ✅ Pythonic: need index too? enumerate, not range(len())
+#  Pythonic: need index too? enumerate, not range(len())
 for i, fruit in enumerate(fruits):
     print(i, fruit)
 ```
@@ -969,18 +969,18 @@ for i, score in enumerate(scores):
 ### Common Mistakes
 
 ```python
-# ❌ Off-by-one with range
+#  Off-by-one with range
 for i in range(1, 10):   # this is 1 through 9, NOT 1 through 10!
     ...
 
-# ❌ Infinite while loop
+#  Infinite while loop
 i = 0
 while i < 5:
     print(i)   # forgot i += 1
 
-# ❌ Mixing tabs and spaces (Python will error: pick one, spaces are standard)
+#  Mixing tabs and spaces (Python will error: pick one, spaces are standard)
 
-# ❌ Using range(len(x)) when you don't need the index at all
+#  Using range(len(x)) when you don't need the index at all
 for i in range(len(fruits)):
     print(fruits[i])   # just do: for fruit in fruits:
 ```
@@ -994,13 +994,13 @@ for i in range(len(fruits)):
 
 ### Practice
 
-- 🟢 Print numbers 1 through 20, but print "Fizz" for multiples of 3, "Buzz" for multiples of 5, and "FizzBuzz" for multiples of both. (Classic exercise for a reason.)
-- 🟢 Given a list of numbers, use `enumerate()` to print each number alongside its position.
-- 🟡 Given two lists: `names` and `emails`: use `zip()` to print `"<name>: <email>"` for each pair.
+-  Print numbers 1 through 20, but print "Fizz" for multiples of 3, "Buzz" for multiples of 5, and "FizzBuzz" for multiples of both. (Classic exercise for a reason.)
+-  Given a list of numbers, use `enumerate()` to print each number alongside its position.
+-  Given two lists: `names` and `emails`: use `zip()` to print `"<name>: <email>"` for each pair.
 
 ### Mini Challenge
 
-🟠 Write a program that asks the user to guess a secret number (pick one yourself, e.g. `42`) in a `while` loop. After each guess, tell them "too high," "too low," or "correct!": and stop the loop once they get it. Track and print how many guesses it took.
+ Write a program that asks the user to guess a secret number (pick one yourself, e.g. `42`) in a `while` loop. After each guess, tell them "too high," "too low," or "correct!": and stop the loop once they get it. Track and print how many guesses it took.
 
 ### Exam Question
 
@@ -1077,7 +1077,7 @@ greet("Lichi", "Welcome back")    # "Welcome back, Lichi!"
 Classic trap: **never use a mutable object (list, dict) as a default argument.**
 
 ```python
-# ❌ Dangerous
+#  Dangerous
 def add_item(item, cart=[]):
     cart.append(item)
     return cart
@@ -1089,7 +1089,7 @@ print(add_item("banana"))    # ['apple', 'banana']  <- SURPRISE! Same list reuse
 Default argument values are created **once**, when the function is defined: not every time it's called. So a mutable default gets shared and mutated across every call that doesn't override it.
 
 ```python
-# ✅ Fixed
+#  Fixed
 def add_item(item, cart=None):
     if cart is None:
         cart = []
@@ -1137,11 +1137,11 @@ def create_user(
 - Everything between `/` and `*` can be either.
 
 ```python
-create_user("Lichi", 20)                      # ✅
-create_user("Lichi", age=20)                   # ✅
-create_user("Lichi", 20, active=False)          # ✅
-create_user(name="Lichi", age=20)                # ❌ TypeError: name is positional-only
-create_user("Lichi", 20, False)                   # ❌ TypeError: active is keyword-only
+create_user("Lichi", 20)                      #
+create_user("Lichi", age=20)                   #
+create_user("Lichi", 20, active=False)          #
+create_user(name="Lichi", age=20)                #  TypeError: name is positional-only
+create_user("Lichi", 20, False)                   #  TypeError: active is keyword-only
 ```
 
 **Why bother?** It makes function calls unambiguous and self-documenting at the call site, and it lets library authors change parameter _names_ later without breaking anyone's code (if a param is positional-only, callers never referenced its name in the first place).
@@ -1172,7 +1172,7 @@ outer()
 count = 0
 
 def increment():
-    count += 1   # ❌ UnboundLocalError!
+    count += 1   #  UnboundLocalError!
 ```
 
 This fails because assigning to `count` inside the function makes Python treat it as a **local** variable for the _entire function body_: so `count += 1` tries to read a local `count` before it's been created. Fix with `global`:
@@ -1290,19 +1290,19 @@ print(round(total, 2))
 ### Common Mistakes
 
 ```python
-# ❌ Mutable default argument
+#  Mutable default argument
 def add(item, items=[]):
     ...
 
-# ❌ Forgetting a base case in recursion
+#  Forgetting a base case in recursion
 def countdown(n):
     print(n)
     countdown(n - 1)   # never stops -> RecursionError
 
-# ❌ Overusing lambda for complex logic
+#  Overusing lambda for complex logic
 process = lambda x: x * 2 if x > 0 else -x if x < -10 else 0   # unreadable
 
-# ❌ Confusing return with print
+#  Confusing return with print
 def add(a, b):
     print(a + b)   # this DISPLAYS the result but returns None!
 
@@ -1318,14 +1318,14 @@ result = add(2, 3)   # result is None, not 5
 
 ### Practice
 
-- 🟢 Write a function `is_even(n: int) -> bool` that returns whether a number is even.
-- 🟢 Write a function `full_name(first: str, last: str) -> str` that returns `"First Last"`.
-- 🟡 Write a function that accepts any number of numbers with `*args` and returns their average.
-- 🟡 Write a closure `make_counter()` that returns a function which, each time it's called, returns the next integer starting from 0 (0, then 1, then 2, ...).
+-  Write a function `is_even(n: int) -> bool` that returns whether a number is even.
+-  Write a function `full_name(first: str, last: str) -> str` that returns `"First Last"`.
+-  Write a function that accepts any number of numbers with `*args` and returns their average.
+-  Write a closure `make_counter()` that returns a function which, each time it's called, returns the next integer starting from 0 (0, then 1, then 2, ...).
 
 ### Mini Challenge
 
-🟠 Write a recursive function `flatten(nested: list) -> list` that takes a list which might contain other lists inside it (nested to any depth) and returns one flat list of all the values. Example: `flatten([1, [2, 3, [4, 5]], 6])` → `[1, 2, 3, 4, 5, 6]`.
+ Write a recursive function `flatten(nested: list) -> list` that takes a list which might contain other lists inside it (nested to any depth) and returns one flat list of all the values. Example: `flatten([1, [2, 3, [4, 5]], 6])` �� `[1, 2, 3, 4, 5, 6]`.
 
 ### Exam Question
 
@@ -1373,7 +1373,7 @@ point = (3, 4)
 x, y = point   # unpacking
 
 # Tuples are IMMUTABLE: this fails:
-point[0] = 5   # ❌ TypeError
+point[0] = 5   #  TypeError
 ```
 
 Use tuples for values that shouldn't change, and as dictionary keys (lists can't be dict keys: more below).
@@ -1445,12 +1445,12 @@ print(original)   # unaffected: deepcopy copies everything, recursively
 - **Deep copy** recursively duplicates everything, so nothing is shared.
 
 ```text
-original ──► [ptr, ptr]
-                │    │
-                ▼    ▼
-shallow ─────► [ptr, ptr]   (same inner list objects!)
+original ���� [ptr, ptr]
+                �    �
+                ��    ��
+shallow ������� [ptr, ptr]   (same inner list objects!)
 
-deep ────────► [new_list, new_list]   (fully independent)
+deep ���������� [new_list, new_list]   (fully independent)
 ```
 
 ### Indexing and Slicing
@@ -1478,7 +1478,7 @@ locations = {
     (28.6, 77.2): "Delhi",
     (22.5, 88.3): "Kolkata",
 }
-# locations[[28.6, 77.2]] = "Delhi"  ❌ TypeError: unhashable type: 'list'
+# locations[[28.6, 77.2]] = "Delhi"   TypeError: unhashable type: 'list'
 ```
 
 ### Comprehensions
@@ -1551,25 +1551,25 @@ print(grand_total)   # 260.0
 ### Common Mistakes
 
 ```python
-# ❌ Mutating a list while looping over it
+#  Mutating a list while looping over it
 items = [1, 2, 3, 4]
 for item in items:
     if item % 2 == 0:
         items.remove(item)   # skips elements! Modifying while iterating is unsafe.
 
-# ✅ Fix: loop over a copy, or build a new list
+#  Fix: loop over a copy, or build a new list
 items = [item for item in items if item % 2 != 0]
 
-# ❌ Assuming = copies
+#  Assuming = copies
 a = [1, 2, 3]
 b = a
 b.append(4)   # this also changes a!
 
-# ❌ Using a list as a dict key
+#  Using a list as a dict key
 cache = {}
 cache[[1, 2]] = "value"   # TypeError: unhashable type
 
-# ❌ KeyError from direct dict access
+#  KeyError from direct dict access
 user = {"name": "Lichi"}
 print(user["age"])   # KeyError: use .get("age", default) instead
 ```
@@ -1583,14 +1583,14 @@ print(user["age"])   # KeyError: use .get("age", default) instead
 
 ### Practice
 
-- 🟢 Given `nums = [4, 1, 7, 3, 9, 2]`, write a list comprehension that returns only numbers greater than 3.
-- 🟢 Create a dict comprehension that maps each word in a list to its length.
-- 🟡 Given two lists of equal length, `keys` and `values`, build a dict using a comprehension (hint: combine with `zip()` from Chapter 04).
-- 🟡 Explain why `set()` membership checks (`x in my_set`) are faster than `list` membership checks for large collections.
+-  Given `nums = [4, 1, 7, 3, 9, 2]`, write a list comprehension that returns only numbers greater than 3.
+-  Create a dict comprehension that maps each word in a list to its length.
+-  Given two lists of equal length, `keys` and `values`, build a dict using a comprehension (hint: combine with `zip()` from Chapter 04).
+-  Explain why `set()` membership checks (`x in my_set`) are faster than `list` membership checks for large collections.
 
 ### Mini Challenge
 
-🟠 You have a list of dicts representing students: `[{"name": "A", "grade": 85}, {"name": "B", "grade": 62}, ...]`. Using a single dict comprehension, build a dict mapping each student's name to `"pass"` if grade >= 60 else `"fail"`.
+ You have a list of dicts representing students: `[{"name": "A", "grade": 85}, {"name": "B", "grade": 62}, ...]`. Using a single dict comprehension, build a dict mapping each student's name to `"pass"` if grade >= 60 else `"fail"`.
 
 ### Exam Question
 
@@ -1626,9 +1626,9 @@ raw = r"C:\Users\name"        # raw string: backslashes are literal, not escape 
 
 ```python
 s = "hello"
-s[0] = "H"   # ❌ TypeError: strings can't be modified in place
+s[0] = "H"   #  TypeError: strings can't be modified in place
 
-s = "H" + s[1:]   # ✅ this creates a NEW string, doesn't modify the old one
+s = "H" + s[1:]   #  this creates a NEW string, doesn't modify the old one
 ```
 
 ### Indexing and Slicing
@@ -1668,7 +1668,7 @@ Three ways exist; **use f-strings** (Python 3.6+, current best practice):
 name = "Lichi"
 age = 20
 
-# ✅ f-strings: best practice
+#  f-strings: best practice
 print(f"{name} is {age} years old")
 
 # .format(): older, still seen in codebases
@@ -1692,18 +1692,18 @@ print(f"{'yes' if age >= 18 else 'no'}")   # inline conditional
 Since strings are immutable, repeatedly concatenating in a loop creates a new string every single time: wasteful for large loops:
 
 ```python
-# ❌ Slow for many iterations: creates a new string each time
+#  Slow for many iterations: creates a new string each time
 result = ""
 for word in words:
     result += word + " "
 
-# ✅ Fast: build a list, join once at the end
+#  Fast: build a list, join once at the end
 result = " ".join(words)
 ```
 
 ### Encoding Basics
 
-Text you see is Unicode characters; text stored/transmitted (files, network, HTTP) is **bytes**. Converting between them is **encoding** (str → bytes) and **decoding** (bytes → str).
+Text you see is Unicode characters; text stored/transmitted (files, network, HTTP) is **bytes**. Converting between them is **encoding** (str �� bytes) and **decoding** (bytes �� str).
 
 ```python
 text = "hello"
@@ -1739,20 +1739,20 @@ print(f"[{level}] {message} (at {timestamp})")
 ### Common Mistakes
 
 ```python
-# ❌ Trying to mutate a string in place
+#  Trying to mutate a string in place
 s = "hello"
 s[0] = "H"   # TypeError
 
-# ❌ Building strings in a loop with +=
+#  Building strings in a loop with +=
 result = ""
 for x in big_list:
     result += str(x)   # slow for large lists
 
-# ❌ Forgetting split() returns a list, not separate variables
+#  Forgetting split() returns a list, not separate variables
 parts = "a,b,c".split(",")
-a, b = parts   # ❌ ValueError: too many values to unpack (expected 2)
+a, b = parts   #  ValueError: too many values to unpack (expected 2)
 
-# ❌ Mixing up .strip() with .replace()
+#  Mixing up .strip() with .replace()
 "  hi  ".strip("h")   # doesn't do what you'd guess: strip() removes CHARACTERS from ends, not substrings
 ```
 
@@ -1765,13 +1765,13 @@ a, b = parts   # ❌ ValueError: too many values to unpack (expected 2)
 
 ### Practice
 
-- 🟢 Given `"Python Is Awesome"`, produce `"python_is_awesome"` using string methods.
-- 🟢 Use an f-string to print a float rounded to 3 decimal places.
-- 🟡 Given a comma-separated string of numbers `"4,8,15,16,23,42"`, split it and compute the sum as integers.
+-  Given `"Python Is Awesome"`, produce `"python_is_awesome"` using string methods.
+-  Use an f-string to print a float rounded to 3 decimal places.
+-  Given a comma-separated string of numbers `"4,8,15,16,23,42"`, split it and compute the sum as integers.
 
 ### Mini Challenge
 
-🟠 Write a function `is_palindrome(text: str) -> bool` that checks if a string reads the same forwards and backwards, ignoring case, spaces, and punctuation (so `"A man, a plan, a canal: Panama"` should return `True`).
+ Write a function `is_palindrome(text: str) -> bool` that checks if a string reads the same forwards and backwards, ignoring case, spaces, and punctuation (so `"A man, a plan, a canal: Panama"` should return `True`).
 
 ### Exam Question
 
@@ -1808,7 +1808,7 @@ print(m.sqrt(16))
 ```
 
 ```python
-# ❌ Avoid: pollutes your namespace, makes it unclear where names come from
+#  Avoid: pollutes your namespace, makes it unclear where names come from
 from math import *
 ```
 
@@ -1845,11 +1845,11 @@ This pattern lets a file work both as a standalone script _and_ as an importable
 
 ```text
 myproject/
-├── main.py
-└── mypackage/
-    ├── __init__.py
-    ├── utils.py
-    └── models.py
+�� main.py
+�� mypackage/
+    �� __init__.py
+    �� utils.py
+    �� models.py
 ```
 
 ```python
@@ -1882,7 +1882,7 @@ def func_a():
     return b.func_b()
 
 # b.py
-import a          # ❌ circular! a imports b, b imports a
+import a          #  circular! a imports b, b imports a
 def func_b():
     return a.func_a()
 ```
@@ -1919,17 +1919,17 @@ print(shout("hello"))   # HELLO!
 ### Common Mistakes
 
 ```python
-# ❌ from module import *  (unclear where names came from, risk of name collisions)
+#  from module import *  (unclear where names came from, risk of name collisions)
 from math import *
 from mymodule import *
 print(sqrt(4))   # whose sqrt is this??
 
-# ❌ Missing __init__.py (older Python versions require it; even in 3.3+ "namespace packages"
+#  Missing __init__.py (older Python versions require it; even in 3.3+ "namespace packages"
 #     it's still best practice to include one for clarity)
 
-# ❌ Circular imports from tightly coupled modules
+#  Circular imports from tightly coupled modules
 
-# ❌ Naming your own file the same as a standard library module
+#  Naming your own file the same as a standard library module
 # e.g. creating "random.py" in your project shadows the real `random` module
 ```
 
@@ -1942,13 +1942,13 @@ print(sqrt(4))   # whose sqrt is this??
 
 ### Practice
 
-- 🟢 Create two files: `mathutils.py` with a function `square(n)`, and `main.py` that imports and uses it.
-- 🟢 Add an `if __name__ == "__main__":` self-test block to `mathutils.py` that prints `square(5)`.
-- 🟡 Create a small package `shapes/` with `__init__.py`, `circle.py`, and `square.py`, and import both from a `main.py` at the project root.
+-  Create two files: `mathutils.py` with a function `square(n)`, and `main.py` that imports and uses it.
+-  Add an `if __name__ == "__main__":` self-test block to `mathutils.py` that prints `square(5)`.
+-  Create a small package `shapes/` with `__init__.py`, `circle.py`, and `square.py`, and import both from a `main.py` at the project root.
 
 ### Mini Challenge
 
-🟡 Deliberately create a circular import between two files, run it, read the actual error Python gives you, and then fix it by moving the shared function into a third module.
+ Deliberately create a circular import between two files, run it, read the actual error Python gives you, and then fix it by moving the shared function into a third module.
 
 ### Exam Question
 
@@ -2007,7 +2007,7 @@ with open("notes.txt") as f:
     lines = f.readlines()        # list of lines, each ending with \n
 
 with open("notes.txt") as f:
-    for line in f:                 # ✅ best practice for large files: reads one line at a time
+    for line in f:                 #  best practice for large files: reads one line at a time
         print(line.strip())
 ```
 
@@ -2047,10 +2047,10 @@ Path("output_dir").mkdir(exist_ok=True)                   # create a directory s
 ### Why `pathlib` over manual string paths
 
 ```python
-# ❌ Old style: error-prone, not cross-platform
+#  Old style: error-prone, not cross-platform
 path = "data" + "/" + "notes.txt"     # breaks on Windows (\ vs /)
 
-# ✅ pathlib: correct on every OS automatically
+#  pathlib: correct on every OS automatically
 path = Path("data") / "notes.txt"
 ```
 
@@ -2107,20 +2107,20 @@ print(log_path.read_text())
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting to close a file
+#  Forgetting to close a file
 f = open("data.txt")
 content = f.read()
 # f never closed: leaks a file handle
 
-# ❌ Using "w" when you meant "a": silently destroys existing content
+#  Using "w" when you meant "a": silently destroys existing content
 with open("important.txt", "w") as f:   # this WIPES the file first!
     f.write("oops")
 
-# ❌ Not specifying encoding: can behave differently across systems
+#  Not specifying encoding: can behave differently across systems
 with open("data.txt") as f:   # relies on OS default encoding
     ...
 
-# ❌ Manual path string concatenation instead of pathlib
+#  Manual path string concatenation instead of pathlib
 path = folder + "/" + filename   # breaks on Windows
 ```
 
@@ -2133,13 +2133,13 @@ path = folder + "/" + filename   # breaks on Windows
 
 ### Practice
 
-- 🟢 Write a program that writes 3 lines to a file, then reads and prints them back.
-- 🟢 Use `pathlib` to check whether a file exists before trying to read it, and print a friendly message if it doesn't.
-- 🟡 Write a function `count_lines(path: Path) -> int` that returns how many lines are in a text file, without loading the whole file into memory at once.
+-  Write a program that writes 3 lines to a file, then reads and prints them back.
+-  Use `pathlib` to check whether a file exists before trying to read it, and print a friendly message if it doesn't.
+-  Write a function `count_lines(path: Path) -> int` that returns how many lines are in a text file, without loading the whole file into memory at once.
 
 ### Mini Challenge
 
-🟠 Write a small "log analyzer": read a text file where each line looks like `2026-08-11 | ERROR | message here`, and print a count of how many lines had each log level (`ERROR`, `INFO`, `WARNING`). (This connects directly to Chapter 21's Real-World Projects list: you'll build a fuller version there.)
+ Write a small "log analyzer": read a text file where each line looks like `2026-08-11 | ERROR | message here`, and print a count of how many lines had each log level (`ERROR`, `INFO`, `WARNING`). (This connects directly to Chapter 21's Real-World Projects list: you'll build a fuller version there.)
 
 ### Exam Question
 
@@ -2186,13 +2186,13 @@ except ValueError:
 **Best practice: catch the most specific exception you can.** A bare `except:` (or `except Exception:`) catches _everything_, including bugs you didn't anticipate, which can hide real problems.
 
 ```python
-# ❌ Dangerous: silently swallows ALL errors, including typos and bugs
+#  Dangerous: silently swallows ALL errors, including typos and bugs
 try:
     do_something()
 except:
     pass
 
-# ✅ Specific and honest about what you expect to go wrong
+#  Specific and honest about what you expect to go wrong
 try:
     do_something()
 except FileNotFoundError:
@@ -2251,14 +2251,14 @@ Custom exceptions make your error handling _self-documenting_: `except Insuffici
 
 ```text
 BaseException
-├── SystemExit
-├── KeyboardInterrupt
-└── Exception
-    ├── ValueError
-    ├── TypeError
-    ├── KeyError
-    ├── FileNotFoundError
-    └── ... (your custom exceptions typically go here)
+�� SystemExit
+�� KeyboardInterrupt
+�� Exception
+    �� ValueError
+    �� TypeError
+    �� KeyError
+    �� FileNotFoundError
+    �� ... (your custom exceptions typically go here)
 ```
 
 **Always inherit custom exceptions from `Exception`, not `BaseException`.** `BaseException` includes things like `KeyboardInterrupt` (Ctrl+C) and `SystemExit`, which you almost never want to accidentally catch: catching `Exception` (not `BaseException`) lets those pass through normally.
@@ -2279,19 +2279,19 @@ def load_config(path: str) -> dict:
 ### Good vs Bad Exception Handling
 
 ```python
-# ❌ Bad: catches everything, hides real bugs, gives no useful info
+#  Bad: catches everything, hides real bugs, gives no useful info
 try:
     process_data(data)
 except:
     print("Something went wrong")
 
-# ❌ Bad: catches an exception just to immediately re-raise it, adds nothing
+#  Bad: catches an exception just to immediately re-raise it, adds nothing
 try:
     process_data(data)
 except Exception as e:
     raise e
 
-# ✅ Good: specific, informative, only handles what you actually expect
+#  Good: specific, informative, only handles what you actually expect
 try:
     process_data(data)
 except KeyError as e:
@@ -2335,19 +2335,19 @@ for test_value in ["25", "abc", "-5", "200"]:
 ### Common Mistakes
 
 ```python
-# ❌ Bare except
+#  Bare except
 try:
     risky()
 except:
     pass
 
-# ❌ Catching Exception too broadly when specific exceptions are known
+#  Catching Exception too broadly when specific exceptions are known
 try:
     int(user_input)
 except Exception:   # should be except ValueError
     ...
 
-# ❌ Using exceptions for normal control flow when a simple if would do
+#  Using exceptions for normal control flow when a simple if would do
 try:
     value = my_dict["key"]
 except KeyError:
@@ -2355,7 +2355,7 @@ except KeyError:
 # often clearer as:
 value = my_dict.get("key", default)
 
-# ❌ Silently swallowing errors that should be logged or surfaced
+#  Silently swallowing errors that should be logged or surfaced
 except Exception:
     pass   # the error just... vanishes, with no trace
 ```
@@ -2370,13 +2370,13 @@ except Exception:
 
 ### Practice
 
-- 🟢 Write a function that safely converts a string to an integer, catching `ValueError` and returning `None` on failure.
-- 🟢 Write a `try`/`except`/`else`/`finally` block that opens a file, and demonstrate all four sections actually running (with a real and a missing file).
-- 🟡 Create a custom exception `NegativeValueError` and raise it from a function that computes a square root, if given a negative number.
+-  Write a function that safely converts a string to an integer, catching `ValueError` and returning `None` on failure.
+-  Write a `try`/`except`/`else`/`finally` block that opens a file, and demonstrate all four sections actually running (with a real and a missing file).
+-  Create a custom exception `NegativeValueError` and raise it from a function that computes a square root, if given a negative number.
 
 ### Mini Challenge
 
-🟠 Write a small CLI calculator that reads two numbers and an operator from `input()` in a loop, handling `ZeroDivisionError`, `ValueError` (bad number format), and an unsupported-operator case with a custom exception: without ever crashing the program, no matter what the user types.
+ Write a small CLI calculator that reads two numbers and an operator from `input()` in a loop, handling `ZeroDivisionError`, `ValueError` (bad number format), and an unsupported-operator case with a custom exception: without ever crashing the program, no matter what the user types.
 
 ### Exam Question
 
@@ -2434,7 +2434,7 @@ Mutable class variables are a classic trap for the same reason as mutable defaul
 
 ```python
 class Team:
-    members = []   # ❌ shared by every Team instance!
+    members = []   #  shared by every Team instance!
 
 t1 = Team()
 t2 = Team()
@@ -2642,23 +2642,23 @@ print(todo.pending)   # [Task(title='Review PR', done=False)]
 ### Common Mistakes
 
 ```python
-# ❌ Mutable class variable shared across instances
+#  Mutable class variable shared across instances
 class Team:
     members = []
 
-# ❌ Forgetting self
+#  Forgetting self
 class Dog:
     def bark():        # missing self!
         return "Woof"
 
-# ❌ Comparing dataclass-like objects without __eq__ on a regular class
+#  Comparing dataclass-like objects without __eq__ on a regular class
 class Point:
     def __init__(self, x, y):
         self.x, self.y = x, y
 
 print(Point(1, 2) == Point(1, 2))   # False! Regular classes compare by identity by default
 
-# ❌ Overusing inheritance for "has-a" relationships that should be composition
+#  Overusing inheritance for "has-a" relationships that should be composition
 ```
 
 ### Best Practice
@@ -2670,14 +2670,14 @@ print(Point(1, 2) == Point(1, 2))   # False! Regular classes compare by identity
 
 ### Practice
 
-- 🟢 Create a `Rectangle` class with `width` and `height`, and a method `area()`.
-- 🟢 Convert your `Rectangle` class into a `@dataclass` and compare the code.
-- 🟡 Add a `@property` called `is_square` to `Rectangle` that returns `True` when `width == height`.
-- 🟡 Create a base class `Shape` with an `area()` method that raises `NotImplementedError`, then subclass it with `Circle` and `Square`, each overriding `area()`.
+-  Create a `Rectangle` class with `width` and `height`, and a method `area()`.
+-  Convert your `Rectangle` class into a `@dataclass` and compare the code.
+-  Add a `@property` called `is_square` to `Rectangle` that returns `True` when `width == height`.
+-  Create a base class `Shape` with an `area()` method that raises `NotImplementedError`, then subclass it with `Circle` and `Square`, each overriding `area()`.
 
 ### Mini Challenge
 
-🟠 Build a small `Library` class that manages `Book` objects (title, author, `is_checked_out: bool`). Add methods `check_out(title)` and `return_book(title)` that raise a custom exception (Chapter 10!) if the book doesn't exist or is already in that state.
+ Build a small `Library` class that manages `Book` objects (title, author, `is_checked_out: bool`). Add methods `check_out(title)` and `return_book(title)` that raise a custom exception (Chapter 10!) if the book doesn't exist or is already in that state.
 
 ### Exam Question
 
@@ -2749,8 +2749,8 @@ class Circle(Shape):
     def area(self) -> float:
         return 3.14159 * self.radius ** 2
 
-# shape = Shape()     # ❌ TypeError: Can't instantiate abstract class
-circle = Circle(5)      # ✅ fine: Circle implements area()
+# shape = Shape()     #  TypeError: Can't instantiate abstract class
+circle = Circle(5)      #  fine: Circle implements area()
 ```
 
 An `ABC` **cannot be instantiated directly**, and any subclass **must** implement every method marked `@abstractmethod`, or it also can't be instantiated. This enforces a contract: "anything calling itself a `Shape` _must_ know how to compute its `area()`."
@@ -2770,7 +2770,7 @@ class Dog:
 def make_it_speak(thing: Speaker) -> str:
     return thing.speak()
 
-make_it_speak(Dog())   # ✅ works: Dog "quacks like" a Speaker, no inheritance needed!
+make_it_speak(Dog())   #  works: Dog "quacks like" a Speaker, no inheritance needed!
 ```
 
 Unlike `ABC` (nominal typing: you must explicitly inherit), `Protocol` uses **structural typing**: "if it has the right methods, it counts": no inheritance relationship required. Type checkers like `mypy` understand this. This is Python's version of duck typing, made checkable.
@@ -2815,7 +2815,7 @@ class Point:
         self.y = y
 
 p = Point(1, 2)
-# p.z = 3   # ❌ AttributeError: not in __slots__
+# p.z = 3   #  AttributeError: not in __slots__
 ```
 
 By default, every instance has a hidden `__dict__` for storing attributes, which uses more memory. `__slots__` tells Python to allocate a fixed, smaller structure instead, which is faster and uses less memory: meaningful when creating _millions_ of small objects. Trade-off: you lose the flexibility of adding arbitrary attributes later, and multiple inheritance with slots gets tricky.
@@ -2884,21 +2884,21 @@ for method in [CreditCard("4242"), UPI("lichi@upi")]:
 ### Common Mistakes
 
 ```python
-# ❌ Trying to instantiate an ABC directly
+#  Trying to instantiate an ABC directly
 shape = Shape()   # TypeError
 
-# ❌ Forgetting to implement all abstract methods
+#  Forgetting to implement all abstract methods
 class Circle(Shape):
     pass   # TypeError at instantiation: area() never implemented
 
-# ❌ Assuming __slots__ saves memory even with inheritance from a non-slotted class
+#  Assuming __slots__ saves memory even with inheritance from a non-slotted class
 class Base:
     pass   # no __slots__ here
 
 class Derived(Base):
     __slots__ = ("x",)   # still gets a __dict__ from Base: slots didn't help!
 
-# ❌ Reaching for a metaclass when a simpler decorator or __init_subclass__ would do
+#  Reaching for a metaclass when a simpler decorator or __init_subclass__ would do
 ```
 
 ### Best Practice
@@ -2910,13 +2910,13 @@ class Derived(Base):
 
 ### Practice
 
-- 🟢 Create an `ABC` called `Vehicle` with an abstract `move()` method, and two subclasses that implement it differently.
-- 🟡 Create a `Protocol` called `Drawable` with a `draw()` method, and show that a class implementing `draw()` satisfies it without inheriting from `Drawable`.
-- 🟡 Add `__slots__` to a simple class and confirm (by trying to set an undeclared attribute) that it actually restricts attributes.
+-  Create an `ABC` called `Vehicle` with an abstract `move()` method, and two subclasses that implement it differently.
+-  Create a `Protocol` called `Drawable` with a `draw()` method, and show that a class implementing `draw()` satisfies it without inheriting from `Drawable`.
+-  Add `__slots__` to a simple class and confirm (by trying to set an undeclared attribute) that it actually restricts attributes.
 
 ### Mini Challenge
 
-🔴 Write a descriptor class `Validated` that takes a validation function in its `__init__` (e.g. `lambda x: x > 0`) and can be reused across multiple attributes on multiple classes, raising `ValueError` with a clear message when validation fails.
+ Write a descriptor class `Validated` that takes a validation function in its `__init__` (e.g. `lambda x: x > 0`) and can be reused across multiple attributes on multiple classes, raising `ValueError` with a clear message when validation fails.
 
 ### Exam Question
 
@@ -2956,7 +2956,7 @@ unique: set[str] = {"a", "b"}
 ### `list[int]` vs `List[int]`
 
 ```python
-# ✅ Modern (Python 3.9+): use built-in generics directly
+#  Modern (Python 3.9+): use built-in generics directly
 def process(items: list[int]) -> None: ...
 
 # Old style (still valid, needed pre-3.9): required importing from typing
@@ -3045,8 +3045,8 @@ user: UserDict = {"name": "Lichi", "age": 20}   # type checker verifies the shap
 Status = Literal["pending", "active", "closed"]     # only these exact string values allowed
 
 def set_status(status: Status) -> None: ...
-set_status("active")     # ✅
-# set_status("done")       # ❌ mypy error: not one of the allowed literals
+set_status("active")     #
+# set_status("done")       #  mypy error: not one of the allowed literals
 
 MAX_RETRIES: Final = 3    # type checker will error if you try to reassign MAX_RETRIES
 
@@ -3100,7 +3100,7 @@ def log_any(x: Any) -> None:
     x.whatever_method_i_want()     # type checker allows this: no checking at all
 
 def log_object(x: object) -> None:
-    # x.whatever_method_i_want()   # ❌ mypy error: object has no guaranteed methods
+    # x.whatever_method_i_want()   #  mypy error: object has no guaranteed methods
     print(str(x))                    # only methods every object has (like str(), repr()) are allowed
 ```
 
@@ -3182,19 +3182,19 @@ for user in users:
 ### Common Mistakes
 
 ```python
-# ❌ Using Any everywhere "to make errors go away": defeats the entire purpose
+#  Using Any everywhere "to make errors go away": defeats the entire purpose
 def process(data: Any) -> Any: ...
 
-# ❌ Forgetting hints don't run: this still executes even though the type is "wrong"
+#  Forgetting hints don't run: this still executes even though the type is "wrong"
 def add(a: int, b: int) -> int:
     return a + b
 add("x", "y")   # runs fine at runtime, returns "xy": only a type checker catches this
 
-# ❌ Using List/Dict from typing in new code instead of list/dict
+#  Using List/Dict from typing in new code instead of list/dict
 from typing import List
 def f(x: List[int]) -> None: ...   # prefer list[int] in modern code
 
-# ❌ Confusing Optional[str] with "has a default value of None": they're unrelated!
+#  Confusing Optional[str] with "has a default value of None": they're unrelated!
 def f(name: Optional[str]) -> None: ...   # still REQUIRED, just allowed to be None
 def g(name: str | None = None) -> None: ...   # optional to pass AND allowed to be None
 ```
@@ -3208,14 +3208,14 @@ def g(name: str | None = None) -> None: ...   # optional to pass AND allowed to 
 
 ### Practice
 
-- 🟢 Add full type hints to a function that takes a `list[str]` and returns the longest string.
-- 🟢 Rewrite a function using `Optional[int]` to use `int | None` instead.
-- 🟡 Create a `TypedDict` called `Config` with keys `debug: bool`, `retries: int`, `base_url: str`, and a function that accepts it.
-- 🟡 Write a generic `Box[T]` class using `TypeVar`/`Generic` that can hold and return any single value of type `T`.
+-  Add full type hints to a function that takes a `list[str]` and returns the longest string.
+-  Rewrite a function using `Optional[int]` to use `int | None` instead.
+-  Create a `TypedDict` called `Config` with keys `debug: bool`, `retries: int`, `base_url: str`, and a function that accepts it.
+-  Write a generic `Box[T]` class using `TypeVar`/`Generic` that can hold and return any single value of type `T`.
 
 ### Mini Challenge
 
-🟠 Install `mypy` and run it against one of your earlier chapter exercises. Deliberately introduce 3 type errors (wrong argument type, missing return, mismatched `Optional`) and read what `mypy` reports for each.
+ Install `mypy` and run it against one of your earlier chapter exercises. Deliberately introduce 3 type errors (wrong argument type, missing return, mismatched `Optional`) and read what `mypy` reports for each.
 
 ### Exam Question
 
@@ -3238,12 +3238,12 @@ Recognizing modern syntax (and knowing roughly which version introduced it) prev
 ### Walrus Operator `:=` (3.8+)
 
 ```python
-# ❌ Without walrus: calls len() twice
+#  Without walrus: calls len() twice
 data = [1, 2, 3]
 if len(data) > 2:
     print(f"Big list: {len(data)}")
 
-# ✅ With walrus: assigns AND checks in one expression
+#  With walrus: assigns AND checks in one expression
 if (n := len(data)) > 2:
     print(f"Big list: {n}")
 ```
@@ -3380,16 +3380,16 @@ for v in [-5, 10, "", "hi", [], [1, 2, 3]]:
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting the catch-all case: match falls through silently if nothing matches
+#  Forgetting the catch-all case: match falls through silently if nothing matches
 match value:
     case 1:
         ...
-    # no case _: → if value is 2, NOTHING happens, no error, easy to miss
+    # no case _: �� if value is 2, NOTHING happens, no error, easy to miss
 
-# ❌ Using walrus for readability where it hurts more than helps
+#  Using walrus for readability where it hurts more than helps
 result = (x := compute()) if (y := check()) else (z := fallback())   # unreadable
 
-# ❌ Assuming match is just a fancier switch statement: it's structural, not just equality
+#  Assuming match is just a fancier switch statement: it's structural, not just equality
 ```
 
 ### Best Practice
@@ -3400,13 +3400,13 @@ result = (x := compute()) if (y := check()) else (z := fallback())   # unreadabl
 
 ### Practice
 
-- 🟢 Rewrite an `if`/`elif` chain that checks a string against 4 possible commands, using `match`/`case` instead.
-- 🟢 Use the walrus operator to simplify a loop that repeatedly checks `len()` of a shrinking list.
-- 🟡 Write a `match` statement that destructures a `(status_code, message)` tuple and returns a friendly string for `200`, `404`, `500`, and an "unknown" fallback for everything else.
+-  Rewrite an `if`/`elif` chain that checks a string against 4 possible commands, using `match`/`case` instead.
+-  Use the walrus operator to simplify a loop that repeatedly checks `len()` of a shrinking list.
+-  Write a `match` statement that destructures a `(status_code, message)` tuple and returns a friendly string for `200`, `404`, `500`, and an "unknown" fallback for everything else.
 
 ### Mini Challenge
 
-🟡 Write a function using `match`/`case` that takes a parsed JSON-like structure (nested dicts/lists of ints and strings) and returns a one-line human-readable summary of its shape (e.g., `"list of 3 items"`, `"dict with keys: name, age"`).
+ Write a function using `match`/`case` that takes a parsed JSON-like structure (nested dicts/lists of ints and strings) and returns a one-line human-readable summary of its shape (e.g., `"list of 3 items"`, `"dict with keys: name, age"`).
 
 ### Exam Question
 
@@ -3435,7 +3435,7 @@ it = iter(numbers)     # get an iterator FROM the iterable
 print(next(it))    # 1
 print(next(it))      # 2
 print(next(it))        # 3
-print(next(it))          # ❌ StopIteration: exhausted
+print(next(it))          #  StopIteration: exhausted
 ```
 
 A `for` loop is really just this pattern automated: it repeatedly calls `next()` on an iterator until it catches `StopIteration`, then stops cleanly.
@@ -3492,16 +3492,16 @@ print(list(outer()))   # [1, 2, 3]
 ### Memory Efficiency: `list` vs Generator
 
 ```python
-# ❌ Loads all 10 million numbers into memory at once
+#  Loads all 10 million numbers into memory at once
 big_list = [x for x in range(10_000_000)]
 
-# ✅ Never holds more than one number in memory at a time
+#  Never holds more than one number in memory at a time
 big_gen = (x for x in range(10_000_000))
 ```
 
 ```text
 list:      [1][2][3][4][5]...[10,000,000]   <- all in memory simultaneously
-generator: (•)  produces 1, then 2, then 3, ... one at a time, on request
+generator: (�)  produces 1, then 2, then 3, ... one at a time, on request
 ```
 
 The trade-off: a generator can only be iterated **once** (it's exhausted after use), while a list can be looped over repeatedly and indexed directly. Use a generator when you're processing a stream once, front to back; use a list when you need to reuse, index, or measure the length of the data.
@@ -3530,17 +3530,17 @@ def count_error_lines(path: str) -> int:
 ### Common Mistakes
 
 ```python
-# ❌ Trying to reuse an exhausted generator
+#  Trying to reuse an exhausted generator
 gen = (x for x in range(3))
 print(list(gen))    # [0, 1, 2]
 print(list(gen))     # [] : already exhausted, can't be reused!
 
-# ❌ Calling next() on a plain list
-next([1, 2, 3])   # ❌ TypeError: lists aren't iterators, only iterables
+#  Calling next() on a plain list
+next([1, 2, 3])   #  TypeError: lists aren't iterators, only iterables
 
-# ❌ Using a generator when you need len() or repeated access
+#  Using a generator when you need len() or repeated access
 gen = (x for x in range(10))
-len(gen)   # ❌ TypeError: generators don't support len()
+len(gen)   #  TypeError: generators don't support len()
 ```
 
 ### Best Practice
@@ -3551,13 +3551,13 @@ len(gen)   # ❌ TypeError: generators don't support len()
 
 ### Practice
 
-- 🟢 Write a generator function `even_numbers(limit)` that yields even numbers from 0 up to `limit`.
-- 🟢 Convert a list comprehension you wrote earlier in this book into an equivalent generator expression.
-- 🟡 Write a generator function `fibonacci()` that yields an infinite sequence of Fibonacci numbers (use it with `itertools.islice` or a manual `break` to limit output).
+-  Write a generator function `even_numbers(limit)` that yields even numbers from 0 up to `limit`.
+-  Convert a list comprehension you wrote earlier in this book into an equivalent generator expression.
+-  Write a generator function `fibonacci()` that yields an infinite sequence of Fibonacci numbers (use it with `itertools.islice` or a manual `break` to limit output).
 
 ### Mini Challenge
 
-🟠 Write a generator-based pipeline: `read_numbers(path)` yields each number in a file, `filter_positive(numbers)` yields only positive ones, `square_all(numbers)` yields each squared: then chain them together (`square_all(filter_positive(read_numbers(path)))`) and confirm the whole file is never fully loaded into memory at once.
+ Write a generator-based pipeline: `read_numbers(path)` yields each number in a file, `filter_positive(numbers)` yields only positive ones, `square_all(numbers)` yields each squared: then chain them together (`square_all(filter_positive(read_numbers(path)))`) and confirm the whole file is never fully loaded into memory at once.
 
 ### Exam Question
 
@@ -3678,7 +3678,7 @@ greet("Lichi")
 # Hello, Lichi
 ```
 
-This is a **decorator factory**: `repeat(times=3)` is called first, and _its return value_ (`decorator`) is what actually gets applied to `greet`. Three layers: `repeat` (takes decorator arguments) → `decorator` (takes the function) → `wrapper` (takes the function's actual call arguments).
+This is a **decorator factory**: `repeat(times=3)` is called first, and _its return value_ (`decorator`) is what actually gets applied to `greet`. Three layers: `repeat` (takes decorator arguments) �� `decorator` (takes the function) �� `wrapper` (takes the function's actual call arguments).
 
 ### Class Decorators
 
@@ -3778,20 +3778,20 @@ print(slow_square(4))      # 16 : no "Computing..." printed, served from cache
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting functools.wraps: breaks introspection
+#  Forgetting functools.wraps: breaks introspection
 def decorator(func):
     def wrapper(*args, **kwargs):
         return func(*args, **kwargs)
     return wrapper   # func.__name__ is now "wrapper" for every decorated function
 
-# ❌ Forgetting *args, **kwargs in the wrapper: breaks any decorated function that takes arguments
+#  Forgetting *args, **kwargs in the wrapper: breaks any decorated function that takes arguments
 def decorator(func):
-    def wrapper():           # ❌ only works on zero-argument functions!
+    def wrapper():           #  only works on zero-argument functions!
         return func()
     return wrapper
 
-# ❌ Confusing a decorator factory with a plain decorator
-@repeat        # ❌ missing (): this passes the FUNCTION as `times`, breaking everything
+#  Confusing a decorator factory with a plain decorator
+@repeat        #  missing (): this passes the FUNCTION as `times`, breaking everything
 def greet(): ...
 ```
 
@@ -3803,13 +3803,13 @@ def greet(): ...
 
 ### Practice
 
-- 🟢 Write a `@shout` decorator that uppercases whatever string a function returns.
-- 🟢 Write a `@timer` decorator (as shown above) and apply it to a function that sleeps for a second (`time.sleep(1)`).
-- 🟡 Write a decorator factory `@retry(times=3)` that re-calls the decorated function up to `times` times if it raises an exception, then re-raises the last error if all attempts fail.
+-  Write a `@shout` decorator that uppercases whatever string a function returns.
+-  Write a `@timer` decorator (as shown above) and apply it to a function that sleeps for a second (`time.sleep(1)`).
+-  Write a decorator factory `@retry(times=3)` that re-calls the decorated function up to `times` times if it raises an exception, then re-raises the last error if all attempts fail.
 
 ### Mini Challenge
 
-🟠 Write a `@require_auth` decorator (like the example) but generalize it into `@require_role("admin")`: a decorator factory that checks a `user` dict's `"role"` key matches the required role, raising `PermissionError` with a clear message otherwise.
+ Write a `@require_auth` decorator (like the example) but generalize it into `@require_role("admin")`: a decorator factory that checks a `user` dict's `"role"` key matches the required role, raising `PermissionError` with a clear message otherwise.
 
 ### Exam Question
 
@@ -3926,22 +3926,22 @@ with db_transaction(conn) as tx:
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting `finally` in a manual __exit__/class-based context manager
+#  Forgetting `finally` in a manual __exit__/class-based context manager
 def __exit__(self, *args):
     self.cleanup()   # if the body raised BEFORE reaching here somehow, cleanup could be skipped
                        # (usually not an issue since __exit__ itself always runs, but be careful
                        # inside contextmanager generator functions specifically: use try/finally)
 
-# ❌ Returning True from __exit__ by accident, silently swallowing real errors
+#  Returning True from __exit__ by accident, silently swallowing real errors
 def __exit__(self, exc_type, exc_value, tb):
     return True   # ALL exceptions from the with block just vanish!
 
-# ❌ Not using `finally` inside a @contextmanager generator
+#  Not using `finally` inside a @contextmanager generator
 @contextmanager
 def bad_timer():
     start = time.perf_counter()
     yield
-    print(time.perf_counter() - start)   # ❌ SKIPPED if the with-block body raises!
+    print(time.perf_counter() - start)   #  SKIPPED if the with-block body raises!
 ```
 
 ### Best Practice
@@ -3952,13 +3952,13 @@ def bad_timer():
 
 ### Practice
 
-- 🟢 Write a class-based context manager `Suppressor` (roughly like `contextlib.suppress`) for a single specific exception type.
-- 🟢 Write a `@contextmanager` function `temporary_value(obj, attr, new_value)` that temporarily sets an attribute, then restores its original value afterward.
-- 🟡 Write a context manager that opens two files (input and output) and guarantees both close even if an error happens mid-processing.
+-  Write a class-based context manager `Suppressor` (roughly like `contextlib.suppress`) for a single specific exception type.
+-  Write a `@contextmanager` function `temporary_value(obj, attr, new_value)` that temporarily sets an attribute, then restores its original value afterward.
+-  Write a context manager that opens two files (input and output) and guarantees both close even if an error happens mid-processing.
 
 ### Mini Challenge
 
-🟠 Write a context manager `change_directory(path)` that temporarily changes the current working directory (`os.chdir`) for the duration of the `with` block, then reliably restores the original directory afterward: even if the code inside the block raises an exception.
+ Write a context manager `change_directory(path)` that temporarily changes the current working directory (`os.chdir`) for the duration of the `with` block, then reliably restores the original directory afterward: even if the code inside the block raises an exception.
 
 ### Exam Question
 
@@ -4048,11 +4048,11 @@ functools.total_ordering             # generate __lt__/__le__/__gt__/__ge__ from
 A **pure function** always returns the same output for the same input, and has no side effects (doesn't modify anything outside itself, doesn't print, doesn't touch global state).
 
 ```python
-# ✅ Pure: same input always gives same output, no side effects
+#  Pure: same input always gives same output, no side effects
 def add(a: int, b: int) -> int:
     return a + b
 
-# ❌ Impure: depends on and mutates external state
+#  Impure: depends on and mutates external state
 total = 0
 def add_to_total(x: int) -> None:
     global total
@@ -4064,10 +4064,10 @@ Pure functions are easier to test (no setup needed beyond the input), easier to 
 ### When Functional Style Helps: and When It Hurts
 
 ```python
-# ✅ Genuinely clearer as a pipeline
+#  Genuinely clearer as a pipeline
 result = sum(x * x for x in range(100) if x % 2 == 0)
 
-# ❌ Forced functional style, harder to read than a plain loop
+#  Forced functional style, harder to read than a plain loop
 result = list(
     map(lambda x: x[1],
         filter(lambda x: x[0] % 2 == 0,
@@ -4111,17 +4111,17 @@ print(f"Balance: {balance}")
 ### Common Mistakes
 
 ```python
-# ❌ Reaching for map/filter/lambda when a comprehension would be clearer
+#  Reaching for map/filter/lambda when a comprehension would be clearer
 result = list(map(lambda x: x * 2, filter(lambda x: x > 0, numbers)))
 # vs:
 result = [x * 2 for x in numbers if x > 0]
 
-# ❌ Writing "impure" functions and being surprised by unexpected shared state
+#  Writing "impure" functions and being surprised by unexpected shared state
 def append_item(item, target=[]):     # mutable default (Chapter 05) strikes again
     target.append(item)
     return target
 
-# ❌ Overusing reduce for things that have a clearer built-in
+#  Overusing reduce for things that have a clearer built-in
 reduce(lambda acc, x: acc + x, numbers, 0)    # just use sum(numbers)
 reduce(lambda acc, x: max(acc, x), numbers)     # just use max(numbers)
 ```
@@ -4134,13 +4134,13 @@ reduce(lambda acc, x: max(acc, x), numbers)     # just use max(numbers)
 
 ### Practice
 
-- 🟢 Rewrite a `map`/`lambda` transformation as a list comprehension.
-- 🟢 Use `functools.partial` to create a `double(x)` function from a general `multiply(x, factor)` function.
-- 🟡 Write a pure function `apply_discount(price: float, rate: float) -> float` and a separate, deliberately impure function that logs the discounted price: keeping the two responsibilities cleanly separated.
+-  Rewrite a `map`/`lambda` transformation as a list comprehension.
+-  Use `functools.partial` to create a `double(x)` function from a general `multiply(x, factor)` function.
+-  Write a pure function `apply_discount(price: float, rate: float) -> float` and a separate, deliberately impure function that logs the discounted price: keeping the two responsibilities cleanly separated.
 
 ### Mini Challenge
 
-🟠 Given a list of word strings, use `reduce` to build a single dict counting how many times each word appears (a manual word-frequency counter): then compare it to using `collections.Counter` and explain which you'd actually use in real code.
+ Given a list of word strings, use `reduce` to build a single dict counting how many times each word appears (a manual word-frequency counter): then compare it to using `collections.Counter` and explain which you'd actually use in real code.
 
 ### Exam Question
 
@@ -4312,36 +4312,36 @@ for line in log_lines:
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting the raw string prefix: backslashes get double-interpreted
+#  Forgetting the raw string prefix: backslashes get double-interpreted
 pattern = "\d+"     # \d isn't a recognized Python escape, may warn or behave unexpectedly
-pattern = r"\d+"      # ✅ correct
+pattern = r"\d+"      #  correct
 
-# ❌ Using .match() expecting it to search anywhere in the string
+#  Using .match() expecting it to search anywhere in the string
 re.match(r"\d+", "abc123")   # None: match() only checks from position 0
 
-# ❌ Greedy quantifiers grabbing more than intended
+#  Greedy quantifiers grabbing more than intended
 re.search(r"<.+>", "<a><b>")   # matches "<a><b>" (greedy!) not just "<a>"
-re.search(r"<.+?>", "<a><b>")    # ✅ "?" makes it non-greedy: matches just "<a>"
+re.search(r"<.+?>", "<a><b>")    #  "?" makes it non-greedy: matches just "<a>"
 
-# ❌ Writing an unreadable, uncommented complex pattern with no named groups
+#  Writing an unreadable, uncommented complex pattern with no named groups
 ```
 
 ### Best Practice
 
 - Always use raw strings (`r"..."`) for regex patterns.
-- Use named groups for anything with more than 1–2 capture groups.
+- Use named groups for anything with more than 1��2 capture groups.
 - Compile patterns you'll reuse across a loop or many calls.
 - For simple string checks (`"foo" in text`, `text.startswith(...)`), use plain string methods: regex is powerful but not always the right tool for simple cases.
 
 ### Practice
 
-- 🟢 Write a regex that validates a basic email format (`someone@example.com`).
-- 🟢 Use `re.findall` to extract all hashtags (`#word`) from a piece of text.
-- 🟡 Write a regex with named groups to parse a URL into `scheme`, `host`, and `path`.
+-  Write a regex that validates a basic email format (`someone@example.com`).
+-  Use `re.findall` to extract all hashtags (`#word`) from a piece of text.
+-  Write a regex with named groups to parse a URL into `scheme`, `host`, and `path`.
 
 ### Mini Challenge
 
-🟠 Write a function `extract_ips(text: str) -> list[str]` that finds all IPv4 addresses in a block of text using regex, and validates that each octet is between 0 and 255 (a naive `[\d.]+` pattern will also match invalid ones like `999.999.999.999`: think about how to tighten it, or filter matches after extraction).
+ Write a function `extract_ips(text: str) -> list[str]` that finds all IPv4 addresses in a block of text using regex, and validates that each octet is between 0 and 255 (a naive `[\d.]+` pattern will also match invalid ones like `999.999.999.999`: think about how to tighten it, or filter matches after extraction).
 
 ### Exam Question
 
@@ -4458,7 +4458,7 @@ with open("data.pkl", "rb") as f:
 **Never unpickle data from an untrusted source.** Unpickling can execute arbitrary code: a maliciously crafted pickle file can run any code the attacker wants the moment you call `pickle.load()`, since deserialization can invoke arbitrary constructors and methods.
 
 ```python
-# ❌ NEVER do this with data from the internet, a user upload, or any untrusted source
+#  NEVER do this with data from the internet, a user upload, or any untrusted source
 with open("downloaded_file.pkl", "rb") as f:
     data = pickle.load(f)   # could execute arbitrary attacker-controlled code
 ```
@@ -4491,17 +4491,17 @@ csv_to_json(Path("users.csv"), Path("users.json"))
 ### Common Mistakes
 
 ```python
-# ❌ Forgetting newline="" when writing CSV
+#  Forgetting newline="" when writing CSV
 with open("out.csv", "w") as f:   # missing newline="": extra blank lines on Windows
     writer = csv.writer(f)
 
-# ❌ Trying to json.dumps() a non-JSON-serializable object without a default handler
-json.dumps({"time": datetime.now()})   # ❌ TypeError: Object of type datetime is not JSON serializable
+#  Trying to json.dumps() a non-JSON-serializable object without a default handler
+json.dumps({"time": datetime.now()})   #  TypeError: Object of type datetime is not JSON serializable
 
-# ❌ Unpickling untrusted data
+#  Unpickling untrusted data
 pickle.load(open("suspicious_file.pkl", "rb"))   # security risk
 
-# ❌ Assuming JSON preserves tuple/set types
+#  Assuming JSON preserves tuple/set types
 json.loads(json.dumps((1, 2, 3)))   # returns [1, 2, 3]: a LIST, tuple identity is lost
 ```
 
@@ -4514,13 +4514,13 @@ json.loads(json.dumps((1, 2, 3)))   # returns [1, 2, 3]: a LIST, tuple identity 
 
 ### Practice
 
-- 🟢 Write a Python dict to a JSON file, then read it back and print one field.
-- 🟢 Write a small CSV file with 3 rows using `csv.writer`, then read it back with `csv.DictReader`.
-- 🟡 Write a function that converts a list of dataclass instances (Chapter 11) into a JSON array (hint: `dataclasses.asdict`).
+-  Write a Python dict to a JSON file, then read it back and print one field.
+-  Write a small CSV file with 3 rows using `csv.writer`, then read it back with `csv.DictReader`.
+-  Write a function that converts a list of dataclass instances (Chapter 11) into a JSON array (hint: `dataclasses.asdict`).
 
 ### Mini Challenge
 
-🟠 Write a small "JSON database" tool: a class `JSONStore` with `load()`, `save()`, `add(record)`, and `all()` methods, backed by a single JSON file on disk that persists between program runs. (This connects to Chapter 38's project list.)
+ Write a small "JSON database" tool: a class `JSONStore` with `load()`, `save()`, `add(record)`, and `all()` methods, backed by a single JSON file on disk that persists between program runs. (This connects to Chapter 38's project list.)
 
 ### Exam Question
 
@@ -4664,17 +4664,17 @@ check_login("admin", False)
 ### Common Mistakes
 
 ```python
-# ❌ Using print() for anything beyond quick, throwaway debugging
+#  Using print() for anything beyond quick, throwaway debugging
 print("User logged in")   # no level, no timestamp, no easy way to disable
 
-# ❌ Calling basicConfig() more than once: only the FIRST call has any effect
+#  Calling basicConfig() more than once: only the FIRST call has any effect
 logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(level=logging.ERROR)   # silently ignored!
 
-# ❌ Logging sensitive data
+#  Logging sensitive data
 logger.info(f"User logged in with password {password}")   # never log secrets/passwords/tokens
 
-# ❌ Using the root logger everywhere instead of getLogger(__name__)
+#  Using the root logger everywhere instead of getLogger(__name__)
 logging.info("message")   # uses the root logger: fine for tiny scripts, not for real projects
 ```
 
@@ -4687,13 +4687,13 @@ logging.info("message")   # uses the root logger: fine for tiny scripts, not for
 
 ### Practice
 
-- 🟢 Set up basic logging with `INFO` level and log messages at each of the 5 levels; confirm `DEBUG` is hidden.
-- 🟢 Add a `FileHandler` so logs are written to `app.log` in addition to the console.
-- 🟡 Wrap a risky operation (like a file read that might fail) in `try`/`except`, and use `logger.exception()` to log the failure with a full traceback.
+-  Set up basic logging with `INFO` level and log messages at each of the 5 levels; confirm `DEBUG` is hidden.
+-  Add a `FileHandler` so logs are written to `app.log` in addition to the console.
+-  Wrap a risky operation (like a file read that might fail) in `try`/`except`, and use `logger.exception()` to log the failure with a full traceback.
 
 ### Mini Challenge
 
-🟠 Build a small login-monitoring tool: a function that logs every login attempt (success/failure, username, timestamp is automatic via the formatter) to `security.log`, then write a second function that reads that log file back and reports how many failed attempts came from each username: a mini log analyzer combining Chapters 09, 19, and 21.
+ Build a small login-monitoring tool: a function that logs every login attempt (success/failure, username, timestamp is automatic via the formatter) to `security.log`, then write a second function that reads that log file back and reports how many failed attempts came from each username: a mini log analyzer combining Chapters 09, 19, and 21.
 
 ### Exam Question
 
@@ -4855,12 +4855,12 @@ def test_fetch_data(mock_get):
 
 ```text
 myproject/
-├── myapp/
-│   ├── __init__.py
-│   └── utils.py
-└── tests/
-    ├── __init__.py
-    └── test_utils.py
+�� myapp/
+�   �� __init__.py
+�   �� utils.py
+�� tests/
+    �� __init__.py
+    �� test_utils.py
 ```
 
 Keep tests in a parallel `tests/` directory (or alongside modules as `test_*.py`), mirroring your source layout: makes it obvious what's tested and what isn't.
@@ -4911,26 +4911,26 @@ def test_is_strong_password(password, expected):
 ### Common Mistakes
 
 ```python
-# ❌ Tests that depend on execution order or shared mutable state
+#  Tests that depend on execution order or shared mutable state
 counter = 0
 def test_a():
     global counter
     counter += 1
     assert counter == 1   # breaks if test order changes or tests run in parallel
 
-# ❌ Testing implementation details instead of behavior
+#  Testing implementation details instead of behavior
 def test_internal_helper_called():
     # tightly coupled to HOW the function works, breaks on any refactor
     ...
 
-# ❌ One giant test function checking 10 unrelated things: a failure doesn't tell you WHICH thing broke
+#  One giant test function checking 10 unrelated things: a failure doesn't tell you WHICH thing broke
 def test_everything():
     assert add(2, 3) == 5
     assert subtract(5, 2) == 3
     assert multiply(2, 3) == 6
     # if this fails, which assertion? pytest tells you, but splitting into 3 tests is clearer
 
-# ❌ Not testing edge cases (empty input, zero, negative numbers, None)
+#  Not testing edge cases (empty input, zero, negative numbers, None)
 ```
 
 ### Best Practice
@@ -4938,18 +4938,18 @@ def test_everything():
 - One test function per specific behavior/case; keep tests small and focused.
 - Use fixtures for shared setup, parametrize for repeated logic with different inputs.
 - Mock external dependencies (network, filesystem, time) so tests are fast and deterministic.
-- Test behavior (inputs → outputs), not internal implementation details: so refactors don't break tests unnecessarily.
+- Test behavior (inputs �� outputs), not internal implementation details: so refactors don't break tests unnecessarily.
 
 ### Practice
 
-- 🟢 Write `pytest` tests for the `is_even` function from Chapter 05's practice.
-- 🟢 Use `pytest.raises` to test that your Chapter 10 `validate_age` function raises `InvalidAgeError` for bad input.
-- 🟡 Write a fixture that provides a temporary directory with 3 pre-created files, and a test that confirms a function correctly counts files in a directory.
-- 🟡 Use `@pytest.mark.parametrize` to test your Chapter 07 `is_palindrome` function against at least 5 cases, including edge cases.
+-  Write `pytest` tests for the `is_even` function from Chapter 05's practice.
+-  Use `pytest.raises` to test that your Chapter 10 `validate_age` function raises `InvalidAgeError` for bad input.
+-  Write a fixture that provides a temporary directory with 3 pre-created files, and a test that confirms a function correctly counts files in a directory.
+-  Use `@pytest.mark.parametrize` to test your Chapter 07 `is_palindrome` function against at least 5 cases, including edge cases.
 
 ### Mini Challenge
 
-🟠 Write tests for a function `fetch_user_status(api_client, user_id)` that calls `api_client.get(f"/users/{user_id}")` and returns `"active"` or `"inactive"` based on the response: using `unittest.mock.Mock` so no real network call ever happens, and cover both the success case and a case where the API returns an error status.
+ Write tests for a function `fetch_user_status(api_client, user_id)` that calls `api_client.get(f"/users/{user_id}")` and returns `"active"` or `"inactive"` based on the response: using `unittest.mock.Mock` so no real network call ever happens, and cover both the success case and a case where the API returns an error status.
 
 ### Exam Question
 
@@ -5077,7 +5077,7 @@ ZeroDivisionError: division by zero
 
 1. Traceback says `ZeroDivisionError` at the `return` line: so `len(student_scores)` must be `0`.
 2. Hypothesis: the `"Guest"` student has an empty scores list.
-3. Confirm: `print(data["Guest"])` → `[]`. Hypothesis confirmed.
+3. Confirm: `print(data["Guest"])` �� `[]`. Hypothesis confirmed.
 4. Fix: decide the _correct_ behavior for an empty list (return `0.0`? raise a clearer error? skip the student?), and implement it explicitly instead of letting the division crash:
 
 ```python
@@ -5091,10 +5091,10 @@ def get_average_score(scores: dict[str, list[int]], student: str) -> float:
 ### Common Mistakes
 
 ```python
-# ❌ Randomly changing code hoping it fixes things, without understanding why it broke
-# ❌ Only reading the last line of a traceback, ignoring the call chain above it
-# ❌ Leaving debug print() statements in committed/shared code
-# ❌ Debugging by adding MORE complexity (extra try/except swallowing the real error) instead of finding the root cause
+#  Randomly changing code hoping it fixes things, without understanding why it broke
+#  Only reading the last line of a traceback, ignoring the call chain above it
+#  Leaving debug print() statements in committed/shared code
+#  Debugging by adding MORE complexity (extra try/except swallowing the real error) instead of finding the root cause
 try:
     result = risky_operation()
 except Exception:
@@ -5110,13 +5110,13 @@ except Exception:
 
 ### Practice
 
-- 🟢 Deliberately write code that raises `IndexError`, `KeyError`, and `AttributeError`, and read each traceback carefully.
-- 🟢 Add a `breakpoint()` inside a loop and practice inspecting variables and stepping through with `n` and `c`.
-- 🟡 Take a function you wrote in an earlier chapter, introduce a subtle bug on purpose, then debug it using only the traceback and `breakpoint()`: no rewriting from scratch.
+-  Deliberately write code that raises `IndexError`, `KeyError`, and `AttributeError`, and read each traceback carefully.
+-  Add a `breakpoint()` inside a loop and practice inspecting variables and stepping through with `n` and `c`.
+-  Take a function you wrote in an earlier chapter, introduce a subtle bug on purpose, then debug it using only the traceback and `breakpoint()`: no rewriting from scratch.
 
 ### Mini Challenge
 
-🟠 You're given this buggy function (don't fix it yet: debug it methodically first): `def find_max(numbers): result = 0; for n in numbers: if n > result: result = n; return result`. Find and explain the bug (hint: think about an input list of all-negative numbers), then fix it.
+ You're given this buggy function (don't fix it yet: debug it methodically first): `def find_max(numbers): result = 0; for n in numbers: if n > result: result = n; return result`. Find and explain the bug (hint: think about an input list of all-negative numbers), then fix it.
 
 ### Exam Question
 
@@ -5169,8 +5169,8 @@ uv python pin 3.12                     # pin the Python version for this project
 Project A needs:  requests==2.28
 Project B needs:  requests==2.31
 
-Without venvs:  ❌ only ONE version of requests can be installed system-wide: conflict!
-With venvs:     ✅ Project A's .venv has 2.28, Project B's .venv has 2.31: no conflict
+Without venvs:   only ONE version of requests can be installed system-wide: conflict!
+With venvs:      Project A's .venv has 2.28, Project B's .venv has 2.31: no conflict
 ```
 
 ### `pyproject.toml`: the modern project manifest
@@ -5210,14 +5210,14 @@ A **lock file** solves the problem of `requirements.txt` files that only pin you
 
 ```text
 hash-gen/
-├── pyproject.toml
-├── README.md
-├── src/
-│   └── hash_gen/
-│       ├── __init__.py
-│       └── cli.py
-└── tests/
-    └── test_cli.py
+�� pyproject.toml
+�� README.md
+�� src/
+�   �� hash_gen/
+�       �� __init__.py
+�       �� cli.py
+�� tests/
+    �� test_cli.py
 ```
 
 The `src/` layout (package code nested inside a `src/` folder) is the current best-practice structure: it prevents accidentally importing your package from the local folder instead of the properly installed version, which is a surprisingly common source of confusing bugs in flatter layouts.
@@ -5258,15 +5258,15 @@ uv run mypy src/         # runs the type checker the same way
 ### Common Mistakes
 
 ```bash
-# ❌ Installing packages globally, outside any virtual environment
+#  Installing packages globally, outside any virtual environment
 pip install requests   # (without an active venv): pollutes system Python, causes future conflicts
 
-# ❌ Forgetting to activate a venv before installing: packages silently go to the wrong place
+#  Forgetting to activate a venv before installing: packages silently go to the wrong place
 
-# ❌ Committing .venv/ itself to version control (huge, unnecessary, machine-specific)
-# ✅ Instead: commit pyproject.toml / requirements.txt / uv.lock, and .gitignore the venv folder
+#  Committing .venv/ itself to version control (huge, unnecessary, machine-specific)
+#  Instead: commit pyproject.toml / requirements.txt / uv.lock, and .gitignore the venv folder
 
-# ❌ Editing requirements.txt by hand and letting it drift out of sync with what's actually installed
+#  Editing requirements.txt by hand and letting it drift out of sync with what's actually installed
 ```
 
 ### Best Practice
@@ -5278,13 +5278,13 @@ pip install requests   # (without an active venv): pollutes system Python, cause
 
 ### Practice
 
-- 🟢 Create a new virtual environment for a throwaway project and install `requests` into it, confirming (`pip list` or `uv pip list`) it doesn't appear in your global Python.
-- 🟢 Write a `pyproject.toml` from scratch for a small CLI tool with one dependency and one dev dependency.
-- 🟡 Take one of your earlier chapter exercises, turn it into a proper mini-package with a `src/` layout, and get it running via `uv run`.
+-  Create a new virtual environment for a throwaway project and install `requests` into it, confirming (`pip list` or `uv pip list`) it doesn't appear in your global Python.
+-  Write a `pyproject.toml` from scratch for a small CLI tool with one dependency and one dev dependency.
+-  Take one of your earlier chapter exercises, turn it into a proper mini-package with a `src/` layout, and get it running via `uv run`.
 
 ### Mini Challenge
 
-🟡 Set up your `hash-gen` project (from your existing roadmap) with a clean `src/` layout, a `pyproject.toml` declaring `pytest` as a dev dependency, and at least one real `pytest` test file that runs successfully via `uv run pytest`.
+ Set up your `hash-gen` project (from your existing roadmap) with a clean `src/` layout, a `pyproject.toml` declaring `pytest` as a dev dependency, and at least one real `pytest` test file that runs successfully via `uv run pytest`.
 
 ### Exam Question
 
@@ -5306,7 +5306,7 @@ Socket and HTTP code will make far more sense once you have a mental model of _w
 
 ### IP Addresses and Ports
 
-An **IP address** identifies a machine on a network (e.g., `192.168.1.5`, or `127.0.0.1` for "this same machine": called **localhost**). A **port** identifies a specific _service_ running on that machine (a number from 0–65535). Together, `IP:port` (e.g., `192.168.1.5:443`) uniquely identifies one service on one machine.
+An **IP address** identifies a machine on a network (e.g., `192.168.1.5`, or `127.0.0.1` for "this same machine": called **localhost**). A **port** identifies a specific _service_ running on that machine (a number from 0��65535). Together, `IP:port` (e.g., `192.168.1.5:443`) uniquely identifies one service on one machine.
 
 ```text
 192.168.1.5:80    -> a web server on that machine
@@ -5334,9 +5334,9 @@ UDP (User Datagram Protocol)
 
 ```text
      request
-CLIENT ──────────► SERVER
+CLIENT ������������ SERVER
      response
-CLIENT ◄──────────
+CLIENT ������������
 ```
 
 A **server** listens on a specific port, waiting for connections. A **client** initiates a connection to a known server address+port. The server typically handles many clients; the client typically talks to one server at a time (per connection).
@@ -5390,13 +5390,13 @@ resolve_and_check_port("example.com", 80)
 ### Common Mistakes
 
 ```python
-# ❌ Confusing "port closed" with "host unreachable": connect_ex returning nonzero doesn't
+#  Confusing "port closed" with "host unreachable": connect_ex returning nonzero doesn't
 #     always distinguish these; a real tool needs more careful error handling per case
 
-# ❌ Assuming HTTP == web browsing only: HTTP is used for APIs, webhooks, and much more
+#  Assuming HTTP == web browsing only: HTTP is used for APIs, webhooks, and much more
 
-# ❌ Not setting a timeout: a hung connection attempt can block a script indefinitely
-sock.connect((ip, port))   # ❌ no timeout: could hang forever on a filtered port
+#  Not setting a timeout: a hung connection attempt can block a script indefinitely
+sock.connect((ip, port))   #  no timeout: could hang forever on a filtered port
 ```
 
 ### Best Practice
@@ -5407,13 +5407,13 @@ sock.connect((ip, port))   # ❌ no timeout: could hang forever on a filtered po
 
 ### Practice
 
-- 🟢 Use `socket.gethostbyname()` to resolve 3 different domain names and print their IPs.
-- 🟢 Explain, in your own words, why DNS is needed at all: why not just use IP addresses everywhere?
-- 🟡 Write a function that checks whether a given port is open on `localhost` (127.0.0.1), with a 1-second timeout.
+-  Use `socket.gethostbyname()` to resolve 3 different domain names and print their IPs.
+-  Explain, in your own words, why DNS is needed at all: why not just use IP addresses everywhere?
+-  Write a function that checks whether a given port is open on `localhost` (127.0.0.1), with a 1-second timeout.
 
 ### Mini Challenge
 
-🟠 Extend the port-check example into a tiny scanner that checks a _list_ of common ports (80, 443, 22, 21, 3306) against a single host you own or control (e.g., your own machine, `127.0.0.1`), and prints a clean open/closed report for each.
+ Extend the port-check example into a tiny scanner that checks a _list_ of common ports (80, 443, 22, 21, 3306) against a single host you own or control (e.g., your own machine, `127.0.0.1`), and prints a clean open/closed report for each.
 
 ### Exam Question
 
@@ -5581,19 +5581,19 @@ COMMAND|ARG1|ARG2\n
 ### Common Mistakes
 
 ```python
-# ❌ Assuming recv() gets the WHOLE message in one call
+#  Assuming recv() gets the WHOLE message in one call
 data = conn.recv(1024)   # might be a PARTIAL message, or MULTIPLE messages concatenated
 
-# ❌ Forgetting to close sockets (use `with conn:` or explicit .close())
+#  Forgetting to close sockets (use `with conn:` or explicit .close())
 
-# ❌ Not handling an empty recv() (b"") as "the other side disconnected"
+#  Not handling an empty recv() (b"") as "the other side disconnected"
 while True:
     data = conn.recv(1024)
     # if data is b"", this loops forever doing nothing useful: must check and break
 
-# ❌ Hardcoding a fixed buffer size and assuming it's always enough for any message
+#  Hardcoding a fixed buffer size and assuming it's always enough for any message
 
-# ❌ Testing/scanning hosts you don't own or have permission to test
+#  Testing/scanning hosts you don't own or have permission to test
 ```
 
 ### Best Practice
@@ -5605,13 +5605,13 @@ while True:
 
 ### Practice
 
-- 🟢 Run the basic TCP server and client examples yourself, on `localhost`, and confirm the message exchange works.
-- 🟢 Modify the echo server to reverse the received message instead of uppercasing it.
-- 🟡 Modify the threaded server to keep a count of how many total connections it has served, printed to the console each time a client disconnects.
+-  Run the basic TCP server and client examples yourself, on `localhost`, and confirm the message exchange works.
+-  Modify the echo server to reverse the received message instead of uppercasing it.
+-  Modify the threaded server to keep a count of how many total connections it has served, printed to the console each time a client disconnects.
 
 ### Mini Challenge
 
-🟠 Build a simple length-prefixed message protocol: sender sends a 4-byte big-endian integer (the message length) followed by that many bytes of UTF-8 text; receiver reads the 4-byte header first, then reads exactly that many bytes total (looping on `recv()` until it has everything) before decoding and printing the message. Test it with a message deliberately longer than your `recv()` buffer size, to confirm your receiver correctly handles multiple `recv()` calls for one message.
+ Build a simple length-prefixed message protocol: sender sends a 4-byte big-endian integer (the message length) followed by that many bytes of UTF-8 text; receiver reads the 4-byte header first, then reads exactly that many bytes total (looping on `recv()` until it has everything) before decoding and printing the message. Test it with a message deliberately longer than your `recv()` buffer size, to confirm your receiver correctly handles multiple `recv()` calls for one message.
 
 ### Exam Question
 
@@ -5806,18 +5806,18 @@ if user:
 ### Common Mistakes
 
 ```python
-# ❌ No timeout: can hang forever
+#  No timeout: can hang forever
 requests.get(url)
 
-# ❌ Not checking status codes
+#  Not checking status codes
 response = requests.get(url)
 data = response.json()   # might be an error page's JSON (or not JSON at all!), not real data
 
-# ❌ Assuming response.json() always works
+#  Assuming response.json() always works
 response = requests.get(url)
-data = response.json()   # ❌ raises if the response isn't valid JSON
+data = response.json()   #  raises if the response isn't valid JSON
 
-# ❌ Building query strings manually instead of using params=
+#  Building query strings manually instead of using params=
 url = f"https://api.example.com/search?q={query}"   # doesn't properly URL-encode special characters
 ```
 
@@ -5830,13 +5830,13 @@ url = f"https://api.example.com/search?q={query}"   # doesn't properly URL-encod
 
 ### Practice
 
-- 🟢 Use `requests` to `GET` a public test API (e.g., `https://jsonplaceholder.typicode.com/posts/1`) and print the response JSON.
-- 🟢 Add a `timeout` and `try`/`except` around that request, and test what happens when you point it at an unreachable URL.
-- 🟡 Write a function that `POST`s a JSON payload to a test endpoint and returns `True`/`False` based on the response status code.
+-  Use `requests` to `GET` a public test API (e.g., `https://jsonplaceholder.typicode.com/posts/1`) and print the response JSON.
+-  Add a `timeout` and `try`/`except` around that request, and test what happens when you point it at an unreachable URL.
+-  Write a function that `POST`s a JSON payload to a test endpoint and returns `True`/`False` based on the response status code.
 
 ### Mini Challenge
 
-🟠 Write a small CLI weather-lookup tool (using any free public weather API) that takes a city name as a command-line argument, handles network errors, missing-city errors, and timeouts gracefully, and prints a clean one-line summary: no crashes on any bad input.
+ Write a small CLI weather-lookup tool (using any free public weather API) that takes a city name as a command-line argument, handles network errors, missing-city errors, and timeouts gracefully, and prints a clean one-line summary: no crashes on any bad input.
 
 ### Exam Question
 
@@ -5860,13 +5860,13 @@ For I/O-heavy tasks (calling many APIs, handling many simultaneous network conne
 
 ```text
 SYNCHRONOUS (blocking):
-call_api_1()  ─wait 2s─►  call_api_2()  ─wait 2s─►  call_api_3()  ─wait 2s─►  done
+call_api_1()  �wait 2s���  call_api_2()  �wait 2s���  call_api_3()  �wait 2s���  done
 Total: ~6 seconds, one at a time
 
 ASYNCHRONOUS (concurrent):
-call_api_1()  ┐
-call_api_2()  ├─ all waiting on network AT THE SAME TIME ─► done
-call_api_3()  ┘
+call_api_1()  �
+call_api_2()  � all waiting on network AT THE SAME TIME ��� done
+call_api_3()  �
 Total: ~2 seconds (roughly the time of the SLOWEST single call)
 ```
 
@@ -6023,10 +6023,10 @@ asyncio           yes (best for MANY   no                    no                 
 
 **Rule of thumb:**
 
-- Many concurrent network calls / I/O waits → **asyncio** (most efficient for large numbers of concurrent I/O operations)
-- A moderate number of blocking I/O calls, working with libraries that aren't async-aware → **threading**
-- Heavy CPU computation that needs to use multiple cores → **multiprocessing**
-- One simple, sequential task → plain **sync** code: don't add async complexity you don't need
+- Many concurrent network calls / I/O waits �� **asyncio** (most efficient for large numbers of concurrent I/O operations)
+- A moderate number of blocking I/O calls, working with libraries that aren't async-aware �� **threading**
+- Heavy CPU computation that needs to use multiple cores �� **multiprocessing**
+- One simple, sequential task �� plain **sync** code: don't add async complexity you don't need
 
 Full depth on threading/multiprocessing/the GIL is next, in Chapter 29.
 
@@ -6066,21 +6066,21 @@ asyncio.run(main())
 ### Common Mistakes
 
 ```python
-# ❌ Awaiting sequentially when you meant to run concurrently
+#  Awaiting sequentially when you meant to run concurrently
 result1 = await fetch("A", 2)
 result2 = await fetch("B", 1)   # this doesn't start until fetch("A") is DONE: no concurrency gained!
 
-# ✅ Fix
+#  Fix
 result1, result2 = await asyncio.gather(fetch("A", 2), fetch("B", 1))
 
-# ❌ Using time.sleep() instead of asyncio.sleep() inside a coroutine
+#  Using time.sleep() instead of asyncio.sleep() inside a coroutine
 async def bad():
-    time.sleep(2)   # ❌ BLOCKS the entire event loop: nothing else can run meanwhile!
+    time.sleep(2)   #  BLOCKS the entire event loop: nothing else can run meanwhile!
 
-# ❌ Forgetting asyncio.run() and just calling a coroutine directly
-say_hello()   # ❌ does nothing but return a coroutine object: never actually executes
+#  Forgetting asyncio.run() and just calling a coroutine directly
+say_hello()   #  does nothing but return a coroutine object: never actually executes
 
-# ❌ Mixing blocking, CPU-heavy code into async functions expecting it to speed up: it won't;
+#  Mixing blocking, CPU-heavy code into async functions expecting it to speed up: it won't;
 #    asyncio doesn't help CPU-bound work, only I/O-bound waiting
 ```
 
@@ -6093,13 +6093,13 @@ say_hello()   # ❌ does nothing but return a coroutine object: never actually e
 
 ### Practice
 
-- 🟢 Write two coroutines that each `asyncio.sleep()` for a different duration, and run them sequentially vs concurrently (with `gather`), timing both to see the difference.
-- 🟢 Deliberately use `time.sleep()` inside an `async def` function running alongside another coroutine, and observe how it blocks everything.
-- 🟡 Write an async function `fetch_all(urls: list[str])` using `httpx.AsyncClient` and `asyncio.gather` that fetches multiple URLs concurrently and returns their status codes.
+-  Write two coroutines that each `asyncio.sleep()` for a different duration, and run them sequentially vs concurrently (with `gather`), timing both to see the difference.
+-  Deliberately use `time.sleep()` inside an `async def` function running alongside another coroutine, and observe how it blocks everything.
+-  Write an async function `fetch_all(urls: list[str])` using `httpx.AsyncClient` and `asyncio.gather` that fetches multiple URLs concurrently and returns their status codes.
 
 ### Mini Challenge
 
-🟠 Build an async "host checker" that takes a list of 10 fake hosts (each simulated with a random `asyncio.sleep` between 0.1–2 seconds, and a random chance of "failing"), runs all checks concurrently with a `TaskGroup`, and prints a final summary of which succeeded/failed and the total elapsed time: compare the elapsed time to what a fully sequential version would have taken.
+ Build an async "host checker" that takes a list of 10 fake hosts (each simulated with a random `asyncio.sleep` between 0.1��2 seconds, and a random chance of "failing"), runs all checks concurrently with a `TaskGroup`, and prints a final summary of which succeeded/failed and the total elapsed time: compare the elapsed time to what a fully sequential version would have taken.
 
 ### Exam Question
 
@@ -6248,12 +6248,12 @@ Since processes don't share memory, `multiprocessing.Manager()` provides special
 
 ```text
 TASK TYPE                    BEST TOOL
-─────────────────────────────────────────
-CPU-bound (heavy computation, no waiting)   → multiprocessing
-I/O-bound, few operations, blocking libs    → threading
-I/O-bound, MANY concurrent operations       → asyncio
-File I/O (usually fast, local)                → often fine sync, or threading if bulk
-Network tasks (many requests)                   → asyncio (most efficient) or threading
+�����������������������������������������
+CPU-bound (heavy computation, no waiting)   �� multiprocessing
+I/O-bound, few operations, blocking libs    �� threading
+I/O-bound, MANY concurrent operations       �� asyncio
+File I/O (usually fast, local)                �� often fine sync, or threading if bulk
+Network tasks (many requests)                   �� asyncio (most efficient) or threading
 ```
 
 ### Example
@@ -6300,38 +6300,38 @@ Running this yourself is more convincing than reading about it: for the I/O-boun
 ### Common Mistakes
 
 ```python
-# ❌ Expecting threading to speed up CPU-bound work
+#  Expecting threading to speed up CPU-bound work
 threads = [threading.Thread(target=cpu_heavy_function) for _ in range(4)]
 # barely faster than sequential: GIL prevents true parallel Python execution
 
-# ❌ Forgetting locks around shared mutable state accessed by multiple threads
+#  Forgetting locks around shared mutable state accessed by multiple threads
 counter += 1   # race condition without a lock
 
-# ❌ Forgetting if __name__ == "__main__": with multiprocessing
+#  Forgetting if __name__ == "__main__": with multiprocessing
 # (causes runaway process spawning on some platforms)
 
-# ❌ Assuming multiprocessing shares memory like threading does
+#  Assuming multiprocessing shares memory like threading does
 results = []
 def worker(n):
-    results.append(n)   # ❌ each process has its OWN copy of `results`: the main process never sees these appends
+    results.append(n)   #  each process has its OWN copy of `results`: the main process never sees these appends
 ```
 
 ### Best Practice
 
-- CPU-bound → `multiprocessing`. I/O-bound with many operations → `asyncio`. I/O-bound with a moderate number of operations, or working with non-async libraries → `threading`.
+- CPU-bound �� `multiprocessing`. I/O-bound with many operations �� `asyncio`. I/O-bound with a moderate number of operations, or working with non-async libraries �� `threading`.
 - Always use a `Lock` (or other synchronization primitive) around shared mutable state accessed by multiple threads.
 - Always guard multiprocessing entry points with `if __name__ == "__main__":`.
 - Don't assume more threads/processes always means faster: measure. Overhead is real, and beyond a certain point, more workers can even make things slower.
 
 ### Practice
 
-- 🟢 Run 4 I/O-bound tasks (using `time.sleep`) sequentially, then with threading, and time both: confirm threading wins.
-- 🟢 Run 4 CPU-bound tasks (a heavy loop) sequentially, then with threading, and time both: confirm threading barely helps.
-- 🟡 Fix a deliberately broken race-condition counter example (like the one above) using a `threading.Lock`.
+-  Run 4 I/O-bound tasks (using `time.sleep`) sequentially, then with threading, and time both: confirm threading wins.
+-  Run 4 CPU-bound tasks (a heavy loop) sequentially, then with threading, and time both: confirm threading barely helps.
+-  Fix a deliberately broken race-condition counter example (like the one above) using a `threading.Lock`.
 
 ### Mini Challenge
 
-🟠 Rewrite the CPU-bound example using `multiprocessing.Pool` instead of threading, and confirm it _does_ show a real speedup over sequential execution: then explain in your own words exactly why multiprocessing succeeds where threading failed for this specific workload.
+ Rewrite the CPU-bound example using `multiprocessing.Pool` instead of threading, and confirm it _does_ show a real speedup over sequential execution: then explain in your own words exactly why multiprocessing succeeds where threading failed for this specific workload.
 
 ### Exam Question
 
@@ -6396,12 +6396,12 @@ conn.commit()
 ### SQL Injection and Why Parameterized Queries Matter
 
 ```python
-# ❌ DANGEROUS: building SQL with string formatting
+#  DANGEROUS: building SQL with string formatting
 name = "Lichi'; DROP TABLE users; --"
 cursor.execute(f"INSERT INTO users (name) VALUES ('{name}')")
 # the attacker-controlled string breaks OUT of the intended query and injects new SQL!
 
-# ✅ SAFE: parameterized query, the DB driver handles escaping correctly
+#  SAFE: parameterized query, the DB driver handles escaping correctly
 cursor.execute("INSERT INTO users (name) VALUES (?)", (name,))
 # the malicious string is treated as pure DATA, never as SQL syntax, no matter what it contains
 ```
@@ -6528,16 +6528,16 @@ for note in list_notes():
 ### Common Mistakes
 
 ```python
-# ❌ SQL injection via string formatting
+#  SQL injection via string formatting
 cursor.execute(f"SELECT * FROM users WHERE name = '{user_input}'")
 
-# ❌ Forgetting conn.commit(): writes silently don't persist
+#  Forgetting conn.commit(): writes silently don't persist
 cursor.execute("INSERT INTO users (name) VALUES (?)", ("Lichi",))
-conn.close()   # ❌ never committed! the insert is lost
+conn.close()   #  never committed! the insert is lost
 
-# ❌ Forgetting to close connections, leaking file handles over a long-running program
+#  Forgetting to close connections, leaking file handles over a long-running program
 
-# ❌ Not using transactions for multi-step operations that must succeed/fail together
+#  Not using transactions for multi-step operations that must succeed/fail together
 ```
 
 ### Best Practice
@@ -6549,13 +6549,13 @@ conn.close()   # ❌ never committed! the insert is lost
 
 ### Practice
 
-- 🟢 Create a `users` table and insert 3 rows using parameterized queries.
-- 🟢 Query all users older than a given age and print the results using `sqlite3.Row`.
-- 🟡 Write a function `transfer_balance(from_id, to_id, amount)` that updates two rows inside a single transaction, rolling back cleanly if either update fails.
+-  Create a `users` table and insert 3 rows using parameterized queries.
+-  Query all users older than a given age and print the results using `sqlite3.Row`.
+-  Write a function `transfer_balance(from_id, to_id, amount)` that updates two rows inside a single transaction, rolling back cleanly if either update fails.
 
 ### Mini Challenge
 
-🟠 Build a small SQLite-backed "expense tracker": a table for expenses (`amount`, `category`, `date`), functions to add an expense and to query total spending by category, and a simple CLI loop (using `input()`) to add and view expenses. (Ties directly into Chapter 38's project list.)
+ Build a small SQLite-backed "expense tracker": a table for expenses (`amount`, `category`, `date`), functions to add an expense and to query total spending by category, and a simple CLI loop (using `input()`) to add and view expenses. (Ties directly into Chapter 38's project list.)
 
 ### Exam Question
 
@@ -6698,18 +6698,18 @@ if __name__ == "__main__":
 ### Common Mistakes
 
 ```python
-# ❌ Hardcoding secrets directly in source
+#  Hardcoding secrets directly in source
 API_KEY = "sk-abc123realkeyhere"   # never commit real keys
 
-# ❌ Assuming PUT and PATCH are interchangeable
+#  Assuming PUT and PATCH are interchangeable
 requests.put(url, json={"done": True})   # if the API expects a FULL resource for PUT,
                                             # this may silently wipe out every other field
 
-# ❌ Not reusing a Session for many requests to the same host, paying full connection setup cost each time
+#  Not reusing a Session for many requests to the same host, paying full connection setup cost each time
 for i in range(100):
     requests.get(f"{BASE_URL}/items/{i}")   # 100 separate connections instead of one reused session
 
-# ❌ Swallowing errors from the API client silently, with no way for the caller to know something failed
+#  Swallowing errors from the API client silently, with no way for the caller to know something failed
 ```
 
 ### Best Practice
@@ -6721,13 +6721,13 @@ for i in range(100):
 
 ### Practice
 
-- 🟢 Write a function that sends a `PATCH` request to update one field on a test API, and prints the resulting JSON.
-- 🟢 Read an API key from an environment variable, and raise a clear error if it isn't set.
-- 🟡 Build a small `ApiClient` class (like the example) for a public test API of your choice, with `get`, `post`, and `delete` methods.
+-  Write a function that sends a `PATCH` request to update one field on a test API, and prints the resulting JSON.
+-  Read an API key from an environment variable, and raise a clear error if it isn't set.
+-  Build a small `ApiClient` class (like the example) for a public test API of your choice, with `get`, `post`, and `delete` methods.
 
 ### Mini Challenge
 
-🟠 Extend the CLI API client example into a small multi-command tool (`get`, `create`, `delete`) using `argparse` subcommands (preview of Chapter 32), each calling the appropriate HTTP verb against a test API, with consistent error handling and exit codes across all three commands.
+ Extend the CLI API client example into a small multi-command tool (`get`, `create`, `delete`) using `argparse` subcommands (preview of Chapter 32), each calling the appropriate HTTP verb against a test API, with consistent error handling and exit codes across all three commands.
 
 ### Exam Question
 
@@ -6932,15 +6932,15 @@ python3 port_report.py 127.0.0.1 22 80 443 --timeout 0.5
 ### Common Mistakes
 
 ```python
-# ❌ Manually parsing sys.argv instead of using argparse
+#  Manually parsing sys.argv instead of using argparse
 import sys
 name = sys.argv[1]   # no help text, no validation, breaks confusingly on missing args
 
-# ❌ Forgetting `required=True` on subparsers, letting the program run with no command at all
+#  Forgetting `required=True` on subparsers, letting the program run with no command at all
 
-# ❌ Not providing --help-friendly descriptions, leaving users guessing at usage
+#  Not providing --help-friendly descriptions, leaving users guessing at usage
 
-# ❌ Using print() for errors instead of stderr, mixing normal output with error output
+#  Using print() for errors instead of stderr, mixing normal output with error output
 print("Error: file not found")   # should be: print("Error: file not found", file=sys.stderr)
 ```
 
@@ -6953,13 +6953,13 @@ print("Error: file not found")   # should be: print("Error: file not found", fil
 
 ### Practice
 
-- 🟢 Build a CLI tool that takes a filename and an optional `--uppercase` flag, printing the file's contents (uppercased if the flag is set).
-- 🟢 Add a `--verbose` flag to a script that prints extra diagnostic information only when set.
-- 🟡 Build a two-subcommand CLI tool (`convert` and `validate`, or similar) using `add_subparsers`, each with its own arguments.
+-  Build a CLI tool that takes a filename and an optional `--uppercase` flag, printing the file's contents (uppercased if the flag is set).
+-  Add a `--verbose` flag to a script that prints extra diagnostic information only when set.
+-  Build a two-subcommand CLI tool (`convert` and `validate`, or similar) using `add_subparsers`, each with its own arguments.
 
 ### Mini Challenge
 
-🟠 Turn your Chapter 30 SQLite expense tracker into a proper CLI tool with subcommands: `add-expense`, `list-expenses`, and `summary` (total by category), using `argparse` throughout, with sensible exit codes and error messages for bad input.
+ Turn your Chapter 30 SQLite expense tracker into a proper CLI tool with subcommands: `add-expense`, `list-expenses`, and `summary` (total by category), using `argparse` throughout, with sensible exit codes and error messages for bad input.
 
 ### Exam Question
 
@@ -7059,13 +7059,13 @@ a()
 
 ```text
 Call stack while inside b():
-┌─────────────┐
-│ frame: b()  │  locals: {y: 2}
-├─────────────┤
-│ frame: a()  │  locals: {x: 1}
-├─────────────┤
-│ frame: <module>│
-└─────────────┘
+��������������
+� frame: b()  �  locals: {y: 2}
+��������������
+� frame: a()  �  locals: {x: 1}
+��������������
+� frame: <module>�
+��������������
 ```
 
 This is exactly what a traceback (Chapter 23) is showing you: a snapshot of the call stack at the moment an exception occurred, frame by frame.
@@ -7111,14 +7111,14 @@ print("builtin_sum instructions:", len(list(dis.get_instructions(builtin_sum))))
 ### Common Mistakes
 
 ```python
-# ❌ Assuming Python variables work like boxes that copy values (Chapter 06 already covered this,
+#  Assuming Python variables work like boxes that copy values (Chapter 06 already covered this,
 #    but it's worth restating: it's a direct consequence of the object/reference model above)
 
-# ❌ Believing garbage collection means memory is freed the instant an object becomes unreachable
+#  Believing garbage collection means memory is freed the instant an object becomes unreachable
 #    for every case: reference counting usually IS immediate, but cyclic references wait for a
 #    garbage collection pass
 
-# ❌ Assuming all Python implementations behave identically (e.g. relying on CPython-specific
+#  Assuming all Python implementations behave identically (e.g. relying on CPython-specific
 #    reference-counting timing in code meant to be portable to PyPy or other implementations)
 ```
 
@@ -7130,13 +7130,13 @@ print("builtin_sum instructions:", len(list(dis.get_instructions(builtin_sum))))
 
 ### Practice
 
-- 🟢 Run `dis.dis()` on a simple function of your own and try to read what each instruction does.
-- 🟢 Use `sys.getrefcount()` to observe a reference count increasing and decreasing as you create and delete references to the same object.
-- 🟡 Create a deliberate circular reference (two objects each pointing at the other) and confirm, using `gc`, that Python still cleans it up.
+-  Run `dis.dis()` on a simple function of your own and try to read what each instruction does.
+-  Use `sys.getrefcount()` to observe a reference count increasing and decreasing as you create and delete references to the same object.
+-  Create a deliberate circular reference (two objects each pointing at the other) and confirm, using `gc`, that Python still cleans it up.
 
 ### Mini Challenge
 
-🟠 Write two versions of a function that builds a large string: one using repeated `+=` in a loop (Chapter 07's anti-pattern), one using `"".join()`. Use `dis.dis()` or `timeit` (Chapter 34) to compare them, and explain in your own words, using what you now know about objects and immutability, exactly why one is slower.
+ Write two versions of a function that builds a large string: one using repeated `+=` in a loop (Chapter 07's anti-pattern), one using `"".join()`. Use `dis.dis()` or `timeit` (Chapter 34) to compare them, and explain in your own words, using what you now know about objects and immutability, exactly why one is slower.
 
 ### Exam Question
 
@@ -7292,18 +7292,18 @@ cProfile.run("fib_cached(28)")
 ### Common Mistakes
 
 ```python
-# ❌ Optimizing code before measuring where the actual bottleneck is
+#  Optimizing code before measuring where the actual bottleneck is
 # (rewriting a function that's 0.1% of total runtime, while ignoring one that's 80%)
 
-# ❌ Using a list where a set would give O(1) membership checks instead of O(n)
+#  Using a list where a set would give O(1) membership checks instead of O(n)
 big_list = list(range(1_000_000))
 999_999 in big_list   # scans up to a million items
 
-# ❌ Applying @lru_cache to a function with mutable/unhashable arguments (it requires hashable args)
+#  Applying @lru_cache to a function with mutable/unhashable arguments (it requires hashable args)
 @lru_cache
-def process(data: list):   # ❌ TypeError at call time: list isn't hashable
+def process(data: list):   #  TypeError at call time: list isn't hashable
 
-# ❌ Caching a function whose result can legitimately change between calls (e.g. depends on current time)
+#  Caching a function whose result can legitimately change between calls (e.g. depends on current time)
 ```
 
 ### Best Practice
@@ -7315,13 +7315,13 @@ def process(data: list):   # ❌ TypeError at call time: list isn't hashable
 
 ### Practice
 
-- 🟢 Use `timeit` to compare `x in my_list` vs `x in my_set` for a large collection, and note the difference.
-- 🟢 Add `@lru_cache` to a slow recursive function and measure the improvement.
-- 🟡 Use `cProfile` on a small program with two or three functions, and identify which one dominates total runtime.
+-  Use `timeit` to compare `x in my_list` vs `x in my_set` for a large collection, and note the difference.
+-  Add `@lru_cache` to a slow recursive function and measure the improvement.
+-  Use `cProfile` on a small program with two or three functions, and identify which one dominates total runtime.
 
 ### Mini Challenge
 
-🟠 Take your Chapter 21 log analyzer (or a similar text-processing function you've written) and profile it against a large generated test file. Identify the actual bottleneck with `cProfile`, then apply one targeted fix, and confirm with `timeit`/`cProfile` again that it measurably helped.
+ Take your Chapter 21 log analyzer (or a similar text-processing function you've written) and profile it against a large generated test file. Identify the actual bottleneck with `cProfile`, then apply one targeted fix, and confirm with `timeit`/`cProfile` again that it measurably helped.
 
 ### Exam Question
 
@@ -7344,11 +7344,11 @@ Code is read far more often than it's written. A clever one-liner that takes fiv
 ### PEP 8, the Official Style Guide
 
 ```python
-# ✅ PEP 8 style
+#  PEP 8 style
 def calculate_total(price: float, tax_rate: float) -> float:
     return price * (1 + tax_rate)
 
-# ❌ violates several PEP 8 conventions
+#  violates several PEP 8 conventions
 def CalculateTotal(Price,TaxRate):
     return Price*(1+TaxRate)
 ```
@@ -7358,11 +7358,11 @@ Key conventions: `snake_case` for functions/variables, `PascalCase` for classes,
 ### Naming
 
 ```python
-# ❌ unclear
+#  unclear
 def calc(x, y, z):
     return x * y * (1 - z)
 
-# ✅ clear
+#  clear
 def calculate_discounted_total(price: float, quantity: int, discount_rate: float) -> float:
     return price * quantity * (1 - discount_rate)
 ```
@@ -7372,7 +7372,7 @@ A good name answers "what does this hold or do" without needing a comment. If yo
 ### Functions: Do One Thing
 
 ```python
-# ❌ does too much: fetches, validates, transforms, AND prints
+#  does too much: fetches, validates, transforms, AND prints
 def process_user(user_id: int) -> None:
     user = fetch_user(user_id)
     if not user:
@@ -7381,7 +7381,7 @@ def process_user(user_id: int) -> None:
     user["name"] = user["name"].strip().title()
     print(f"Processed: {user['name']}")
 
-# ✅ each function has one clear job
+#  each function has one clear job
 def fetch_user(user_id: int) -> dict | None: ...
 def normalize_name(name: str) -> str:
     return name.strip().title()
@@ -7417,17 +7417,17 @@ Already covered in depth in Chapter 10: specific exceptions, no bare `except:`, 
 
 ```text
 myproject/
-├── pyproject.toml
-├── README.md
-├── src/
-│   └── myproject/
-│       ├── __init__.py
-│       ├── core.py
-│       ├── cli.py
-│       └── utils.py
-└── tests/
-    ├── test_core.py
-    └── test_cli.py
+�� pyproject.toml
+�� README.md
+�� src/
+�   �� myproject/
+�       �� __init__.py
+�       �� core.py
+�       �� cli.py
+�       �� utils.py
+�� tests/
+    �� test_core.py
+    �� test_cli.py
 ```
 
 Consistent, predictable structure (Chapter 24) is itself a form of clean code: a new contributor (or you, six months later) should be able to guess where something lives without searching.
@@ -7435,10 +7435,10 @@ Consistent, predictable structure (Chapter 24) is itself a form of clean code: a
 ### "Readable code is more important than clever code"
 
 ```python
-# ❌ clever, but takes real effort to parse
+#  clever, but takes real effort to parse
 result = [y for y in (x**2 for x in range(20) if x % 2 == 0) if y > 50]
 
-# ✅ same result, obvious at a glance
+#  same result, obvious at a glance
 evens = [x for x in range(20) if x % 2 == 0]
 squares = [x ** 2 for x in evens]
 result = [y for y in squares if y > 50]
@@ -7489,11 +7489,11 @@ print(format_receipt_line(order, total))
 ### Common Mistakes
 
 ```python
-# ❌ Inconsistent naming conventions in the same file
+#  Inconsistent naming conventions in the same file
 userAge = 20
 total_price = 50.0
 
-# ❌ Deeply nested conditionals instead of early returns
+#  Deeply nested conditionals instead of early returns
 def process(data):
     if data:
         if data.get("valid"):
@@ -7501,7 +7501,7 @@ def process(data):
                 return "ok"
     return "invalid"
 
-# ✅ Early returns flatten the logic and are easier to follow
+#  Early returns flatten the logic and are easier to follow
 def process(data):
     if not data:
         return "invalid"
@@ -7511,7 +7511,7 @@ def process(data):
         return "invalid"
     return "ok"
 
-# ❌ Comments that just restate the code instead of explaining intent
+#  Comments that just restate the code instead of explaining intent
 x += 1   # increment x by 1
 ```
 
@@ -7524,13 +7524,13 @@ x += 1   # increment x by 1
 
 ### Practice
 
-- 🟢 Take a function you wrote in an earlier chapter and add a proper docstring to it.
-- 🟢 Rewrite a deeply nested `if` chain from an earlier exercise using early returns instead.
-- 🟡 Pick one of your earlier, more compressed one-liners (a comprehension or a chained call) and rewrite it as clearer, multi-step code, then decide honestly which version you'd rather maintain.
+-  Take a function you wrote in an earlier chapter and add a proper docstring to it.
+-  Rewrite a deeply nested `if` chain from an earlier exercise using early returns instead.
+-  Pick one of your earlier, more compressed one-liners (a comprehension or a chained call) and rewrite it as clearer, multi-step code, then decide honestly which version you'd rather maintain.
 
 ### Mini Challenge
 
-🟠 Take the largest function you've written so far in this book and refactor it into two or three smaller, single-purpose functions, each with a clear name, type hints, and a docstring, without changing its overall behavior. Write a quick test (Chapter 22) confirming the refactor didn't break anything.
+ Take the largest function you've written so far in this book and refactor it into two or three smaller, single-purpose functions, each with a clear name, type hints, and a docstring, without changing its overall behavior. Write a quick test (Chapter 22) confirming the refactor didn't break anything.
 
 ### Exam Question
 
@@ -7728,7 +7728,7 @@ register_user(InMemoryUserRepository(), {"id": 1, "name": "Lichi"})   # fast, no
 Problem: a function/class that creates its own dependencies internally is hard to test and hard to reconfigure.
 
 ```python
-# ❌ hard to test: EmailNotifier is hardcoded inside
+#  hard to test: EmailNotifier is hardcoded inside
 class OrderService:
     def __init__(self) -> None:
         self.notifier = EmailNotifier()
@@ -7736,7 +7736,7 @@ class OrderService:
     def place_order(self, order: dict) -> None:
         self.notifier.send(f"Order placed: {order['id']}")
 
-# ✅ the dependency is passed IN, not created internally
+#  the dependency is passed IN, not created internally
 class OrderService:
     def __init__(self, notifier: Notifier) -> None:
         self.notifier = notifier
@@ -7803,15 +7803,15 @@ scanner.run("127.0.0.1")
 ### Common Mistakes
 
 ```python
-# ❌ Forcing a pattern where a simple function would do
+#  Forcing a pattern where a simple function would do
 class AdderFactory:            # unnecessary ceremony for something this simple
     def create_adder(self):
         return lambda a, b: a + b
 
-# ❌ Reaching for Singleton by default for anything "global," instead of considering
+#  Reaching for Singleton by default for anything "global," instead of considering
 #    a plain module-level object or dependency injection first
 
-# ❌ Confusing Factory (creates objects) with Strategy (swaps algorithms): they solve
+#  Confusing Factory (creates objects) with Strategy (swaps algorithms): they solve
 #    different problems even though both involve interchangeable classes
 ```
 
@@ -7823,13 +7823,13 @@ class AdderFactory:            # unnecessary ceremony for something this simple
 
 ### Practice
 
-- 🟢 Implement a simple `Factory` function that creates one of three different shape objects based on a string argument.
-- 🟢 Rewrite a function that hardcodes a dependency (like creating its own logger or client internally) to instead receive that dependency via its constructor or parameters.
-- 🟡 Implement the `Observer` pattern for a simple event: a `TaskCompleted` event that both logs the completion and updates a counter, via two independent subscribed listener functions.
+-  Implement a simple `Factory` function that creates one of three different shape objects based on a string argument.
+-  Rewrite a function that hardcodes a dependency (like creating its own logger or client internally) to instead receive that dependency via its constructor or parameters.
+-  Implement the `Observer` pattern for a simple event: a `TaskCompleted` event that both logs the completion and updates a counter, via two independent subscribed listener functions.
 
 ### Mini Challenge
 
-🟠 Apply the Repository pattern to your Chapter 30 SQLite notes/expense tracker: define an abstract `Repository` interface, a real `SqliteRepository` implementation, and an `InMemoryRepository` implementation for tests, then write at least one `pytest` test (Chapter 22) that exercises your business logic against the in-memory version, with zero real database involved.
+ Apply the Repository pattern to your Chapter 30 SQLite notes/expense tracker: define an abstract `Repository` interface, a real `SqliteRepository` implementation, and an `InMemoryRepository` implementation for tests, then write at least one `pytest` test (Chapter 22) that exercises your business logic against the in-memory version, with zero real database involved.
 
 ### Exam Question
 
@@ -7893,11 +7893,11 @@ A few details that matter here, each for a specific reason:
 - **`secrets.compare_digest`** compares in constant time, regardless of where the strings first differ, preventing a timing attack that could otherwise leak information about the correct hash byte by byte.
 
 ```python
-# ❌ Never do this
+#  Never do this
 def bad_hash(password: str) -> str:
     return hashlib.md5(password.encode()).hexdigest()   # fast, unsalted, broken for this purpose
 
-# ❌ Never do this either
+#  Never do this either
 def compare_unsafely(a: str, b: str) -> bool:
     return a == b   # regular == can leak timing information about secret comparisons
 ```
@@ -7949,11 +7949,11 @@ Without a check like `is_relative_to`, a `filename` of `"../../etc/passwd"` coul
 ```python
 import subprocess
 
-# ❌ DANGEROUS: shell=True interprets the string as a shell command
+#  DANGEROUS: shell=True interprets the string as a shell command
 filename = "somefile.txt; rm -rf ~"
 subprocess.run(f"cat {filename}", shell=True)   # the attacker-controlled `;` breaks out into a NEW command!
 
-# ✅ SAFE: pass arguments as a list, no shell interpretation involved
+#  SAFE: pass arguments as a list, no shell interpretation involved
 subprocess.run(["cat", filename])   # filename is treated as ONE literal argument, no matter its content
 ```
 
@@ -7985,7 +7985,7 @@ import requests
 
 response = requests.get("https://example.com", verify=True)   # verify=True is the DEFAULT, and correct
 
-# ❌ Never disable certificate verification outside of a controlled, understood test environment
+#  Never disable certificate verification outside of a controlled, understood test environment
 response = requests.get("https://example.com", verify=False)   # accepts ANY certificate, including a forged one
 ```
 
@@ -7996,7 +7996,7 @@ Disabling certificate verification (`verify=False`) defeats the entire point of 
 Building on Chapter 26: always validate and bound data received from a socket before trusting it (an attacker-controlled peer can send anything: oversized payloads, malformed data, or unexpected message formats). Set timeouts to prevent a malicious or broken peer from hanging your program indefinitely, and never `eval()` or otherwise execute data received over a network connection.
 
 ```python
-# ❌ Never do this, ever
+#  Never do this, ever
 data = conn.recv(1024)
 eval(data.decode())   # executes ARBITRARY code sent by whoever is on the other end of the socket
 ```
@@ -8041,22 +8041,22 @@ print(login(stored, "wrong-password"))                    # False
 ### Common Mistakes
 
 ```python
-# ❌ Storing plain-text passwords
+#  Storing plain-text passwords
 user_password = "hunter2"   # never store this directly, ever
 
-# ❌ Using a fast, general-purpose hash for passwords
+#  Using a fast, general-purpose hash for passwords
 hashlib.sha256(password.encode()).hexdigest()   # fast is exactly the wrong property here
 
-# ❌ Reusing the same salt for every user (defeats the entire purpose of salting)
+#  Reusing the same salt for every user (defeats the entire purpose of salting)
 GLOBAL_SALT = "fixed-salt-123"
 
-# ❌ Using random.random() or random.randint() to generate a security token
+#  Using random.random() or random.randint() to generate a security token
 token = str(random.randint(100000, 999999))   # predictable, not cryptographically secure
 
-# ❌ shell=True with any string built from user input
+#  shell=True with any string built from user input
 subprocess.run(f"ping {user_input}", shell=True)
 
-# ❌ Disabling TLS verification outside a genuinely controlled test scenario
+#  Disabling TLS verification outside a genuinely controlled test scenario
 requests.get(url, verify=False)
 ```
 
@@ -8070,13 +8070,13 @@ requests.get(url, verify=False)
 
 ### Practice
 
-- 🟢 Write a function that generates a cryptographically secure random token suitable for a password-reset link.
-- 🟢 Write a function that validates a username against a strict allowed-character pattern, rejecting (not silently modifying) anything that doesn't match.
-- 🟡 Take a `subprocess.run(f"...", shell=True)` call built from a variable, and rewrite it as a safe list-based call with no shell involved.
+-  Write a function that generates a cryptographically secure random token suitable for a password-reset link.
+-  Write a function that validates a username against a strict allowed-character pattern, rejecting (not silently modifying) anything that doesn't match.
+-  Take a `subprocess.run(f"...", shell=True)` call built from a variable, and rewrite it as a safe list-based call with no shell involved.
 
 ### Mini Challenge
 
-🟠 Build a small, self-contained "credential store" module: `register(username, password)` and `login(username, password)` functions backed by your Chapter 30 SQLite database (storing only hash and salt, never the plain password), with proper parameterized queries throughout, and a `pytest` test suite (Chapter 22) confirming a correct password succeeds and an incorrect one fails.
+ Build a small, self-contained "credential store" module: `register(username, password)` and `login(username, password)` functions backed by your Chapter 30 SQLite database (storing only hash and salt, never the plain password), with proper parameterized queries throughout, and a `pytest` test suite (Chapter 22) confirming a correct password succeeds and an incorrect one fails.
 
 ### Exam Question
 

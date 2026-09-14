@@ -30,9 +30,20 @@ const CONTENT_DIR = path.join(process.cwd(), 'content');
 /** Resolves a note path while preventing a slug from escaping /content. */
 function resolveNotePath(slug: string): string | null {
   const contentRoot = path.resolve(CONTENT_DIR);
-  const filePath = path.resolve(contentRoot, `${slug}.md`);
-  if (!filePath.startsWith(`${contentRoot}${path.sep}`)) return null;
-  return filePath;
+  const candidates = [`${slug}.md`, `notes/${slug}.md`];
+
+  for (const candidate of candidates) {
+    const filePath = path.resolve(contentRoot, candidate);
+    if (!filePath.startsWith(`${contentRoot}${path.sep}`)) continue;
+    if (fs.existsSync(filePath)) return filePath;
+  }
+
+  return null;
+}
+
+/** Removes the internal `notes/` folder from public note URLs. */
+function toPublicSlug(slug: string): string {
+  return slug.startsWith('notes/') ? slug.slice('notes/'.length) : slug;
 }
 
 /**
@@ -73,7 +84,7 @@ function walkMarkdownFiles(dir: string, baseDir = dir): string[] {
  * `web-pentesting/cheetsheet/OWASP-WSTG-Guide.md` -> `/notes/web-pentesting/cheetsheet/OWASP-WSTG-Guide`.
  */
 export function getAllSlugs(): string[] {
-  return walkMarkdownFiles(CONTENT_DIR);
+  return walkMarkdownFiles(CONTENT_DIR).map(toPublicSlug);
 }
 /** Reads the raw Markdown + front matter for a single slug, without rendering HTML. */
 function readNoteFile(slug: string): { data: Partial<Note>; content: string } {
@@ -126,13 +137,13 @@ export function getAllNoteSummaries(): NoteSummary[] {
 
 /**
  * A small rehype plugin that walks the rendered HTML tree and collects every
- * heading (h2/h3/h4) into a flat list. We attach it as a side-effect during
+ * heading (h1-h6) into a flat list. We attach it as a side-effect during
  * the render pipeline and read the results back out afterwards.
  */
 function collectHeadings(headings: TocHeading[]) {
   return () => (tree: Root) => {
     visit(tree, 'element', (node: Element) => {
-      if (['h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
+      if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(node.tagName)) {
         const id = (node.properties?.id as string) ?? '';
         const text = extractText(node);
         if (id && text) {

@@ -55,7 +55,7 @@ export function Hero() {
           <Step
             icon={<FileText className="h-4 w-4" />}
             step="1"
-            text="Write a clean, well-structured note in Markdown — clear headings, working code blocks, and enough context that a stranger could follow it"
+            text="Write a clean, well-structured note in Markdown - clear headings, working code blocks, and enough context that a stranger could follow it"
           />
           <Step
             icon={<GitPullRequest className="h-4 w-4" />}

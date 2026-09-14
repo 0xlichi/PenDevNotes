@@ -13,7 +13,7 @@ Anyone can read the notes. Anyone can contribute one.
 
 ## How to contribute a note
 
-1. **Write your note in Markdown.** Keep it clear, accurate, and complete —
+1. **Write your note in Markdown.** Keep it clear, accurate, and complete -
    something a stranger could follow without needing to ask you questions.
    Avoid scratchpads, unfinished drafts, or raw commands with no explanation.
 2. **Add the required front matter** at the top of the file (see below).
@@ -55,5 +55,5 @@ date: ""
 
 Notes live under `content/`, organized into nested topic folders. The folder
 path becomes part of the note's URL, but is otherwise independent of the
-`category` field in front matter — folders are just for organizing files on
+`category` field in front matter - folders are just for organizing files on
 disk.

@@ -65,6 +65,6 @@ When opening a pull request, it would be helpful if you could:
   * `notes/jj`
 * Make sure the project builds successfully before submitting your pull request.
 
-These aren't strict rules—they're simply guidelines to help keep the repository organized and make collaboration easier for everyone.
+These aren't strict rules-they're simply guidelines to help keep the repository organized and make collaboration easier for everyone.
 
 Thanks again for your contribution! Every improvement, big or small, is greatly appreciated.
