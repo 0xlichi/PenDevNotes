@@ -1,7 +1,7 @@
 ---
 title: 'Regex'
 description: 'Regular expressions (regex) are patterns used to match text. This guide takes you from zero to advanced usage, with practical examples throughout, including a few security/pentesting-flavored ones since that is a common use case (log parsing, extracting parameters from URLs, filtering payloads)'
-category: 'Misc'
+category: 'Programming'
 tags: ['regex', 'misc']
 date: '2026-09-14'
 ---
