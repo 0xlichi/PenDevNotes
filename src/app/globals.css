@@ -388,6 +388,18 @@ html {
   color: #4a3d2f;
 }
 
+.prose-doc img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0.875rem;
+  background: var(--color-surface);
+  box-shadow: 0 8px 24px -18px rgba(51, 41, 31, 0.45);
+}
+
 .prose-doc ul,
 .prose-doc ol {
   padding-left: 1.5em;

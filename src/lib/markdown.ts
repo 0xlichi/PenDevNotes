@@ -173,6 +173,39 @@ function sanitizeRenderedHtml() {
   };
 }
 
+/** Rewrites note-local image paths to the safe content asset route. */
+function rewriteRelativeImages(noteFilePath: string) {
+  return () => (tree: Root) => {
+    const contentRoot = path.resolve(CONTENT_DIR);
+    visit(tree, 'element', (node: Element) => {
+      if (node.tagName !== 'img') return;
+      const source = node.properties?.src;
+      if (typeof source !== 'string' || /^(?:[a-z]+:|\/\/|\/)/i.test(source)) return;
+
+      let decodedSource: string;
+      try {
+        decodedSource = decodeURIComponent(source);
+      } catch {
+        return;
+      }
+
+      const assetPath = path.resolve(path.dirname(noteFilePath), decodedSource);
+      if (!assetPath.startsWith(`${contentRoot}${path.sep}`)) return;
+
+      const relativeAssetPath = path.relative(contentRoot, assetPath);
+      node.properties = {
+        ...node.properties,
+        src: `/note-assets/${relativeAssetPath
+          .split(path.sep)
+          .map((segment) => encodeURIComponent(segment))
+          .join('/')}`,
+        loading: 'lazy',
+        decoding: 'async',
+      };
+    });
+  };
+}
+
 /** Recursively pulls plain text out of a hast node (headings can contain nested nodes). */
 function extractText(
   node: Element | { type: string; value?: string; children?: unknown[] }
@@ -213,6 +246,7 @@ export async function getNoteBySlug(slug: string): Promise<Note | null> {
       properties: { className: ['heading-anchor'] },
     })
     .use(collectHeadings(toc)) // side-effect: fill the `toc` array as we walk the tree
+    .use(rewriteRelativeImages(filePath))
     .use(sanitizeRenderedHtml())
     .use(rehypeStringify) // hast -> final HTML string
     .process(content);
