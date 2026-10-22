@@ -1,7 +1,7 @@
 import { getAllNoteSummaries, getAllCategories } from '@/lib/markdown';
 import { Sidebar } from '@/components/docs/sidebar';
 import { Hero } from '@/components/docs/hero';
-import { LoadMoreNotes } from '@/components/docs/load-more-notes';
+import { NotesBrowser } from '@/components/docs/notes-browser';
 
 /**
  * Homepage: automatically lists every Markdown file found in /content,
@@ -43,7 +43,7 @@ export default function HomePage() {
           {notes.length === 0 ? (
             <EmptyState />
           ) : (
-            <LoadMoreNotes notes={notes} />
+            <NotesBrowser notes={notes} />
           )}
         </div>
       </div>
