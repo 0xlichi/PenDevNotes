@@ -333,6 +333,20 @@ html {
   margin-top: 1.25em;
 }
 
+/* Keep long, unbroken Markdown headings inside the article on narrow screens. */
+.prose-doc h1,
+.prose-doc h2,
+.prose-doc h3,
+.prose-doc h4,
+.prose-doc h5,
+.prose-doc h6,
+.prose-doc a.heading-anchor {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .prose-doc h1 {
   margin-top: 2.5em;
   margin-bottom: 0.75em;
