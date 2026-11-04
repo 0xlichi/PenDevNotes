@@ -30,9 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 function formatDate(date?: string) {
   if (!date) return null;
-  const parsed = new Date(date);
-  if (Number.isNaN(parsed.getTime())) return date;
-  return parsed.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  return date;
 }
 
 export default async function NotePage({ params }: PageProps) {

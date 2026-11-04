@@ -4,12 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import type { NoteSummary } from "@/types/note";
 
-/** Formats an ISO date string like "2026-01-15" into "Jan 15, 2026". Falls back gracefully. */
+/** Displays dates written as YYYY-MM-DD or DD-MM-YYYY without changing the input format. */
 function formatDate(date?: string) {
   if (!date) return null;
-  const parsed = new Date(date);
-  if (Number.isNaN(parsed.getTime())) return date;
-  return parsed.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  return date;
 }
 
 /**
