@@ -106,6 +106,16 @@ function makeExcerpt(content: string, length = 160): string {
   return plain.length > length ? plain.slice(0, length).trimEnd() + '…' : plain;
 }
 
+function parseNoteDate(date: string): number {
+  const iso = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+  if (iso) return Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]));
+
+  const dmy = /^(\d{2})-(\d{2})-(\d{4})$/.exec(date);
+  if (dmy) return Date.UTC(Number(dmy[3]), Number(dmy[2]) - 1, Number(dmy[1]));
+
+  return Number.NaN;
+}
+
 /**
  * Returns lightweight metadata (no rendered HTML) for every note.
  * This is what powers the homepage list, category pages, and the search index -
@@ -130,7 +140,7 @@ export function getAllNoteSummaries(): NoteSummary[] {
       .sort((a, b) => {
         if (!a.date) return 1;
         if (!b.date) return -1;
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+        return parseNoteDate(b.date) - parseNoteDate(a.date);
       })
   );
 }
